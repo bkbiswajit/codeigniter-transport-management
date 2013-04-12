@@ -564,6 +564,15 @@ tbody td {
 	border-bottom:1px solid #bbb;
 	background:#eee;
 }
+tbody tr.red th,
+tbody tr.red td {
+	background:#FFAEAE;
+}
+tbody tr.green th,
+tbody tr.green td {
+	background:#B0E57C;
+}
+
 tbody tr.odd th,
 tbody tr.odd td {
 	background:#fff;
