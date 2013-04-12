@@ -136,19 +136,19 @@ CREATE TABLE IF NOT EXISTS `controle_de_viagem_despesas` (
   `controle_de_viagem_despesas_controle_de_viagem_viagens_id` int(11) NOT NULL,
   `controle_de_viagem_despesas_data` date NOT NULL,
   `controle_de_viagem_despesas_controle_de_viagem_despesas_tipos_id` int(11) NOT NULL,
-  `controle_de_viagem_despesas_valor` varchar(255) NOT NULL,
+  `controle_de_viagem_despesas_valor` decimal(13,2) NOT NULL,
   PRIMARY KEY (`controle_de_viagem_despesas_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Extraindo dados da tabela `controle_de_viagem_despesas`
 --
 
 INSERT INTO `controle_de_viagem_despesas` (`controle_de_viagem_despesas_id`, `controle_de_viagem_despesas_controle_de_viagem_viagens_id`, `controle_de_viagem_despesas_data`, `controle_de_viagem_despesas_controle_de_viagem_despesas_tipos_id`, `controle_de_viagem_despesas_valor`) VALUES
-(1, 3, '2013-04-01', 3, '300'),
-(3, 3, '2013-04-01', 7, '486'),
-(4, 1, '2013-04-11', 6, '1'),
-(5, 1, '2013-04-11', 6, '1');
+(1, 3, '2013-04-01', 3, 300.00),
+(3, 3, '2013-04-01', 7, 486.00),
+(4, 1, '2013-04-11', 6, 1.00),
+(5, 1, '2013-04-11', 6, 1.00);
 
 -- --------------------------------------------------------
 
@@ -188,7 +188,7 @@ CREATE TABLE IF NOT EXISTS `controle_de_viagem_destino` (
   `controle_de_viagem_destino_descricao` varchar(255) NOT NULL,
   `controle_de_viagem_destino_ativo` char(1) NOT NULL,
   PRIMARY KEY (`controle_de_viagem_destino_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=34 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=33 ;
 
 --
 -- Extraindo dados da tabela `controle_de_viagem_destino`
@@ -239,7 +239,7 @@ CREATE TABLE IF NOT EXISTS `controle_de_viagem_motoristas_despesas` (
   `controle_de_viagem_motoristas_despesas_controle_de_viagem_id` int(11) NOT NULL,
   `controle_de_viagem_motoristas_despesas_tipos_id` int(11) NOT NULL,
   `controle_de_viagem_motoristas_despesas_data` date NOT NULL,
-  `controle_de_viagem_motoristas_despesas_valor` varchar(255) NOT NULL,
+  `controle_de_viagem_motoristas_despesas_valor` decimal(13,2) NOT NULL,
   PRIMARY KEY (`controle_de_viagem_motoristas_despesas_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
@@ -275,7 +275,7 @@ CREATE TABLE IF NOT EXISTS `controle_de_viagem_origem` (
   `controle_de_viagem_origem_descricao` varchar(255) NOT NULL,
   `controle_de_viagem_origem_ativo` char(1) NOT NULL,
   PRIMARY KEY (`controle_de_viagem_origem_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=34 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=33 ;
 
 --
 -- Extraindo dados da tabela `controle_de_viagem_origem`
@@ -325,24 +325,24 @@ CREATE TABLE IF NOT EXISTS `controle_de_viagem_postos` (
   `controle_de_viagem_postos_data` date NOT NULL,
   `controle_de_viagem_postos_postos_id` int(11) NOT NULL,
   `controle_de_viagem_postos_litros` varchar(255) NOT NULL,
-  `controle_de_viagem_postos_valor_litro` varchar(255) NOT NULL,
+  `controle_de_viagem_postos_valor_litro` decimal(13,2) NOT NULL,
   PRIMARY KEY (`controle_de_viagem_postos_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Extraindo dados da tabela `controle_de_viagem_postos`
 --
 
 INSERT INTO `controle_de_viagem_postos` (`controle_de_viagem_postos_id`, `controle_de_viagem_postos_controle_de_viagem_viagens_id`, `controle_de_viagem_postos_data`, `controle_de_viagem_postos_postos_id`, `controle_de_viagem_postos_litros`, `controle_de_viagem_postos_valor_litro`) VALUES
-(1, 3, '2013-04-01', 1, '350', '2.1'),
-(2, 3, '2013-04-01', 1, '350', '2.1'),
-(3, 3, '2013-04-01', 1, '241', '2.1'),
-(4, 3, '2013-04-01', 1, '200', '2.1'),
-(5, 3, '2013-04-01', 1, '400', '2.1'),
-(6, 3, '2013-04-01', 1, '360', '2.1'),
-(7, 3, '2013-04-01', 1, '217', '2.1'),
-(9, 1, '2013-04-11', 4, '1', '1'),
-(10, 1, '2013-04-11', 4, '1', '1');
+(1, 3, '2013-04-01', 1, '350', 2.10),
+(2, 3, '2013-04-01', 1, '350', 2.10),
+(3, 3, '2013-04-01', 1, '241', 2.10),
+(4, 3, '2013-04-01', 1, '200', 2.10),
+(5, 3, '2013-04-01', 1, '400', 2.10),
+(6, 3, '2013-04-01', 1, '360', 2.10),
+(7, 3, '2013-04-01', 1, '217', 2.10),
+(9, 1, '2013-04-11', 4, '1', 1.00),
+(10, 1, '2013-04-11', 4, '1', 1.00);
 
 -- --------------------------------------------------------
 
@@ -380,20 +380,20 @@ CREATE TABLE IF NOT EXISTS `controle_de_viagem_viagens` (
   `controle_de_viagem_viagens_clientes_id` int(11) NOT NULL,
   `controle_de_viagem_viagens_origem_id` int(11) NOT NULL,
   `controle_de_viagem_viagens_destino_id` int(11) NOT NULL,
-  `controle_de_viagem_viagens_valor_frete` varchar(255) NOT NULL,
-  `controle_de_viagem_viagens_bonus` varchar(255) NOT NULL DEFAULT '0',
+  `controle_de_viagem_viagens_valor_frete` decimal(13,2) NOT NULL,
+  `controle_de_viagem_viagens_bonus` decimal(5,2) NOT NULL DEFAULT '0.00',
   PRIMARY KEY (`controle_de_viagem_viagens_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=35 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Extraindo dados da tabela `controle_de_viagem_viagens`
 --
 
 INSERT INTO `controle_de_viagem_viagens` (`controle_de_viagem_viagens_id`, `controle_de_viagem_viagens_controle_de_viagem_viagens_id`, `controle_de_viagem_viagens_data`, `controle_de_viagem_viagens_clientes_id`, `controle_de_viagem_viagens_origem_id`, `controle_de_viagem_viagens_destino_id`, `controle_de_viagem_viagens_valor_frete`, `controle_de_viagem_viagens_bonus`) VALUES
-(1, 3, '2013-03-26', 2, 3, 10, '2273.30', '0'),
-(2, 3, '2013-03-27', 4, 5, 30, '3101.4', '0'),
-(3, 3, '2013-04-03', 3, 30, 5, '4744.91', '0'),
-(4, 3, '2013-04-04', 2, 31, 32, '1000', '12');
+(1, 3, '2013-03-26', 2, 3, 10, 2273.30, 0.00),
+(2, 3, '2013-03-27', 4, 5, 30, 3101.40, 0.00),
+(3, 3, '2013-04-03', 3, 30, 5, 4744.91, 0.00),
+(4, 3, '2013-04-04', 2, 31, 32, 1000.00, 12.00);
 
 -- --------------------------------------------------------
 
@@ -553,6 +553,31 @@ INSERT INTO `postos` (`postos_id`, `postos_descricao`, `postos_nome`, `postos_en
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `recebimentos`
+--
+
+CREATE TABLE IF NOT EXISTS `recebimentos` (
+  `recebimentos_id` int(11) NOT NULL AUTO_INCREMENT,
+  `recebimentos_descricao` int(11) DEFAULT NULL,
+  `recebimentos_data` date DEFAULT NULL,
+  `recebimentos_data_recebido` date DEFAULT NULL,
+  `recebimentos_valor` varchar(11) DEFAULT NULL,
+  `recebimentos_recebido` char(1) DEFAULT NULL,
+  PRIMARY KEY (`recebimentos_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Extraindo dados da tabela `recebimentos`
+--
+
+INSERT INTO `recebimentos` (`recebimentos_id`, `recebimentos_descricao`, `recebimentos_data`, `recebimentos_data_recebido`, `recebimentos_valor`, `recebimentos_recebido`) VALUES
+(1, 948948, '2013-04-12', '2013-04-12', '200', '1'),
+(2, 65484, '2013-04-12', '2013-04-12', '100', '1'),
+(3, 312321, '2013-04-13', NULL, '100.88', '0');
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `transportadoras`
 --
 
@@ -610,7 +635,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 --
 
 INSERT INTO `usuarios` (`usuario_id`, `grupo_id`, `cpf`, `number_id`, `password`, `password_raw`, `activation_code`, `forgotten_password_code`, `ip_address`, `nome`, `ativo`, `email`, `retrato`, `criado`, `ultimavisita`, `ultimaatividade`, `cookiekey`) VALUES
-(2, 1, '05310852956', '05310852956', '79c3d9a074ec40f64840c70c2f00bbd0e2fa092f', '', '', '', '', 'Lautenai Jr.', '1', 'lautenai@gmail.com', '', '2012-05-16', '2013-04-11 22:55:15', '2013-04-11 20:29:17', NULL),
+(2, 1, '05310852956', '05310852956', '79c3d9a074ec40f64840c70c2f00bbd0e2fa092f', '', '', '', '', 'Lautenai Jr.', '1', 'lautenai@gmail.com', '', '2012-05-16', '2013-04-12 12:19:24', '2013-04-12 11:04:07', NULL),
 (3, 1, '59364840925', '59364840925', '9df3f209a6d62edf8a49e1f1531ef3d41630de06', '', '', '', '', 'Cezar Antônio Dal Piva', '1', 'mano.trans@yahoo.com.br', '', '2013-01-18', '2013-01-23 17:24:09', '2013-01-23 15:24:09', NULL),
 (4, 2, '73242268920', '73242268920', 'edf20e46f9c0ae16c413a2861430218b636b24da', '', '', '', '', 'sidinei dal piva', '1', 'dalpiva01@gmail.com', '', '2013-01-23', '2013-01-28 11:31:05', '2013-01-28 09:41:17', NULL),
 (5, 2, '367842', '367842', 'f1fb36022c1a1f8e12445460a5cf842c0dc7fff0', '', '', '', '', 'Leonardo Dal Piva', '1', 'leodalpiva10@hotmail.com', '', '2013-01-23', '2013-01-31 17:38:52', '2013-01-31 15:57:08', NULL);
@@ -632,7 +657,12 @@ CREATE TABLE IF NOT EXISTS `usuarios_ativos` (
 --
 
 INSERT INTO `usuarios_ativos` (`usuario_id`, `timestamp`) VALUES
-(2, 1365722957);
+(2, 1365775418),
+(2, 1365775425),
+(2, 1365775430),
+(2, 1365775431),
+(2, 1365775445),
+(2, 1365775447);
 
 -- --------------------------------------------------------
 
@@ -668,7 +698,7 @@ CREATE TABLE IF NOT EXISTS `visitante` (
   `visitor_is_robot` char(1) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`visitor_id`),
   KEY `fk_visitor_usuarios1` (`usuario_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=22 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 --
 -- Restrições para as tabelas dumpadas
