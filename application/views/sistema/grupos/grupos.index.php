@@ -56,6 +56,7 @@
 				<?php $i++; } ?>
 				</tbody>
 			</table>
+			<p><?php echo anchor('sistema/grupos/adicionar', 'GRUPO', 'class="uibutton icon add"'); ?></p>
 		</div>		
 	</div>
 </div>

@@ -4,7 +4,10 @@
 			<a id="toggle-infocadastro">Informações</a> 
 		</h2> 
 		<div class="block" id="infocadastro"> 
-			<p></p> 
+			<?php foreach ($series as $serie): ?>
+				<p><?php echo anchor('contabilidade/recebimentos/por_serie/'. $serie->recebimentos_serie, 'SÉRIE => ' . $serie->recebimentos_serie); ?></p>
+			<?php endforeach ?>
+			<?php echo anchor('contabilidade/recebimentos', 'TODAS AS SÉRIES'); ?>
 		</div> 
 	</div>
 </div>
@@ -23,6 +26,7 @@
 				<tr class="heading">
 					<td class="h" title="Name">ID</td>
 					<td class="h" title="Name">NÚMERO</td>
+					<td class="h" title="Name">SÉRIE</td>
 					<td class="h" title="Name">VALOR</td>
 					<td class="h" title="Name">DATA</td>
 					<td class="h" title="Name">DATA RECEBIMENTO</td>
@@ -33,8 +37,8 @@
 				</thead>
 				<tbody>
 				<?php
+					//$grupos as $grupo_id =>$group_name
 					foreach ($recebimentos as $recebimentos) {
-
 						if ($recebimentos->recebimentos_recebido == 0) {
 							$bgColor = 'red';
 							$recebido = 'NÃO';
@@ -42,11 +46,11 @@
 							$bgColor = 'green';
 							$recebido = 'SIM';
 						}
-
 				?>
 				<tr class="<?php echo $bgColor; ?>">
 					<td class="m"><?php echo $recebimentos->recebimentos_id ?></td>
 					<td class="m"><?php echo character_limiter($recebimentos->recebimentos_descricao, 50); ?></td>
+					<td class="m"><?php echo character_limiter($recebimentos->recebimentos_serie, 50); ?></td>
 					<td class="m" if ><?php echo brl($recebimentos->recebimentos_valor); ?></td>
 					<td class="m"><?php echo mysql2human($recebimentos->recebimentos_data); ?></td>
 					<td class="m" if ><?php echo mysql2human($recebimentos->recebimentos_data_recebido); ?></td>

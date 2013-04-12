@@ -141,7 +141,7 @@
 							?>
 						</td>
 					</tr>
-					
+					<!--
 					<tr>
 						<td class="caption">
 							<label for="controle_de_viagem_horimetro" class="r" accesskey="N"><u>H</u>orímetro</label>
@@ -187,7 +187,7 @@
 							?>
 						</td>
 					</tr>
-					
+					-->
 					<?php
 					if($controle_de_viagem_id == NULL){
 						$submittext = 'Adicionar';

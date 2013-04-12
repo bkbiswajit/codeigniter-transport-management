@@ -33,7 +33,7 @@
 		</h2>
 		<div class="block" id="forms">
 			<?php echo form_open('sistema/grupos/salvar', NULL, array('grupo_id' => $grupo_id)); $t = 1; ?>
-			<?php if($grupo_id == NULL){ ?> <p>Please fill in the required fields below to adicionar a new group to the system.</p> <?php } ?>
+			<?php if($grupo_id == NULL){ ?><?php } ?>
 				<table class="form" cellpadding="6" cellspacing="0" border="0" width="100%">
 					<tr>
 						<td class="caption">
@@ -105,9 +105,9 @@
 						$submittext = 'Salvar group';
 					}
 					unset($buttons);
-					$buttons[] = array('submit', 'positive', $submittext, '', $t);
+					$buttons[] = array('submit', 'uibutton', $submittext, '', $t);
 					#$buttons[] = array('submit', '', 'Salvar and adicionar another', 'adicionar.gif', $t+1);
-					$buttons[] = array('cancel', 'negative', 'Cancelar', '', $t+2, site_url('sistema/grupos'));
+					$buttons[] = array('cancel', 'uibutton', 'Cancelar', '', $t+2, site_url('sistema/grupos'));
 					$this->load->view('parts/buttons', array('buttons' => $buttons));
 					?>
 

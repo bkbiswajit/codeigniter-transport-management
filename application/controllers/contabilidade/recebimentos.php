@@ -18,8 +18,28 @@ class recebimentos extends Controller {
 		$links[] = array('contabilidade/recebimentos/adicionar', 'Adicionar novo recebimentos');
 		$tpl['links'] = $this->load->view('parts/linkbar', $links, TRUE);
 		
+		$body['series'] = $this->recebimentos_model->get_recebimentos_serie();
+		
 		// Get list of usuarios
 		$body['recebimentos'] = $this->recebimentos_model->get_recebimentos();
+		
+			$tpl['body'] = $this->load->view('contabilidade/recebimentos/index.php', $body, TRUE);
+			
+		$tpl['title'] = 'recebimentos';
+		$tpl['pagetitle'] = 'Gerenciar recebimentos';
+		
+		$this->load->view($this->tpl, $tpl);
+	}
+
+	function por_serie($recebimentos_serie = NULL){
+		//$this->auth->check('recebimentos');
+		
+		$links[] = array('contabilidade/recebimentos/adicionar', 'Adicionar novo recebimentos');
+		$tpl['links'] = $this->load->view('parts/linkbar', $links, TRUE);
+		
+		// Get list of usuarios
+		$body['series'] = $this->recebimentos_model->get_recebimentos_serie();
+		$body['recebimentos'] = $this->recebimentos_model->get_recebimentos(NULL, $recebimentos_serie);
 		
 			$tpl['body'] = $this->load->view('contabilidade/recebimentos/index.php', $body, TRUE);
 			
@@ -33,6 +53,10 @@ class recebimentos extends Controller {
 		//$this->auth->check('recebimentos.adicionar');
 		$body['recebimentos'] = NULL;
 		$body['recebimentos_id'] = NULL;
+
+		$this->load->model('clientes/clientes_model');
+
+		$body['clientes'] = $this->clientes_model->get_clientes_dropdown();
 		
 		$tpl['title'] = 'Adicionar recebimentos';
 		$tpl['pagetitle'] = 'Adicionar novo recebimentos';
@@ -44,8 +68,10 @@ class recebimentos extends Controller {
 		//$this->auth->check('recebimentos.editar');
 		$body['recebimentos'] = $this->recebimentos_model->get_recebimentos($recebimentos_id);
 		$body['recebimentos_id'] = $recebimentos_id;
-		
-		//
+
+		$this->load->model('clientes/clientes_model');
+		$body['clientes'] = $this->clientes_model->get_clientes_dropdown();
+
 		$tpl['title'] = 'Editar recebimentos';
 		
 		if($body['recebimentos'] != FALSE){
@@ -64,14 +90,17 @@ class recebimentos extends Controller {
 		$recebimentos_id = $this->input->post('recebimentos_id');
 		
 		$this->form_validation->set_rules('recebimentos_id', 'recebimentos_id');
-		$this->form_validation->set_rules('recebimentos_descricao', 'Nome ', 'required|trim|xss_clean');
+		$this->form_validation->set_rules('recebimentos_descricao', 'Número ', 'required|trim|xss_clean');
+		$this->form_validation->set_rules('recebimentos_serie', 'Série ', 'required|trim|xss_clean');
 		$this->form_validation->set_rules('recebimentos_data', 'Data ', 'required|trim|xss_clean');
 		$this->form_validation->set_rules('recebimentos_valor', 'Valor ', 'required|trim|xss_clean');
 		$this->form_validation->set_error_delimiters('<li>', '</li>');
 		if ($this->form_validation->run() == FALSE) {
 			($recebimentos_id == NULL) ? $this->adicionar() : $this->editar($recebimentos_id);
 		} else {
+			$data['recebimentos_clientes_id']			= str2uppercase($this->input->post('recebimentos_clientes_id'));
 			$data['recebimentos_descricao']			= str2uppercase($this->input->post('recebimentos_descricao'));
+			$data['recebimentos_serie']				= str2uppercase($this->input->post('recebimentos_serie'));
 			$data['recebimentos_data']				= human2mysql($this->input->post('recebimentos_data'));
 			$data['recebimentos_valor']				= comma2dot($this->input->post('recebimentos_valor'));
 			

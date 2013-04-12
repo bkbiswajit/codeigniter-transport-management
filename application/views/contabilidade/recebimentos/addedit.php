@@ -45,6 +45,18 @@
 			<?php if($recebimentos_id == NULL){ ?><?php } ?>
 
 				<table class="form" cellpadding="6" cellspacing="0" border="0" width="100%">
+
+					<tr>
+						<td class="caption">
+							<label for="recebimentos_clientes_id" class="r" accesskey="G"><u>C</u>liente</label>
+						</td>
+						<td class="field">
+							<?php
+							echo form_dropdown('recebimentos_clientes_id', $clientes, set_value('recebimentos_clientes_id', (isset($recebimentos->recebimentos_clientes_id) ? $recebimentos->recebimentos_clientes_id : 0)), 'tabindex="'.$t.'"');
+							$t++;
+							?>
+						</td>
+					</tr>
 					
 					<tr>
 						<td class="caption">
@@ -64,6 +76,29 @@
 							$input['value'] = @set_value('recebimentos_descricao', $recebimentos->recebimentos_descricao);
 							echo form_input($input);
 							echo form_error('recebimentos_descricao');
+							$t++;
+							?>
+						</td>
+					</tr>
+
+					<tr>
+						<td class="caption">
+							<label for="recebimentos_recebimentos_descricao" class="r" accesskey="U">Série</label>
+							<span class="required">*</span>
+						</td>
+						<td class="field">
+							<?php
+							unset($input);
+							$input['accesskey'] = 'U';
+							$input['name'] = 'recebimentos_serie';
+							$input['id'] = 'recebimentos_serie';
+							$input['size'] = '50';
+							$input['maxlength'] = '255';
+							$input['tabindex'] = $t;
+							$input['autocomplete'] = 'off';
+							$input['value'] = @set_value('recebimentos_serie', $recebimentos->recebimentos_serie);
+							echo form_input($input);
+							echo form_error('recebimentos_serie');
 							$t++;
 							?>
 						</td>

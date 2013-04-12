@@ -7,13 +7,17 @@ class recebimentos_model extends Model{
 		parent::Model();
 	}
 	
-	function get_recebimentos($recebimentos_id = NULL, $page = NULL){
+	function get_recebimentos($recebimentos_id = NULL, $recebimentos_serie = NULL, $page = NULL){
 		if ($recebimentos_id == NULL) {
 		
 			// Getting all recebimentos and number of usuarios in it
 			$this->db->select('recebimentos.*');
 			$this->db->from('recebimentos');
 			$this->db->orderby('recebimentos.recebimentos_data DESC');
+
+			if ($recebimentos_serie != NULL) {
+				$this->db->where('recebimentos_serie', $recebimentos_serie);
+			}
 			
 			if (isset($page) && is_array($page)) {
 				$this->db->limit($page[0], $page[1]);
@@ -219,6 +223,22 @@ class recebimentos_model extends Model{
 				return $query->result();
 		} else {
 			$this->lasterr = 'No cursos available.';
+			return 0;
+		}
+	}
+
+	function get_recebimentos_serie(){
+	
+		$sql = 'SELECT  *
+				FROM recebimentos
+				GROUP BY recebimentos.recebimentos_serie
+				ORDER BY recebimentos.recebimentos_serie ASC';
+				
+		$query = $this->db->query($sql);
+		if ($query->num_rows() > 0){
+				return $query->result();
+		} else {
+			$this->lasterr = 'NENHUMA SÉRIE';
 			return 0;
 		}
 	}

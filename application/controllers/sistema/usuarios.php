@@ -97,7 +97,6 @@
 		$body['user'] = NULL;
 		$body['usuario_id'] = NULL;
 		$body['grupos'] = $this->sistema_model->get_groups_dropdown();
-		$tpl['sidebar'] = $this->load->view('sistema/usuarios/usuarios.addedit.side.php', NULL, TRUE);
 		$tpl['subnav'] = $this->sistema_model->subnav();
 		$tpl['title'] = 'Adicionar user';
 		$tpl['pagetitle'] = 'Adicionar a new user';

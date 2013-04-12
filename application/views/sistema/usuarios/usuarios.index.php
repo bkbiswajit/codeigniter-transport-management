@@ -60,6 +60,7 @@
 				</tbody>
 			</table>
 			<?php echo $this->pagination->create_links() ?>
+			<p><?php echo anchor('sistema/usuarios/adicionar', 'USUÁRIOS', 'class="uibutton icon add"'); ?></p>
 		</div>
 	</div>
 </div>

@@ -157,8 +157,8 @@ class controle_de_viagem extends Controller {
 		$this->form_validation->set_rules('controle_de_viagem_km_inicial', 'km_inicial', 'required');
 		$this->form_validation->set_rules('controle_de_viagem_km_final', 'km_final', 'required');
 		
-		$this->form_validation->set_rules('controle_de_viagem_horimetro', 'horimetro', 'required');
-		$this->form_validation->set_rules('controle_de_viagem_horimetro_litros', 'horimetro_litros', 'required');
+		// $this->form_validation->set_rules('controle_de_viagem_horimetro', 'horimetro', 'required');
+		// $this->form_validation->set_rules('controle_de_viagem_horimetro_litros', 'horimetro_litros', 'required');
 		$this->form_validation->set_error_delimiters('<li>', '</li>');
 
 		if($this->form_validation->run() == FALSE){
