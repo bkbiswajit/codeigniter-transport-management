@@ -9,7 +9,7 @@
 		<link rel="stylesheet" type="text/css" href="<?php echo $this->config->item('base_url').''; ?>css/grid.css" media="screen" />
 		<link rel="stylesheet" type="text/css" href="<?php echo $this->config->item('base_url').''; ?>css/nav.css" media="screen" />
 		<link rel="stylesheet" type="text/css" href="<?php echo $this->config->item('base_url').''; ?>css/layout.css" media="screen" />
-		<!--<link rel="stylesheet" type="text/css" href="<?php echo $this->config->item('base_url').''; ?>css/fb-buttons/fb-buttons.css" media="screen" />-->
+		<link rel="stylesheet" type="text/css" href="<?php echo $this->config->item('base_url').''; ?>css/fb-buttons/fb-buttons.css" media="screen" />
 		<!--[if IE 6]><link rel="stylesheet" type="text/css" href="<?php echo $this->config->item('base_url').''; ?>css/ie6.css" media="screen" /><![endif]-->
 		<!--[if IE 7]><link rel="stylesheet" type="text/css" href="<?php echo $this->config->item('base_url').''; ?>css/ie.css" media="screen" /><![endif]-->
 		<script src="<?php echo $this->config->item('base_url').''; ?>js/jquery-1.3.2.min.js" type="text/javascript"></script>
@@ -64,7 +64,7 @@
 										$t++;
 									?>
 								</p> 
-								<input class="login button uibutton special" type="submit" value="Entrar" tabindex="<?php echo $t++ ?>" />
+								<input class="button uibutton" type="submit" value="Entrar" tabindex="<?php echo $t++ ?>" />
 							</fieldset>
 						</form>
 					</div>

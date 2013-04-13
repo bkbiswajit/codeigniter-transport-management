@@ -74,7 +74,7 @@
 							$submittext = 'Salvar usuario';
 						}
 						unset($buttons);
-						$buttons[] = array('submit', 'positive', $submittext, 'disk1.gif', $t);
+						$buttons[] = array('submit', 'uibutton', $submittext, 'disk1.gif', $t);
 						$this->load->view('parts/buttons', array('buttons' =>$buttons));
 						?>
 					</table>

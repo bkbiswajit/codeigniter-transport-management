@@ -169,7 +169,7 @@
 					</tr>
 					<?php
 						unset($buttons);
-						$buttons[] = array('submit', 'positive', 'Salvar', 'disk1.gif', $t);
+						$buttons[] = array('submit', 'uibutton', 'Salvar', 'disk1.gif', $t);
 						$this->load->view('parts/buttons', array('buttons' => $buttons));
 					?>
 				</table>

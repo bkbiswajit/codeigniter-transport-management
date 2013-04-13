@@ -27,6 +27,7 @@
 					<td class="h" title="Name">ID</td>
 					<td class="h" title="Name">NÚMERO</td>
 					<td class="h" title="Name">SÉRIE</td>
+					<td class="h" title="Name">CLIENTE</td>
 					<td class="h" title="Name">VALOR</td>
 					<td class="h" title="Name">DATA</td>
 					<td class="h" title="Name">DATA RECEBIMENTO</td>
@@ -51,6 +52,7 @@
 					<td class="m"><?php echo $recebimentos->recebimentos_id ?></td>
 					<td class="m"><?php echo character_limiter($recebimentos->recebimentos_descricao, 50); ?></td>
 					<td class="m"><?php echo character_limiter($recebimentos->recebimentos_serie, 50); ?></td>
+					<td class="m"><?php echo character_limiter($recebimentos->clientes_descricao, 15); ?></td>
 					<td class="m" if ><?php echo brl($recebimentos->recebimentos_valor); ?></td>
 					<td class="m"><?php echo mysql2human($recebimentos->recebimentos_data); ?></td>
 					<td class="m" if ><?php echo mysql2human($recebimentos->recebimentos_data_recebido); ?></td>

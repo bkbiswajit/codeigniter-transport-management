@@ -11,14 +11,17 @@ class recebimentos_model extends Model{
 		if ($recebimentos_id == NULL) {
 		
 			// Getting all recebimentos and number of usuarios in it
-			$this->db->select('recebimentos.*');
+			$this->db->select('*');
 			$this->db->from('recebimentos');
-			$this->db->orderby('recebimentos.recebimentos_data DESC');
 
 			if ($recebimentos_serie != NULL) {
 				$this->db->where('recebimentos_serie', $recebimentos_serie);
 			}
+
+			$this->db->join('clientes', 'recebimentos.recebimentos_clientes_id = clientes.clientes_id', 'inner');
 			
+			$this->db->orderby('recebimentos.recebimentos_data DESC');
+
 			if (isset($page) && is_array($page)) {
 				$this->db->limit($page[0], $page[1]);
 			}

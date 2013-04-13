@@ -161,7 +161,7 @@
 								<table class="form" cellpadding="0" cellspacing="0" border="0" width="100%">
 									<?php
 									unset($buttons);
-									$buttons[] = array('submit', 'positive', 'Salvar permissões', 'disk1.gif', 0);
+									$buttons[] = array('submit', 'uibutton', 'Salvar permissões', 'disk1.gif', 0);
 									$this->load->view('parts/buttons', array('buttons' =>$buttons));
 									?>
 								</table>
@@ -210,18 +210,3 @@ div.tabs >div h2 {
 }
 -->
 </style>
-<script>
-$(document).ready(function(){
-$("#checkAll").change(function() {
-if(this.checked){
-v = true;
-}else{
-v = false;
-}
-chs = $(".c").get();
-for(i=0; i
-chs[i].checked=v;
-});
-});
-</script>
-<input type="checkbox" id="checkAll" />

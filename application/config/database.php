@@ -36,18 +36,21 @@
 
 $active_group = "default";
 $active_record = TRUE;
-
-$db['default']['hostname'] = "localhost";
-$db['default']['username'] = "root";
-$db['default']['password'] = "";
-$db['default']['database'] = "cmtextil04";
-
-/*
-$db['default']['hostname'] = "mysql.cmtextil.com.br";
-$db['default']['username'] = "cmtextil01";
-$db['default']['password'] = "cmtextil01";
-$db['default']['database'] = "cmtextil01";
-*/
+switch ( $_SERVER['SERVER_NAME'] ) {  
+	case 'localhost':
+		$db['default']['hostname'] = "localhost";
+		$db['default']['username'] = "root";
+		$db['default']['password'] = "";
+		$db['default']['database'] = "cmtextil04";
+	break;
+	
+	default:
+		$db['default']['hostname'] = "mysql.cmtextil.com.br";
+		$db['default']['username'] = "cmtextil04";
+		$db['default']['password'] = "cmtextil04";
+		$db['default']['database'] = "cmtextil04";
+	break;
+}
 $db['default']['dbdriver'] = "mysql";
 $db['default']['dbprefix'] = "";
 $db['default']['pconnect'] = TRUE;

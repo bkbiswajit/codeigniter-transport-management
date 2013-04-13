@@ -11,7 +11,18 @@
 |	http://www.your-site.com/
 |
 */
-$config['base_url']	= "http://localhost/codeigniter/transportes/";
+// $config['base_url']	= "http://cmtextil.com.br/transportes/";
+// $config['base_url']	= "http://localhost/codeigniter/transportes/";
+
+switch ( $_SERVER['SERVER_NAME'] ) {  
+	case 'localhost':
+		$config['base_url'] = "http://localhost/codeigniter/transportes/";
+	break;
+	
+	default:
+		$config['base_url'] = "http://cmtextil.com.br/transportes/";
+	break;
+}
 
 /*
 |--------------------------------------------------------------------------

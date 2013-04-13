@@ -177,7 +177,7 @@
 		$submittext = 'Salvar usuario';
 	}
 	unset($buttons);
-	$buttons[] = array('submit', 'positive', $submittext, 'disk1.gif', $t);
+	$buttons[] = array('submit', 'uibutton', $submittext, 'disk1.gif', $t);
 	#$buttons[] = array('submit', '', 'Salvar and adicionar another', 'adicionar.gif', $t+1);
 	#$buttons[] = array('cancel', 'negative', 'Cancelar', 'arr-left.gif', $t+2, site_url('sistema/usuarios'));
 	$this->load->view('parts/buttons', array('buttons' => $buttons));

@@ -192,7 +192,6 @@
 			<h2>
 				<a href="#" id="toggle-tables">Relatório de Controle de Viagens</a>
 			</h2>
-			
 			<div class="block" id="tables">
 			<table class="list" width="100%" cellpadding="0" cellspacing="0" border="0">
 				<col /><col /><col />
@@ -214,7 +213,7 @@
 				</tr>
 				<tr class="tr">
 					<td class="m">MÉDIA</td>
-					<td class="m"><?php echo number_format($km->soma/$litros->soma,2,",","."); ?> L</td>
+					<td class="m"><?php echo number_format($km->soma/$litros->soma,2,",","."); ?> KM/L</td>
 				</tr>
 				<tr class="tr">
 					<td class="m">DESPESAS</td>
@@ -223,7 +222,6 @@
 				</tbody>
 			</table>
 			</div>
-			
 	</div>
 </div>
 
@@ -352,7 +350,7 @@ $(document).ready(function() {
 				</tr>
 				<tr class="tr">
 					<td class="m">MÉDIA</td>
-					<td class="m"><?php echo number_format($km->soma/$litros->soma,2,",","."); ?> L</td>
+					<td class="m"><?php echo number_format($km->soma/$litros->soma,2,",","."); ?> KM/L</td>
 				</tr>
 				<tr class="tr">
 					<td class="m">DESPESAS</td>
