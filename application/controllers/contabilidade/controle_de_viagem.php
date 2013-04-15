@@ -60,7 +60,7 @@ class controle_de_viagem extends Controller {
 		$body['controle_de_viagem_postos'] = NULL;
 		$body['controle_de_viagem_despesas'] = NULL;
 		
-		$body['transportadoras'] 	= $this->transportadoras_model->get_transportadoras_dropdown();
+		$body['transportadoras']= $this->transportadoras_model->get_transportadoras_dropdown();
 		$body['motoristas'] 	= $this->motoristas_model->get_motoristas_dropdown();
 		$body['frotas'] 		= $this->frotas_model->get_caminhoes_dropdown();
 		$body['origens'] 		= $this->controle_de_viagem_origem_model->get_controle_de_viagem_origem_dropdown();
@@ -120,13 +120,6 @@ class controle_de_viagem extends Controller {
 		$body['controle_de_viagem_viagens_total'] = $this->controle_de_viagem_viagens_model->get_controle_de_viagem_viagens_total($controle_de_viagem_id)->total;
 		$body['controle_de_viagem_postos_litros_total'] = $this->controle_de_viagem_postos_model->get_controle_de_viagem_postos_litros_total($controle_de_viagem_id)->total;
 		
-		/*
-		print('<pre>');
-		print_r($body);
-		print('</pre>');
-		die();
-		*/
-		
 		$tpl['title'] = 'Editar controle_de_viagem';
 		
 		if($body['controle_de_viagem'] != FALSE){
@@ -136,123 +129,61 @@ class controle_de_viagem extends Controller {
 			$tpl['pagetitle'] = 'Error getting controle_de_viagem';
 			$tpl['body'] = $this->msg->err('Could not load the specified controle_de_viagem. Please check the ID and try again.');
 		}
-		
-		//print_r($body);die();
+
 		$this->load->view($this->tpl, $tpl);
 	}
 	
 	function salvar(){
-		
 		$controle_de_viagem_id = $this->input->post('controle_de_viagem_id');
-		
 		$this->form_validation->set_rules('controle_de_viagem_transportadoras_id', 'transportadora', 'required');
 		$this->form_validation->set_rules('controle_de_viagem_motorista_id', 'motorista', 'required');
 		$this->form_validation->set_rules('controle_de_viagem_caminhoes_id', 'caminhao', 'required');
-		/*
-		$this->form_validation->set_rules('controle_de_viagem_data', 'data', 'required');
-		$this->form_validation->set_rules('controle_de_viagem_origem_id', 'origem_id', 'required');
-		$this->form_validation->set_rules('controle_de_viagem_destino_id', 'destino_id', 'required');
-		$this->form_validation->set_rules('controle_de_viagem_valor_frete', 'valor_frete', 'required');
-		*/
 		$this->form_validation->set_rules('controle_de_viagem_km_inicial', 'km_inicial', 'required');
 		$this->form_validation->set_rules('controle_de_viagem_km_final', 'km_final', 'required');
-		
-		// $this->form_validation->set_rules('controle_de_viagem_horimetro', 'horimetro', 'required');
-		// $this->form_validation->set_rules('controle_de_viagem_horimetro_litros', 'horimetro_litros', 'required');
 		$this->form_validation->set_error_delimiters('<li>', '</li>');
-
 		if($this->form_validation->run() == FALSE){
-			
-			// Validation failed - load required action depending on the state of usuario_id
 			($controle_de_viagem_id == NULL) ? $this->adicionar() : $this->editar($controle_de_viagem_id);
-			
 		} else {
-		
-			// Validation OK
 			$data['controle_de_viagem_transportadoras_id']	= $this->input->post('controle_de_viagem_transportadoras_id');
 			$data['controle_de_viagem_motorista_id']	= $this->input->post('controle_de_viagem_motorista_id');
 			$data['controle_de_viagem_caminhao_id']		= $this->input->post('controle_de_viagem_caminhoes_id');
-			/*
-			$data['controle_de_viagem_origem_id']		= $this->input->post('controle_de_viagem_origem_id');
-			$data['controle_de_viagem_destino_id']		= $this->input->post('controle_de_viagem_destino_id');
-			*/
 			$data['controle_de_viagem_km_inicial']		= $this->input->post('controle_de_viagem_km_inicial');
 			$data['controle_de_viagem_km_final']		= $this->input->post('controle_de_viagem_km_final');
 			$data['controle_de_viagem_horimetro']		= $this->input->post('controle_de_viagem_horimetro');
 			$data['controle_de_viagem_horimetro_litros']= $this->input->post('controle_de_viagem_horimetro_litros');
-			
 			$data['controle_de_viagem_valor_frete']		= comma2dot($this->input->post('controle_de_viagem_valor_frete'));
-			/*
-			if($this->input->post('controle_de_viagem_data') == NULL)
-			{
-				$data['controle_de_viagem_data'] = date("Y-m-d");
-			}else
-			{
-				$data['controle_de_viagem_data'] = human2mysql($this->input->post('controle_de_viagem_data'));
-			};
-			*/
-			//print_r($data); die();
-			
 			if($controle_de_viagem_id == NULL){
-			
 				$adicionar = $this->controle_de_viagem_model->add_controle_de_viagem($data);
-				
 				if($adicionar == TRUE){
-					//$this->msg->adicionar('info', sprintf($this->lang->line('SECURITY_TURMA_ADD_OK'), $data['controle_de_viagem_id']));
-					$this->msg->adicionar('info', 'SUCESSO');
-					
+					$this->msg->adicionar('info', 'OK');
 				} else {
-					//$this->msg->adicionar('err', sprintf($this->lang->line('SECURITY_TURMA_ADD_FAIL', $this->controle_de_viagem_model->lasterr)));
 					$this->msg->adicionar('err', $this->controle_de_viagem_model->lasterr, 'ERRO!');
 				}
 				$id = $this->db->insert_id();
 				echo "<script>alert('NUMERO DO CONTROLE DE VIAGEM: $id'); window.location = './editar/$id';</script>";
 				die();
-				//redirect('contabilidade/controle_de_viagem/editar/'.$this->db->insert_id());
 			} else {
-			
-				// Updating existing controle_de_viagem
 				$editar = $this->controle_de_viagem_model->edit_controle_de_viagem($controle_de_viagem_id, $data);
 				if($editar == TRUE){
 					$this->msg->adicionar('info', sprintf($this->lang->line('SECURITY_TURMA_EDIT_OK'), $controle_de_viagem_id));
 				} else {
 					$this->msg->adicionar('err', sprintf($this->lang->line('SECURITY_TURMA_EDIT_FAIL', $this->controle_de_viagem_model->lasterr)));
 				}
-				/*
-				echo "<script>alert('NUMERO DO CONTROLE DE VIAGEM: $controle_de_viagem_id'); window.location = './editar/$controle_de_viagem_id';</script>";
-				die();
-				*/
 				redirect('contabilidade/controle_de_viagem/editar/'.$controle_de_viagem_id);
 			}
-			
-			/*
-			if($this->input->post('btn_submit') == 'Adicionar' || $this->input->post('btn_submit') == 'Salvar'){
-				redirect('contabilidade/controle_de_viagem');
-			}else{
-			*/
-				//redirect('contabilidade/controle_de_viagem/editar/'.$this->db->insert_id());
-			/*}*/
 		}
-		
 	}
 
 	function excluir($controle_de_viagem_id = NULL){
 		//$this->auth->check('controle_de_viagem.excluir');
-		
-		// Check if a form has been submitted; if not - show it to ask controle_de_viagem confirmation
 		if($this->input->post('id')){
-		
-			// Form has been submitted (so the POST value exists)
-			// Call model function to excluir controle_de_viagem
 			$excluir = $this->controle_de_viagem_model->delete_controle_de_viagem($this->input->post('id'));
 			if($excluir == FALSE){
 				$this->msg->adicionar('err', $this->controle_de_viagem_model->lasterr, 'Ocorreu um erro!');
 			} else {
 				$this->msg->adicionar('info', 'The controle_de_viagem has been deleted.');
 			}
-			// Redirect
 			redirect('contabilidade/controle_de_viagem');
-			
 		} else {
 			if($controle_de_viagem_id == NULL){
 				
@@ -261,18 +192,12 @@ class controle_de_viagem extends Controller {
 				$tpl['body'] = $this->msg->err('Cannot find the controle_de_viagem or no controle_de_viagem ID given.');
 				
 			} else {
-				
-				// Get controle_de_viagem info so we can present the confirmation page
 				$controle_de_viagem = $this->controle_de_viagem_model->get_controle_de_viagem($controle_de_viagem_id);
-				
 				if($controle_de_viagem == FALSE){
-				
 					$tpl['title'] = 'Excluir controle_de_viagem';
 					$tpl['pagetitle'] = $tpl['title'];
 					$tpl['body'] = $this->msg->err('Could not find that controle_de_viagem or no controle_de_viagem ID given.');
-					
 				} else {					
-					// Initialise page
 					$body['action'] = 'contabilidade/controle_de_viagem/excluir';
 					$body['id'] = $controle_de_viagem_id;
 					$body['cancel'] = 'contabilidade/controle_de_viagem';
@@ -280,17 +205,11 @@ class controle_de_viagem extends Controller {
 					$tpl['title'] = 'Excluir controle_de_viagem';
 					$tpl['pagetitle'] = 'Excluir ' . $controle_de_viagem->controle_de_viagem_id;
 					$tpl['body'] = $this->load->view('parts/deleteconfirm', $body, TRUE);
-					
 				}
-				
 			}
-			
 			$this->load->view($this->tpl, $tpl);
-			
 		}
-		
 	}
-
 }
 
 /* End of file controllers/contabilidade/controle_de_viagem/controle_de_viagem.php */

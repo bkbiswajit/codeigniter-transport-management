@@ -35,15 +35,6 @@
 	</div>
 </div>
 
-<?php
-	/*
-	$errors = validation_errors(); 
-	if($errors){
-		echo '<div class="grid_16"><div class="box_error"><h2>' . $errors . '</h2></div></div>';
-	}
-	*/
-?>
-
 <div class="grid_13">
 
 	<div class="box">

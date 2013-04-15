@@ -3,11 +3,14 @@
 		<h2> 
 			<a id="toggle-infocadastro">Informações</a> 
 		</h2> 
-		<div class="block" id="infocadastro"> 
+		<div class="block" id="infocadastro">
+			<?php if ($series != 0): ?>
+				
 			<?php foreach ($series as $serie): ?>
 				<p><?php echo anchor('contabilidade/recebimentos/por_serie/'. $serie->recebimentos_serie, 'SÉRIE => ' . $serie->recebimentos_serie); ?></p>
 			<?php endforeach ?>
 			<?php echo anchor('contabilidade/recebimentos', 'TODAS AS SÉRIES'); ?>
+			<?php endif ?>
 		</div> 
 	</div>
 </div>

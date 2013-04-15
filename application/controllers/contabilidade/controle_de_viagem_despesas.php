@@ -204,25 +204,6 @@ class controle_de_viagem_despesas extends Controller {
 		}
 		
 	}
-	
-	function adicionar_para_os($pre_os_id){
-		//$this->auth->check('controle_de_viagem_despesas.adicionar');
-		$body['pre_os_id'] = $pre_os_id;
-		
-		$body['controle_de_viagem_despesas'] = NULL;
-		$body['controle_de_viagem_despesas_id'] = NULL;
-		
-		$this->load->model('despesas_tipos/despesas_tipos_model');
-		$body['despesas_tipos'] = $this->despesas_tipos_model->get_despesas_tipos_dropdown();
-		
-		$tpl['title'] = 'Adicionar controle_de_viagem_despesas';
-		$tpl['pagetitle'] = 'Adicionar novo controle_de_viagem_despesas';
-		$tpl['body'] = $this->load->view('contabilidade/controle_de_viagem_despesas/addedit.php', $body, TRUE);
-		$this->load->view($this->tpl, $tpl);
-	}
-	
-	
 
 }
-
 /* End of file controllers/contabilidade/controle_de_viagem_despesas/controle_de_viagem_despesas.php */
