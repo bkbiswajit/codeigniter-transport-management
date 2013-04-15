@@ -171,6 +171,28 @@
 							?>
 						</td>
 					</tr>
+
+					<tr>
+						<td class="caption">
+							<label for="recebimentos_recebimentos_descricao" class="r" accesskey="U">Comentário R$</label>
+						</td>
+						<td class="field">
+							<?php
+							unset($input);
+							$input['accesskey'] = 'U';
+							$input['name'] = 'recebimentos_comentario';
+							$input['id'] = 'recebimentos_comentario';
+							$input['cols'] = '80';
+							//$input['maxlength'] = '255';
+							$input['tabindex'] = $t;
+							$input['autocomplete'] = 'off';
+							$input['value'] = @set_value('recebimentos_comentario', $recebimentos->recebimentos_comentario);
+							echo form_textarea($input);
+							echo form_error('recebimentos_comentario');
+							$t++;
+							?>
+						</td>
+					</tr>
 					
 					<tr>
 						<td class="caption">

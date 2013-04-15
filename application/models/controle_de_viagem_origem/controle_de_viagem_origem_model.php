@@ -9,12 +9,16 @@ class controle_de_viagem_origem_model extends Model{
 	
 	function get_controle_de_viagem_origem($controle_de_viagem_origem_id = NULL, $page = NULL){
 		if ($controle_de_viagem_origem_id == NULL) {
-		
-			// Getting all controle_de_viagem_origem and number of usuarios in it
+			
 			$this->db->select('controle_de_viagem_origem.*');
 			$this->db->from('controle_de_viagem_origem');
 			$this->db->orderby('controle_de_viagem_origem.controle_de_viagem_origem_descricao ASC');
 			
+			// $this->db->select('*');
+			// $this->db->from('tb_cidade');
+			// $this->db->join('tb_estado', 'tb_cidade.fk_cod_estado = tb_estado.cod_estado', 'inner');
+			// $this->db->orderby('tb_cidade.cidade_descricao ASC');
+
 			if (isset($page) && is_array($page)) {
 				$this->db->limit($page[0], $page[1]);
 			}

@@ -682,86 +682,129 @@
 
 <script>
   /* attach a submit handler to the form */
-  $("#viagens_form").submit(function(event) {
+  $("#viagens_form").submit(function (event) {
 
-    /* stop form from submitting normally */
-    event.preventDefault(); 
-        
-    /* get some values from elements on the page: */
-    var $form = $( this ),
-        controle_de_viagem_viagens_id = $form.find( 'input[name="controle_de_viagem_viagens_id"]' ).val(),
-        controle_de_viagem_viagens_controle_de_viagem_viagens_id = $form.find( 'input[name="controle_de_viagem_viagens_controle_de_viagem_viagens_id"]' ).val(),
-        controle_de_viagem_viagens_data = $form.find( 'input[name="controle_de_viagem_viagens_data"]' ).val(),
-        controle_de_viagem_viagens_clientes_id = $form.find( 'select[name="controle_de_viagem_viagens_clientes_id"]' ).val(),
-        controle_de_viagem_viagens_origem_id = $form.find( 'select[name="controle_de_viagem_viagens_origem_id"]' ).val(),
-        controle_de_viagem_viagens_destino_id = $form.find( 'select[name="controle_de_viagem_viagens_destino_id"]' ).val(),
-        controle_de_viagem_viagens_valor_frete = $form.find( 'input[name="controle_de_viagem_viagens_valor_frete"]' ).val(),
-        controle_de_viagem_viagens_bonus = $form.find( 'input[name="controle_de_viagem_viagens_bonus"]' ).val(),
-        url = $form.attr( 'action' );
+      /* stop form from submitting normally */
+      event.preventDefault();
 
-    /* Send the data using post and put the resultados in a div */
-    $.post( url, { controle_de_viagem_viagens_id:controle_de_viagem_viagens_id, controle_de_viagem_viagens_controle_de_viagem_viagens_id: controle_de_viagem_viagens_controle_de_viagem_viagens_id, controle_de_viagem_viagens_data : controle_de_viagem_viagens_data, controle_de_viagem_viagens_clientes_id:controle_de_viagem_viagens_clientes_id, controle_de_viagem_viagens_origem_id : controle_de_viagem_viagens_origem_id, controle_de_viagem_viagens_destino_id : controle_de_viagem_viagens_destino_id,  controle_de_viagem_viagens_valor_frete : controle_de_viagem_viagens_valor_frete, controle_de_viagem_viagens_bonus:controle_de_viagem_viagens_bonus },
-      function( data ) {
-          var content = $( data ).find( '#content_viagens' );
-          $( "#resultado_viagens" ).html(data);
-      }
-    );
+      /* get some values from elements on the page: */
+      var $form = $(this),
+          controle_de_viagem_viagens_id = $form.find('input[name="controle_de_viagem_viagens_id"]').val(),
+          controle_de_viagem_viagens_controle_de_viagem_viagens_id = $form.find('input[name="controle_de_viagem_viagens_controle_de_viagem_viagens_id"]').val(),
+          controle_de_viagem_viagens_data = $form.find('input[name="controle_de_viagem_viagens_data"]').val(),
+          controle_de_viagem_viagens_clientes_id = $form.find('select[name="controle_de_viagem_viagens_clientes_id"]').val(),
+          controle_de_viagem_viagens_origem_id = $form.find('select[name="controle_de_viagem_viagens_origem_id"]').val(),
+          controle_de_viagem_viagens_destino_id = $form.find('select[name="controle_de_viagem_viagens_destino_id"]').val(),
+          controle_de_viagem_viagens_valor_frete = $form.find('input[name="controle_de_viagem_viagens_valor_frete"]').val(),
+          controle_de_viagem_viagens_bonus = $form.find('input[name="controle_de_viagem_viagens_bonus"]').val(),
+          url = $form.attr('action');
+
+      /* Send the data using post and put the resultados in a div */
+      $.post(url, {
+          controle_de_viagem_viagens_id: controle_de_viagem_viagens_id,
+          controle_de_viagem_viagens_controle_de_viagem_viagens_id: controle_de_viagem_viagens_controle_de_viagem_viagens_id,
+          controle_de_viagem_viagens_data: controle_de_viagem_viagens_data,
+          controle_de_viagem_viagens_clientes_id: controle_de_viagem_viagens_clientes_id,
+          controle_de_viagem_viagens_origem_id: controle_de_viagem_viagens_origem_id,
+          controle_de_viagem_viagens_destino_id: controle_de_viagem_viagens_destino_id,
+          controle_de_viagem_viagens_valor_frete: controle_de_viagem_viagens_valor_frete,
+          controle_de_viagem_viagens_bonus: controle_de_viagem_viagens_bonus
+      }, function (data) {
+          if (data == 'ERRO') {
+              alert('ERRO NO PREENCHIMENTO DOS CAMPOS');
+          } else {
+              var content = $(data).find('#content_viagens');
+              $("#resultado_viagens").html(data);
+          };
+
+          if (data != 'ERRO') {
+              $('#viagens_form').each(function () {
+                  this.reset();
+              });
+          };
+      });
   });
-  
+
   /* attach a submit handler to the form */
-  $("#postos_form").submit(function(event) {
+  $("#postos_form").submit(function (event) {
 
-    /* stop form from submitting normally */
-    event.preventDefault(); 
-        
-    /* get some values from elements on the page: */
-    var $form = $( this ),
-        controle_de_viagem_postos_controle_de_viagem_viagens_id = $form.find( 'input[name="controle_de_viagem_postos_controle_de_viagem_viagens_id"]' ).val(),
-        controle_de_viagem_postos_data = $form.find( 'input[name="controle_de_viagem_postos_data"]' ).val(),
-        controle_de_viagem_postos_postos_id = $form.find( 'select[name="controle_de_viagem_postos_postos_id"]' ).val(),
-        controle_de_viagem_postos_litros = $form.find( 'input[name="controle_de_viagem_postos_litros"]' ).val(),
-        controle_de_viagem_postos_valor_litro = $form.find( 'input[name="controle_de_viagem_postos_valor_litro"]' ).val(),
-        url = $form.attr( 'action' );
+      /* stop form from submitting normally */
+      event.preventDefault();
 
-    /* Send the data using post and put the resultados in a div */
-    $.post( url, { controle_de_viagem_postos_controle_de_viagem_viagens_id: controle_de_viagem_postos_controle_de_viagem_viagens_id, controle_de_viagem_postos_data : controle_de_viagem_postos_data,  controle_de_viagem_postos_postos_id : controle_de_viagem_postos_postos_id, controle_de_viagem_postos_litros : controle_de_viagem_postos_litros,  controle_de_viagem_postos_valor_litro : controle_de_viagem_postos_valor_litro },
-      function( data ) {
-          var content = $( data ).find( '#content_postos' );
-          $( "#resultado_postos" ).html(data);
-      }
-    );
+      /* get some values from elements on the page: */
+      var $form = $(this),
+          controle_de_viagem_postos_controle_de_viagem_viagens_id = $form.find('input[name="controle_de_viagem_postos_controle_de_viagem_viagens_id"]').val(),
+          controle_de_viagem_postos_data = $form.find('input[name="controle_de_viagem_postos_data"]').val(),
+          controle_de_viagem_postos_postos_id = $form.find('select[name="controle_de_viagem_postos_postos_id"]').val(),
+          controle_de_viagem_postos_litros = $form.find('input[name="controle_de_viagem_postos_litros"]').val(),
+          controle_de_viagem_postos_valor_litro = $form.find('input[name="controle_de_viagem_postos_valor_litro"]').val(),
+          url = $form.attr('action');
+
+      /* Send the data using post and put the resultados in a div */
+      $.post(url, {
+          controle_de_viagem_postos_controle_de_viagem_viagens_id: controle_de_viagem_postos_controle_de_viagem_viagens_id,
+          controle_de_viagem_postos_data: controle_de_viagem_postos_data,
+          controle_de_viagem_postos_postos_id: controle_de_viagem_postos_postos_id,
+          controle_de_viagem_postos_litros: controle_de_viagem_postos_litros,
+          controle_de_viagem_postos_valor_litro: controle_de_viagem_postos_valor_litro
+      }, function (data) {
+          if (data == 'ERRO') {
+              alert('ERRO NO PREENCHIMENTO DOS CAMPOS');
+          } else {
+              var content = $(data).find('#content_postos');
+              $("#resultado_postos").html(data);
+          };
+          if (data != 'ERRO') {
+              $('#postos_form').each(function () {
+                  this.reset();
+              });
+          };
+      });
   });
-  
+
   /* attach a submit handler to the form */
-  $("#despesas_form").submit(function(event) {
+  $("#despesas_form").submit(function (event) {
 
-    /* stop form from submitting normally */
-    event.preventDefault(); 
-        
-    /* get some values from elements on the page: */
-    var $form = $( this ),
-        controle_de_viagem_despesas_controle_de_viagem_viagens_id = $form.find( 'input[name="controle_de_viagem_despesas_controle_de_viagem_viagens_id"]' ).val(),
-        controle_de_viagem_despesas_data = $form.find( 'input[name="controle_de_viagem_despesas_data"]' ).val(),
-        controle_de_viagem_despesas_controle_de_viagem_despesas_tipos_id = $form.find( 'select[name="controle_de_viagem_despesas_controle_de_viagem_despesas_tipos_id"]' ).val(),
-        controle_de_viagem_despesas_valor = $form.find( 'input[name="controle_de_viagem_despesas_valor"]' ).val(),
-        url = $form.attr( 'action' );
+      /* stop form from submitting normally */
+      event.preventDefault();
 
-    /* Send the data using post and put the resultados in a div */
-    $.post( url, { controle_de_viagem_despesas_controle_de_viagem_viagens_id: controle_de_viagem_despesas_controle_de_viagem_viagens_id, controle_de_viagem_despesas_data : controle_de_viagem_despesas_data,  controle_de_viagem_despesas_controle_de_viagem_despesas_tipos_id : controle_de_viagem_despesas_controle_de_viagem_despesas_tipos_id, controle_de_viagem_despesas_valor : controle_de_viagem_despesas_valor },
-      function( data ) {
-          var content = $( data ).find( '#content_despesas' );
-          $( "#resultado_despesas" ).html(data);
-      }
-    );
+      /* get some values from elements on the page: */
+      var $form = $(this),
+          controle_de_viagem_despesas_controle_de_viagem_viagens_id = $form.find('input[name="controle_de_viagem_despesas_controle_de_viagem_viagens_id"]').val(),
+          controle_de_viagem_despesas_data = $form.find('input[name="controle_de_viagem_despesas_data"]').val(),
+          controle_de_viagem_despesas_controle_de_viagem_despesas_tipos_id = $form.find('select[name="controle_de_viagem_despesas_controle_de_viagem_despesas_tipos_id"]').val(),
+          controle_de_viagem_despesas_valor = $form.find('input[name="controle_de_viagem_despesas_valor"]').val(),
+          url = $form.attr('action');
+
+      /* Send the data using post and put the resultados in a div */
+      $.post(url, {
+          controle_de_viagem_despesas_controle_de_viagem_viagens_id: controle_de_viagem_despesas_controle_de_viagem_viagens_id,
+          controle_de_viagem_despesas_data: controle_de_viagem_despesas_data,
+          controle_de_viagem_despesas_controle_de_viagem_despesas_tipos_id: controle_de_viagem_despesas_controle_de_viagem_despesas_tipos_id,
+          controle_de_viagem_despesas_valor: controle_de_viagem_despesas_valor
+      }, function (data) {
+          if (data == 'ERRO') {
+              alert('ERRO NO PREENCHIMENTO DOS CAMPOS');
+          } else {
+
+              var content = $(data).find('#content_despesas');
+              $("#resultado_despesas").html(data);
+          };
+          if (data != 'ERRO') {
+              $('#despesas_form').each(function () {
+                  this.reset();
+              });
+          };
+      })
   });
 </script>
 <script type="text/javascript">
-    function deletechecked(link) {
-        var answer = confirm('Você realmente deseja excluir este item?')
-        if ( answer ) {
-            window.location = link;
-        }
-        return false;
+function deletechecked(link) {
+    var answer = confirm('Você realmente deseja excluir este item?')
+    if (answer) {
+        window.location = link;
     }
+    return false;
+}
 </script>
 <?php } ?>

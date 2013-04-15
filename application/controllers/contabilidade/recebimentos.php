@@ -98,11 +98,12 @@ class recebimentos extends Controller {
 		if ($this->form_validation->run() == FALSE) {
 			($recebimentos_id == NULL) ? $this->adicionar() : $this->editar($recebimentos_id);
 		} else {
-			$data['recebimentos_clientes_id']			= str2uppercase($this->input->post('recebimentos_clientes_id'));
+			$data['recebimentos_clientes_id']		= str2uppercase($this->input->post('recebimentos_clientes_id'));
 			$data['recebimentos_descricao']			= str2uppercase($this->input->post('recebimentos_descricao'));
 			$data['recebimentos_serie']				= str2uppercase($this->input->post('recebimentos_serie'));
 			$data['recebimentos_data']				= human2mysql($this->input->post('recebimentos_data'));
 			$data['recebimentos_valor']				= comma2dot($this->input->post('recebimentos_valor'));
+			$data['recebimentos_comentario']		= $this->input->post('recebimentos_comentario');
 			
 			if ($this->input->post('recebimentos_data_recebido')) {
 				$data['recebimentos_data_recebido']		= human2mysql($this->input->post('recebimentos_data_recebido'));

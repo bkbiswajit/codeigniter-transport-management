@@ -80,7 +80,7 @@ class controle_de_viagem_postos extends Controller {
 			
 			// Validation failed - load required action depending on the state of usuario_id
 			//($controle_de_viagem_postos_id == NULL) ? $this->adicionar() : $this->editar($controle_de_viagem_postos_id);
-			die('ERRO NO PREENCHIMENTO DOS CAMPOS');			
+			die('ERRO');			
 		} else {
 		
 			// Validation OK
