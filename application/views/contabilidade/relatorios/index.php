@@ -224,7 +224,7 @@
 	</div>
 </div>
 
-<a class="fancybox" href="#relatorio_completo" title="Relatório Completo">RELATÓRIO COMPLETO</a>
+<a class="fancybox" href="#relatorio_completo" title="RELATÓRIO COMPLETO">RELATÓRIO COMPLETO</a>
 
 <?php } else { ?> <div class="box_error"> <h2 align="center">nenhum resultado</h2> </div> </div> <?php } ?>
 
