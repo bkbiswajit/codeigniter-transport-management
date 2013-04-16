@@ -78,7 +78,10 @@
 						<?php if($this->auth->check('painel', TRUE)){ echo anchor('contabilidade/relatorios','Relatórios') ;} ?>
 					</li>
 					<li>
-						<?php if($this->auth->check('painel', TRUE)){ echo anchor('contabilidade/recebimentos','Recebimentos') ;} ?>
+						<?php if($this->auth->check('painel', TRUE)){ echo anchor('contabilidade/recebimentos','Recebimentos&nbsp;') ;} ?>
+						<ul>
+							<?php if($this->auth->check('painel', TRUE)){ echo anchor('contabilidade/recebimentos/adicionar','+ Recebimento') ;} ?>
+						</ul>
 					</li>
 
 					<li class="secondary_red">

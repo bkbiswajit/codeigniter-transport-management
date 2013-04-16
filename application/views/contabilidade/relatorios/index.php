@@ -146,6 +146,7 @@
 
 <div class="grid_10">
 <?php if($cvs != NULL){ ?>
+	<p><a class="fancybox uibutton" href="#relatorio_completo" title="RELATÓRIO COMPLETO">RELATÓRIO COMPLETO</a></p>
 	<div class="box">
 		<h2>
 			<a href="#" id="toggle-tables">Relatório de Controle de Viagens</a>
@@ -186,7 +187,7 @@
 	</div>
 </div>
 
-<div class="grid_6">
+<div class="grid_10">
 	<div class="box">
 			<h2>
 				<a href="#" id="toggle-tables">Relatório de Controle de Viagens</a>
@@ -222,9 +223,9 @@
 			</table>
 			</div>
 	</div>
+<a class="fancybox uibutton" href="#relatorio_completo" title="RELATÓRIO COMPLETO">RELATÓRIO COMPLETO</a>
 </div>
 
-<a class="fancybox" href="#relatorio_completo" title="RELATÓRIO COMPLETO">RELATÓRIO COMPLETO</a>
 
 <?php } else { ?> <div class="box_error"> <h2 align="center">nenhum resultado</h2> </div> </div> <?php } ?>
 
