@@ -333,6 +333,6 @@ $config['rewrite_short_tags'] = FALSE;
 $config['template']	=	'template/template';
 
 //Profiler
-$config['profiler']	=	TRUE;
+$config['profiler']	=	FALSE;
 
 $config['tracker']	=	FALSE;

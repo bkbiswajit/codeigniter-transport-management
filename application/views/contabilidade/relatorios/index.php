@@ -181,7 +181,6 @@
 				</tr>
 				<?php } ?>
 				</tbody>
-				<a class="various" href="#inline">EXIBIR RESULTADO COMPLETO</a>
 			</table>
 		</div>
 	</div>
@@ -227,27 +226,25 @@
 
 <?php } else { ?> <div class="box_error"> <h2 align="center">nenhum resultado</h2> </div> </div> <?php } ?>
 
-<!-- Add fancyBox main JS and CSS files -->
-<script type="text/javascript" src="<?php echo base_url()?>js/fancybox/jquery.fancybox.pack.js?v=2.1.3"></script>
-<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>css/fancybox/jquery.fancybox.css?v=2.1.3" media="screen" />
+<a class="fancybox" href="#relatorio_completo" title="Relatório Completo">RELATÓRIO COMPLETO</a>
 
-<script>
-$(document).ready(function() {
-	$(".various").fancybox({
-		maxWidth	: 1920,
-		maxHeight	: 768,
-		fitToView	: false,
-		width		: 'auto',
-		height		: 'auto',
-		autoCenter	: true,
-		autoSize	: false,
-		closeClick	: false,
-		openEffect	: 'fade',
-		closeEffect	: 'fade'
+<!-- Add jQuery library -->
+<!-- <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script> -->
+
+<!-- Add mousewheel plugin (this is optional) -->
+<script type="text/javascript" src="<?php echo base_url()?>assets/fancyapps-fancyBox-0ffc358/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+
+<!-- Add fancyBox -->
+<link rel="stylesheet" href="<?php echo base_url()?>assets/fancyapps-fancyBox-0ffc358/source/jquery.fancybox.css?v=2.1.4" type="text/css" media="screen" />
+<script type="text/javascript" src="<?php echo base_url()?>assets/fancyapps-fancyBox-0ffc358/source/jquery.fancybox.pack.js?v=2.1.4"></script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".fancybox").fancybox();
 	});
-});
 </script>
-<div id="inline" style="display:none;width:100%;">
+
+<div id="relatorio_completo" style="display:none;width:100%;">
 <div class="grid_16">
 <?php if($cvs != NULL){ ?>
 	<div class="box">
