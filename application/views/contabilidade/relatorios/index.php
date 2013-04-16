@@ -224,9 +224,9 @@
 	</div>
 </div>
 
-<?php } else { ?> <div class="box_error"> <h2 align="center">nenhum resultado</h2> </div> </div> <?php } ?>
-
 <a class="fancybox" href="#relatorio_completo" title="Relatório Completo">RELATÓRIO COMPLETO</a>
+
+<?php } else { ?> <div class="box_error"> <h2 align="center">nenhum resultado</h2> </div> </div> <?php } ?>
 
 <!-- Add jQuery library -->
 <!-- <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script> -->
