@@ -61,4 +61,4 @@
 	</div>
 </div>
 
-<?php } else { ?> <div class="box_error"> <h2 align="center">nenhuma produção cadastrada</h2> </div> </div> <?php } ?>
+<?php } else { ?> <div class="box_error"> <h2 align="center">nenhum controle de viagem cadastrado</h2> </div> </div> <?php } ?>

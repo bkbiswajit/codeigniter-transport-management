@@ -49,6 +49,21 @@ class recebimentos extends Controller {
 		$this->load->view($this->tpl, $tpl);
 	}
 
+	function por_recebido($recebido){
+		//$this->auth->check('recebimentos');
+
+		// Get list of usuarios
+		$body['series'] = $this->recebimentos_model->get_recebimentos_serie();
+		$body['recebimentos'] = $this->recebimentos_model->get_recebimentos(NULL, NULL, $recebido);
+		
+			$tpl['body'] = $this->load->view('contabilidade/recebimentos/index.php', $body, TRUE);
+			
+		$tpl['title'] = 'recebimentos';
+		$tpl['pagetitle'] = 'Gerenciar recebimentos';
+		
+		$this->load->view($this->tpl, $tpl);
+	}
+
 	function adicionar(){
 		//$this->auth->check('recebimentos.adicionar');
 		$body['recebimentos'] = NULL;

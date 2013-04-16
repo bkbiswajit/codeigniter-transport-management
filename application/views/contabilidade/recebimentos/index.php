@@ -9,7 +9,9 @@
 			<?php foreach ($series as $serie): ?>
 				<p><?php echo anchor('contabilidade/recebimentos/por_serie/'. $serie->recebimentos_serie, 'SÉRIE => ' . $serie->recebimentos_serie); ?></p>
 			<?php endforeach ?>
-			<?php echo anchor('contabilidade/recebimentos', 'TODAS AS SÉRIES'); ?>
+			<p><?php echo anchor('contabilidade/recebimentos/por_recebido/1', 'TODOS RECEBIDOS'); ?></p>
+			<p><?php echo anchor('contabilidade/recebimentos/por_recebido/0', 'TODOS NÃO RECEBIDOS'); ?></p>
+			<p><?php echo anchor('contabilidade/recebimentos', 'TODAS SÉRIES'); ?></p>
 			<?php endif ?>
 		</div> 
 	</div>
@@ -41,10 +43,14 @@
 				</thead>
 				<tbody>
 				<?php
+					$sum = 0;
 					//$grupos as $grupo_id =>$group_name
 					foreach ($recebimentos as $recebimentos) {
+
+						 $sum += $recebimentos->recebimentos_valor;
+
 						if ($recebimentos->recebimentos_recebido == 0) {
-							$bgColor = 'red';
+							$bgColor = 'white';
 							$recebido = 'NÃO';
 						} else {
 							$bgColor = 'green';
@@ -72,7 +78,19 @@
 					</td>
 				</tr>
 				<?php } ?>
+
 				</tbody>
+				<tfoot>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td><strong><?php echo brl($sum); ?></strong></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tfoot>
 			</table>
 			<p><?php echo anchor('contabilidade/recebimentos/adicionar', 'RECEBIMENTO', 'class="uibutton icon add"'); ?></p>
 		</div>

@@ -267,7 +267,7 @@
 					<td class="h">REGIÃO</td>
 					<td class="h">ORIGEM</td>
 					<td class="h">DESTINO</td>
-					<td class="h">FRETE</td>
+					<td class="h">FRETE/VALOR</td>
 					<td class="h">BÔNUS/FRETE</td>
 					<td class="h">COMISSÃO</td>
 					<td class="h">BÔNUS/COMISSÃO</td>
@@ -288,7 +288,7 @@
 				<tr class="tr">
 					<td class="m"><?php echo $i++; ?></td>
 					<td class="m"><?php echo mysql2human($cvs2->controle_de_viagem_viagens_data); ?></td>
-					<td class="m"><?php echo character_limiter($cvs->clientes_descricao, 50); ?></td>
+					<td class="m"><?php echo character_limiter($cvs2->clientes_descricao, 50); ?></td>
 					<td class="m"><?php echo character_limiter($cvs2->transportadoras_descricao, 50); ?></td>
 					<td class="m"><?php echo character_limiter($cvs2->caminhoes_descricao, 50); ?></td>
 					<td class="m"><?php echo character_limiter($cvs2->motoristas_descricao, 50); ?></td>

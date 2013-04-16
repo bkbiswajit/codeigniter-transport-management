@@ -293,7 +293,7 @@ $config['global_xss_filtering'] = TRUE;
 | by the output class.  Do not "echo" any values with compression ativo.
 |
 */
-$config['compress_output'] = TRUE;
+$config['compress_output'] = FALSE;
 
 /*
 |--------------------------------------------------------------------------
@@ -332,7 +332,16 @@ $config['rewrite_short_tags'] = FALSE;
 // Template
 $config['template']	=	'template/template';
 
-//Profiler
-$config['profiler']	=	FALSE;
-
+//Tracker
 $config['tracker']	=	FALSE;
+
+//Profiler
+switch ( $_SERVER['SERVER_NAME'] ) {  
+	case 'localhost':
+		$config['profiler']	=	TRUE;
+	break;
+	
+	default:
+		$config['profiler']	=	FALSE;
+	break;
+}

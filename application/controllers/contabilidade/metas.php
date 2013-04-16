@@ -21,6 +21,27 @@ class metas extends Controller {
 		$this->load->view($this->tpl, $tpl);
 	}
 
+	function relatorio(){
+		//$this->auth->check('metas');
+		$body['metas'] = $this->my_metas();
+
+		if ($body['metas'] == FALSE) {
+			$body['metas'] = 0;
+		}
+
+		$tpl['body'] = $this->load->view('contabilidade/metas/metas.php', $body, TRUE);
+
+		//print_r($body);
+
+		// echo "<pre>";
+		// var_dump($body);
+		// echo "</pre>";
+
+		$tpl['title'] = 'metas';
+		$tpl['pagetitle'] = 'Gerenciar metas';
+		$this->load->view($this->tpl, $tpl);
+	}
+
 	function adicionar(){
 		//$this->auth->check('metas.adicionar');
 		$body['metas'] = NULL;
@@ -75,7 +96,7 @@ class metas extends Controller {
 				$adicionar = $this->metas_model->add_metas($data);
 				
 				if($adicionar == TRUE){
-					$this->msg->adicionar('info', sprintf($this->lang->line('SECURITY_TURMA_ADD_OK'), $data['metas_descricao']));
+					$this->msg->adicionar('info', sprintf($this->lang->line('SECURITY_TURMA_ADD_OK'), 'OK'));
 				} else {
 					$this->msg->adicionar('err', $this->metas_model->lasterr, 'ERRO!');
 				}
@@ -83,7 +104,7 @@ class metas extends Controller {
 			} else {
 				$editar = $this->metas_model->edit_metas($metas_id, $data);
 				if($editar == TRUE){
-					$this->msg->adicionar('info', sprintf($this->lang->line('SECURITY_TURMA_EDIT_OK'), $data['metas_descricao']));
+					$this->msg->adicionar('info', sprintf($this->lang->line('SECURITY_TURMA_EDIT_OK'), 'OK'));
 				} else {
 					$this->msg->adicionar('err', sprintf($this->lang->line('SECURITY_TURMA_EDIT_FAIL', $this->metas_model->lasterr)));
 				}
@@ -162,6 +183,10 @@ class metas extends Controller {
 
 		$bonificacao = $this->bonificacao_model->get_bonificacao(4);
 		$body['bonificacao'] = $bonificacao;
+
+		if ($bonificacao == NULL) {
+			return FALSE;
+		}
 		
 		$m_sql = "SELECT * FROM metas WHERE metas.metas_mes_id = $mes AND metas.metas_regiao_id = 1";
 		$m = $this->db->query($m_sql)->row();
@@ -185,67 +210,78 @@ class metas extends Controller {
 
 		$body['mes'] = $mes;
 
-		$sql_norte = "SELECT COUNT(controle_de_viagem_viagens.controle_de_viagem_viagens_id) AS total
-FROM controle_de_viagem, controle_de_viagem_viagens, controle_de_viagem_regioes, controle_de_viagem_origem,controle_de_viagem_destino, transportadoras, frotas, motoristas, clientes
-WHERE controle_de_viagem.controle_de_viagem_id=controle_de_viagem_viagens.controle_de_viagem_viagens_controle_de_viagem_viagens_id
-AND controle_de_viagem.controle_de_viagem_motorista_id=motoristas.motoristas_id
-AND controle_de_viagem.controle_de_viagem_caminhao_id=frotas.caminhoes_id
-AND controle_de_viagem.controle_de_viagem_transportadoras_id=transportadoras.transportadoras_id
+		$sql_norte = "SELECT COUNT(*) AS total
+FROM controle_de_viagem_agenda, transportadoras, motoristas, frotas, controle_de_viagem_origem, controle_de_viagem_destino, controle_de_viagem_regioes
+WHERE controle_de_viagem_agenda.controle_de_viagem_agenda_transportadoras_id=transportadoras.transportadoras_id 
+AND controle_de_viagem_agenda.controle_de_viagem_agenda_motorista_id=motoristas.motoristas_id 
+AND controle_de_viagem_agenda.controle_de_viagem_agenda_caminhao_id=frotas.caminhoes_id 
+AND controle_de_viagem_agenda.controle_de_viagem_agenda_origem_id=controle_de_viagem_origem.controle_de_viagem_origem_id 
+AND controle_de_viagem_agenda.controle_de_viagem_agenda_destino_id=controle_de_viagem_destino.controle_de_viagem_destino_id 
+AND frotas.caminhoes_id=controle_de_viagem_agenda.controle_de_viagem_agenda_caminhao_id
 AND controle_de_viagem_destino.controle_de_viagem_destino_regiao_id=controle_de_viagem_regioes.controle_de_viagem_regioes_id
-AND controle_de_viagem_viagens.controle_de_viagem_viagens_origem_id=controle_de_viagem_origem.controle_de_viagem_origem_id
-AND controle_de_viagem_viagens.controle_de_viagem_viagens_destino_id=controle_de_viagem_destino.controle_de_viagem_destino_id 
-AND controle_de_viagem_viagens.controle_de_viagem_viagens_clientes_id=clientes.clientes_id
-AND  controle_de_viagem_regioes.controle_de_viagem_regioes_id = '1' AND controle_de_viagem_viagens.controle_de_viagem_viagens_data BETWEEN '$bonificacao->bonificacao_mes_inicio' AND '$bonificacao->bonificacao_mes_final'";
+AND controle_de_viagem_regioes.controle_de_viagem_regioes_id = '1'
+AND controle_de_viagem_agenda.controle_de_viagem_agenda_data BETWEEN '$bonificacao->bonificacao_mes_inicio' AND '$bonificacao->bonificacao_mes_final'";
 
-
-		$sql_nordeste= "SELECT COUNT(controle_de_viagem_viagens.controle_de_viagem_viagens_id) AS total
-FROM controle_de_viagem, controle_de_viagem_viagens, controle_de_viagem_regioes, controle_de_viagem_origem,controle_de_viagem_destino, transportadoras, frotas, motoristas, clientes
-WHERE controle_de_viagem.controle_de_viagem_id=controle_de_viagem_viagens.controle_de_viagem_viagens_controle_de_viagem_viagens_id
-AND controle_de_viagem.controle_de_viagem_motorista_id=motoristas.motoristas_id
-AND controle_de_viagem.controle_de_viagem_caminhao_id=frotas.caminhoes_id
-AND controle_de_viagem.controle_de_viagem_transportadoras_id=transportadoras.transportadoras_id
+		$sql_nordeste= "SELECT COUNT(*) AS total
+FROM controle_de_viagem_agenda, transportadoras, motoristas, frotas, controle_de_viagem_origem, controle_de_viagem_destino, controle_de_viagem_regioes
+WHERE controle_de_viagem_agenda.controle_de_viagem_agenda_transportadoras_id=transportadoras.transportadoras_id 
+AND controle_de_viagem_agenda.controle_de_viagem_agenda_motorista_id=motoristas.motoristas_id 
+AND controle_de_viagem_agenda.controle_de_viagem_agenda_caminhao_id=frotas.caminhoes_id 
+AND controle_de_viagem_agenda.controle_de_viagem_agenda_origem_id=controle_de_viagem_origem.controle_de_viagem_origem_id 
+AND controle_de_viagem_agenda.controle_de_viagem_agenda_destino_id=controle_de_viagem_destino.controle_de_viagem_destino_id 
+AND frotas.caminhoes_id=controle_de_viagem_agenda.controle_de_viagem_agenda_caminhao_id
 AND controle_de_viagem_destino.controle_de_viagem_destino_regiao_id=controle_de_viagem_regioes.controle_de_viagem_regioes_id
-AND controle_de_viagem_viagens.controle_de_viagem_viagens_origem_id=controle_de_viagem_origem.controle_de_viagem_origem_id
-AND controle_de_viagem_viagens.controle_de_viagem_viagens_destino_id=controle_de_viagem_destino.controle_de_viagem_destino_id 
-AND controle_de_viagem_viagens.controle_de_viagem_viagens_clientes_id=clientes.clientes_id
-AND  controle_de_viagem_regioes.controle_de_viagem_regioes_id = '2' AND controle_de_viagem_viagens.controle_de_viagem_viagens_data BETWEEN '$bonificacao->bonificacao_mes_inicio' AND '$bonificacao->bonificacao_mes_final'";
+AND controle_de_viagem_regioes.controle_de_viagem_regioes_id = '2'
+AND controle_de_viagem_agenda.controle_de_viagem_agenda_data BETWEEN '$bonificacao->bonificacao_mes_inicio' AND '$bonificacao->bonificacao_mes_final'";
 
-		$sql_centro_oeste = "SELECT COUNT(controle_de_viagem_viagens.controle_de_viagem_viagens_id) AS total
-FROM controle_de_viagem, controle_de_viagem_viagens, controle_de_viagem_regioes, controle_de_viagem_origem,controle_de_viagem_destino, transportadoras, frotas, motoristas, clientes
-WHERE controle_de_viagem.controle_de_viagem_id=controle_de_viagem_viagens.controle_de_viagem_viagens_controle_de_viagem_viagens_id
-AND controle_de_viagem.controle_de_viagem_motorista_id=motoristas.motoristas_id
-AND controle_de_viagem.controle_de_viagem_caminhao_id=frotas.caminhoes_id
-AND controle_de_viagem.controle_de_viagem_transportadoras_id=transportadoras.transportadoras_id
+		$sql_centro_oeste = "SELECT COUNT(*) AS total
+FROM controle_de_viagem_agenda, transportadoras, motoristas, frotas, controle_de_viagem_origem, controle_de_viagem_destino, controle_de_viagem_regioes
+WHERE controle_de_viagem_agenda.controle_de_viagem_agenda_transportadoras_id=transportadoras.transportadoras_id 
+AND controle_de_viagem_agenda.controle_de_viagem_agenda_motorista_id=motoristas.motoristas_id 
+AND controle_de_viagem_agenda.controle_de_viagem_agenda_caminhao_id=frotas.caminhoes_id 
+AND controle_de_viagem_agenda.controle_de_viagem_agenda_origem_id=controle_de_viagem_origem.controle_de_viagem_origem_id 
+AND controle_de_viagem_agenda.controle_de_viagem_agenda_destino_id=controle_de_viagem_destino.controle_de_viagem_destino_id 
+AND frotas.caminhoes_id=controle_de_viagem_agenda.controle_de_viagem_agenda_caminhao_id
 AND controle_de_viagem_destino.controle_de_viagem_destino_regiao_id=controle_de_viagem_regioes.controle_de_viagem_regioes_id
-AND controle_de_viagem_viagens.controle_de_viagem_viagens_origem_id=controle_de_viagem_origem.controle_de_viagem_origem_id
-AND controle_de_viagem_viagens.controle_de_viagem_viagens_destino_id=controle_de_viagem_destino.controle_de_viagem_destino_id 
-AND controle_de_viagem_viagens.controle_de_viagem_viagens_clientes_id=clientes.clientes_id
-AND  controle_de_viagem_regioes.controle_de_viagem_regioes_id = '3' AND controle_de_viagem_viagens.controle_de_viagem_viagens_data BETWEEN '$bonificacao->bonificacao_mes_inicio' AND '$bonificacao->bonificacao_mes_final'";
+AND controle_de_viagem_regioes.controle_de_viagem_regioes_id = '3'
+AND controle_de_viagem_agenda.controle_de_viagem_agenda_data BETWEEN '$bonificacao->bonificacao_mes_inicio' AND '$bonificacao->bonificacao_mes_final'";
 
-		$sql_sudeste = "SELECT COUNT(controle_de_viagem_viagens.controle_de_viagem_viagens_id) AS total
-FROM controle_de_viagem, controle_de_viagem_viagens, controle_de_viagem_regioes, controle_de_viagem_origem,controle_de_viagem_destino, transportadoras, frotas, motoristas, clientes
-WHERE controle_de_viagem.controle_de_viagem_id=controle_de_viagem_viagens.controle_de_viagem_viagens_controle_de_viagem_viagens_id
-AND controle_de_viagem.controle_de_viagem_motorista_id=motoristas.motoristas_id
-AND controle_de_viagem.controle_de_viagem_caminhao_id=frotas.caminhoes_id
-AND controle_de_viagem.controle_de_viagem_transportadoras_id=transportadoras.transportadoras_id
+		$sql_sudeste = "SELECT COUNT(*) AS total
+FROM controle_de_viagem_agenda, transportadoras, motoristas, frotas, controle_de_viagem_origem, controle_de_viagem_destino, controle_de_viagem_regioes
+WHERE controle_de_viagem_agenda.controle_de_viagem_agenda_transportadoras_id=transportadoras.transportadoras_id 
+AND controle_de_viagem_agenda.controle_de_viagem_agenda_motorista_id=motoristas.motoristas_id 
+AND controle_de_viagem_agenda.controle_de_viagem_agenda_caminhao_id=frotas.caminhoes_id 
+AND controle_de_viagem_agenda.controle_de_viagem_agenda_origem_id=controle_de_viagem_origem.controle_de_viagem_origem_id 
+AND controle_de_viagem_agenda.controle_de_viagem_agenda_destino_id=controle_de_viagem_destino.controle_de_viagem_destino_id 
+AND frotas.caminhoes_id=controle_de_viagem_agenda.controle_de_viagem_agenda_caminhao_id
 AND controle_de_viagem_destino.controle_de_viagem_destino_regiao_id=controle_de_viagem_regioes.controle_de_viagem_regioes_id
-AND controle_de_viagem_viagens.controle_de_viagem_viagens_origem_id=controle_de_viagem_origem.controle_de_viagem_origem_id
-AND controle_de_viagem_viagens.controle_de_viagem_viagens_destino_id=controle_de_viagem_destino.controle_de_viagem_destino_id 
-AND controle_de_viagem_viagens.controle_de_viagem_viagens_clientes_id=clientes.clientes_id
-AND  controle_de_viagem_regioes.controle_de_viagem_regioes_id = '4' AND controle_de_viagem_viagens.controle_de_viagem_viagens_data BETWEEN '$bonificacao->bonificacao_mes_inicio' AND '$bonificacao->bonificacao_mes_final'";
+AND controle_de_viagem_regioes.controle_de_viagem_regioes_id = '4'
+AND controle_de_viagem_agenda.controle_de_viagem_agenda_data BETWEEN '$bonificacao->bonificacao_mes_inicio' AND '$bonificacao->bonificacao_mes_final'";
 
 
-		$sql_sul = "SELECT COUNT(controle_de_viagem_viagens.controle_de_viagem_viagens_id) AS total
-FROM controle_de_viagem, controle_de_viagem_viagens, controle_de_viagem_regioes, controle_de_viagem_origem,controle_de_viagem_destino, transportadoras, frotas, motoristas, clientes
-WHERE controle_de_viagem.controle_de_viagem_id=controle_de_viagem_viagens.controle_de_viagem_viagens_controle_de_viagem_viagens_id
-AND controle_de_viagem.controle_de_viagem_motorista_id=motoristas.motoristas_id
-AND controle_de_viagem.controle_de_viagem_caminhao_id=frotas.caminhoes_id
-AND controle_de_viagem.controle_de_viagem_transportadoras_id=transportadoras.transportadoras_id
+// 		$sql_sul = "SELECT COUNT(controle_de_viagem_viagens.controle_de_viagem_viagens_id) AS total
+// FROM controle_de_viagem, controle_de_viagem_viagens, controle_de_viagem_regioes, controle_de_viagem_origem,controle_de_viagem_destino, transportadoras, frotas, motoristas, clientes
+// WHERE controle_de_viagem.controle_de_viagem_id=controle_de_viagem_viagens.controle_de_viagem_viagens_controle_de_viagem_viagens_id
+// AND controle_de_viagem.controle_de_viagem_motorista_id=motoristas.motoristas_id
+// AND controle_de_viagem.controle_de_viagem_caminhao_id=frotas.caminhoes_id
+// AND controle_de_viagem.controle_de_viagem_transportadoras_id=transportadoras.transportadoras_id
+// AND controle_de_viagem_destino.controle_de_viagem_destino_regiao_id=controle_de_viagem_regioes.controle_de_viagem_regioes_id
+// AND controle_de_viagem_viagens.controle_de_viagem_viagens_origem_id=controle_de_viagem_origem.controle_de_viagem_origem_id
+// AND controle_de_viagem_viagens.controle_de_viagem_viagens_destino_id=controle_de_viagem_destino.controle_de_viagem_destino_id 
+// AND controle_de_viagem_viagens.controle_de_viagem_viagens_clientes_id=clientes.clientes_id
+// AND  controle_de_viagem_regioes.controle_de_viagem_regioes_id = '5' AND controle_de_viagem_viagens.controle_de_viagem_viagens_data BETWEEN '$bonificacao->bonificacao_mes_inicio' AND '$bonificacao->bonificacao_mes_final'";
+
+		$sql_sul = "SELECT COUNT(*) AS total
+FROM controle_de_viagem_agenda, transportadoras, motoristas, frotas, controle_de_viagem_origem, controle_de_viagem_destino, controle_de_viagem_regioes
+WHERE controle_de_viagem_agenda.controle_de_viagem_agenda_transportadoras_id=transportadoras.transportadoras_id 
+AND controle_de_viagem_agenda.controle_de_viagem_agenda_motorista_id=motoristas.motoristas_id 
+AND controle_de_viagem_agenda.controle_de_viagem_agenda_caminhao_id=frotas.caminhoes_id 
+AND controle_de_viagem_agenda.controle_de_viagem_agenda_origem_id=controle_de_viagem_origem.controle_de_viagem_origem_id 
+AND controle_de_viagem_agenda.controle_de_viagem_agenda_destino_id=controle_de_viagem_destino.controle_de_viagem_destino_id 
+AND frotas.caminhoes_id=controle_de_viagem_agenda.controle_de_viagem_agenda_caminhao_id
 AND controle_de_viagem_destino.controle_de_viagem_destino_regiao_id=controle_de_viagem_regioes.controle_de_viagem_regioes_id
-AND controle_de_viagem_viagens.controle_de_viagem_viagens_origem_id=controle_de_viagem_origem.controle_de_viagem_origem_id
-AND controle_de_viagem_viagens.controle_de_viagem_viagens_destino_id=controle_de_viagem_destino.controle_de_viagem_destino_id 
-AND controle_de_viagem_viagens.controle_de_viagem_viagens_clientes_id=clientes.clientes_id
-AND  controle_de_viagem_regioes.controle_de_viagem_regioes_id = '5' AND controle_de_viagem_viagens.controle_de_viagem_viagens_data BETWEEN '$bonificacao->bonificacao_mes_inicio' AND '$bonificacao->bonificacao_mes_final'";
+AND controle_de_viagem_regioes.controle_de_viagem_regioes_id = '5'
+AND controle_de_viagem_agenda.controle_de_viagem_agenda_data BETWEEN '$bonificacao->bonificacao_mes_inicio' AND '$bonificacao->bonificacao_mes_final'";
 
 		$norte = $this->db->query($sql_norte)->row();
 		$body['norte'] = $norte;
@@ -264,8 +300,12 @@ AND  controle_de_viagem_regioes.controle_de_viagem_regioes_id = '5' AND controle
 		
 		// $body['sul'] = $this->metas_model->get_metas_total('5', $bonificacao->bonificacao_mes_inicio, $bonificacao->bonificacao_mes_final);
 
-		$tpl['body'] = $this->load->view('contabilidade/metas/metas.php', $body, TRUE);
-		$this->load->view($this->tpl, $tpl);
+		// print_r($body);
+
+		// $tpl['body'] = $this->load->view('contabilidade/metas/metas.php', $body, TRUE);
+		// $this->load->view($this->tpl, $tpl);
+
+		return $body;
 	}
 
 }

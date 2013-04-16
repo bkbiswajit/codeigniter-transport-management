@@ -15,12 +15,9 @@
 		<script src="<?php echo $this->config->item('base_url').''; ?>js/jquery-1.3.2.min.js" type="text/javascript"></script>
 		<script>
 			$(function() {
-				// setTimeout() function will be fired after page is loaded
-				// it will wait for 5 sec. and then will fire
-				// $("#myAlert").hide() function
 				setTimeout(function() {
 					$("#myAlert").hide();
-				}, 4000);
+				}, 3000);
 			});
 		</script>
 	</head>
@@ -56,6 +53,12 @@
 							<?php if($this->auth->check('painel', TRUE)){ echo '<li>'.anchor('contabilidade/controle_de_viagem_despesas_tipos/adicionar','+ CV Despesas Tipos').'</li>' ;} ?>
 							<?php if($this->auth->check('painel', TRUE)){ echo '<li>'.anchor('contabilidade/controle_de_viagem_origem_destino','CV Origem/Destino').'</li>' ;} ?>
 							<?php if($this->auth->check('painel', TRUE)){ echo '<li>'.anchor('contabilidade/controle_de_viagem_origem_destino/adicionar','+ CV Origem/Destino').'</li>' ;} ?>
+
+							<?php if($this->auth->check('painel', TRUE)){ echo '<li>'.anchor('contabilidade/bonificacao','Bonificação').'</li>' ;} ?>
+							<?php if($this->auth->check('painel', TRUE)){ echo '<li>'.anchor('contabilidade/bonificacao/adicionar','+ Bonificação').'</li>' ;} ?>
+
+							<?php if($this->auth->check('painel', TRUE)){ echo '<li>'.anchor('contabilidade/metas','Metas').'</li>' ;} ?>
+							<?php if($this->auth->check('painel', TRUE)){ echo '<li>'.anchor('contabilidade/metas/adicionar','+ Metas').'</li>' ;} ?>
 							
 							
 						</ul>
@@ -76,6 +79,9 @@
 					</li>
 					<li>
 						<?php if($this->auth->check('painel', TRUE)){ echo anchor('contabilidade/relatorios','Relatórios') ;} ?>
+						<ul>
+							<?php if($this->auth->check('painel', TRUE)){ echo anchor('contabilidade/metas/relatorio','Metas') ;} ?>
+						</ul>
 					</li>
 					<li>
 						<?php if($this->auth->check('painel', TRUE)){ echo anchor('contabilidade/recebimentos','Recebimentos&nbsp;') ;} ?>

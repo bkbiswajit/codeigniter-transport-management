@@ -23,18 +23,16 @@
 	</div>
 </div>
 
-<script type="text/javascript">
-	/* <![CDATA[ */
-		$(function() {
-				$('#producao_data').datepicker({
-					userLang	: 'pt-BR',
-					americanMode: false,
-				});
-				
-				$('#despesas_data').datepicker({
-					userLang	: 'pt-BR',
-					americanMode: false,
-				});				
-			});
-	/* ]]&gt; */
-</script>
+<div class="grid_12">
+	<div class="box"> 
+		<h2> 
+			<a id="toggle-info-login">#</a>
+		</h2> 
+		<div class="block" id="info-login">
+			<p>ITAJAÍ - SÃO GABRIEL DO OESTE : R$ 2784,60 PEDÁGIO R$ 316,80 AL:7%</p>
+			<p>COTRAOESTE - CHAPECÓ R$ 1688,83 PEDÁGIO R$ 123,00 AL:12%</p>
+			<p>GUARUHOS - SÃO GABRIEL DO OESTE: R$ 1751.38 PEDÁGIO R$ 420,60 AL:7%</p>
+			<p>GUAIÇARA - CHAPECÓ R$ 1751,38 PEDÁGIO R$ 130.20 AL:12%</p>
+		</div>
+	</div>
+</div>

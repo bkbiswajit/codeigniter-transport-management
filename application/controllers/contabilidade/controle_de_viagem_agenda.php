@@ -20,6 +20,9 @@ class controle_de_viagem_agenda extends Controller {
 		
 		$body['controle_de_viagem_agenda'] = $this->controle_de_viagem_agenda_model->get_controle_de_viagem_agenda_especifica();
 		
+
+		$body['controle_de_viagem_agenda_historico'] = $this->controle_de_viagem_agenda_model->get_controle_de_viagem_agenda_historico();
+		
 		$tpl['body'] = $this->load->view('contabilidade/controle_de_viagem_agenda/index.php', $body, TRUE);
 			
 		$tpl['title'] = 'controle_de_viagem_agenda';

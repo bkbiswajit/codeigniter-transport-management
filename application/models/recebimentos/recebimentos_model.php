@@ -7,7 +7,7 @@ class recebimentos_model extends Model{
 		parent::Model();
 	}
 	
-	function get_recebimentos($recebimentos_id = NULL, $recebimentos_serie = NULL, $page = NULL){
+	function get_recebimentos($recebimentos_id = NULL, $recebimentos_serie = NULL, $recebimentos_recebido = NULL, $page = NULL){
 		if ($recebimentos_id == NULL) {
 		
 			// Getting all recebimentos and number of usuarios in it
@@ -16,6 +16,10 @@ class recebimentos_model extends Model{
 
 			if ($recebimentos_serie != NULL) {
 				$this->db->where('recebimentos_serie', $recebimentos_serie);
+			}
+
+			if ($recebimentos_recebido != NULL) {
+				$this->db->where('recebimentos_recebido', $recebimentos_recebido);
 			}
 
 			$this->db->join('clientes', 'recebimentos.recebimentos_clientes_id = clientes.clientes_id', 'inner');

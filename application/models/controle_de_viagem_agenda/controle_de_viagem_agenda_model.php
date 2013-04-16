@@ -97,24 +97,30 @@ class controle_de_viagem_agenda_model extends Model{
 		}
 		
 	}
+
 	
-	
+	function get_controle_de_viagem_agenda_historico(){
+		
+		$sql = 'SELECT *
+				FROM controle_de_viagem_agenda, transportadoras, motoristas, frotas, controle_de_viagem_origem, controle_de_viagem_destino
+				WHERE controle_de_viagem_agenda.controle_de_viagem_agenda_transportadoras_id = transportadoras.transportadoras_id AND controle_de_viagem_agenda.controle_de_viagem_agenda_motorista_id = motoristas.motoristas_id AND controle_de_viagem_agenda.controle_de_viagem_agenda_caminhao_id = frotas.caminhoes_id AND controle_de_viagem_agenda.controle_de_viagem_agenda_origem_id = controle_de_viagem_origem.controle_de_viagem_origem_id AND controle_de_viagem_agenda.controle_de_viagem_agenda_destino_id = controle_de_viagem_destino.controle_de_viagem_destino_id AND frotas.caminhoes_id=controle_de_viagem_agenda.controle_de_viagem_agenda_caminhao_id AND controle_de_viagem_agenda.controle_de_viagem_agenda_caminhao_liberado = 0
+				ORDER BY controle_de_viagem_agenda.controle_de_viagem_agenda_data DESC';
+
+		$query = $this->db->query($sql);
+		if ($query->num_rows() > 0){
+			return $query->result();
+		} else {
+			$this->lasterr = 'NO';
+			return 0;
+		}
+	}
+
 	function get_controle_de_viagem_agenda_especifica($controle_de_viagem_agenda_id = NULL, $page = NULL){
 		if ($controle_de_viagem_agenda_id == NULL) {
 		
-			$sql = 
-			'
-			select *
-            from controle_de_viagem_agenda, transportadoras, motoristas, frotas, controle_de_viagem_origem, controle_de_viagem_destino
-            where controle_de_viagem_agenda.controle_de_viagem_agenda_transportadoras_id=transportadoras.transportadoras_id
-            and controle_de_viagem_agenda.controle_de_viagem_agenda_motorista_id=motoristas.motoristas_id
-            and controle_de_viagem_agenda.controle_de_viagem_agenda_caminhao_id=frotas.caminhoes_id
-            and controle_de_viagem_agenda.controle_de_viagem_agenda_origem_id=controle_de_viagem_origem.controle_de_viagem_origem_id
-            and controle_de_viagem_agenda.controle_de_viagem_agenda_destino_id=controle_de_viagem_destino.controle_de_viagem_destino_id
-            and frotas.caminhoes_id=controle_de_viagem_agenda.controle_de_viagem_agenda_caminhao_id
-            and controle_de_viagem_agenda.controle_de_viagem_agenda_caminhao_liberado=1
-            and frotas.caminhoes_controle_de_viagem_agenda_liberado=1
-			';
+			$sql = 'SELECT *
+					FROM controle_de_viagem_agenda, transportadoras, motoristas, frotas, controle_de_viagem_origem, controle_de_viagem_destino
+					WHERE controle_de_viagem_agenda.controle_de_viagem_agenda_transportadoras_id=transportadoras.transportadoras_id AND controle_de_viagem_agenda.controle_de_viagem_agenda_motorista_id=motoristas.motoristas_id AND controle_de_viagem_agenda.controle_de_viagem_agenda_caminhao_id=frotas.caminhoes_id AND controle_de_viagem_agenda.controle_de_viagem_agenda_origem_id=controle_de_viagem_origem.controle_de_viagem_origem_id AND controle_de_viagem_agenda.controle_de_viagem_agenda_destino_id=controle_de_viagem_destino.controle_de_viagem_destino_id AND frotas.caminhoes_id=controle_de_viagem_agenda.controle_de_viagem_agenda_caminhao_id AND controle_de_viagem_agenda.controle_de_viagem_agenda_caminhao_liberado=1 AND frotas.caminhoes_controle_de_viagem_agenda_liberado=1';
 			
 			$query = $this->db->query($sql);
 			if ($query->num_rows() > 0){
