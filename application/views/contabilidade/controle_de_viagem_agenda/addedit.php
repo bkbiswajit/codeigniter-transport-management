@@ -57,26 +57,26 @@
 					
 					<tr>
 						<td class="caption">
-							<label for="controle_de_viagem_agenda_motorista_id" class="r" accesskey="G"><u>M</u>otorista</label>
-						</td>
-						<td class="field">
-							<?php
-							echo form_dropdown('controle_de_viagem_agenda_motorista_id', $motoristas, set_value('controle_de_viagem_agenda_motorista_id', (isset($controle_de_viagem_agenda->controle_de_viagem_agenda_motorista_id) ? $controle_de_viagem_agenda->controle_de_viagem_agenda_motorista_id : 0)), 'tabindex="'.$t.'"');
-							echo form_error('controle_de_viagem_agenda_motorista_id');
-							$t++;
-							?>
-							
-						</td>
-					</tr>
-					
-					<tr>
-						<td class="caption">
 							<label for="controle_de_viagem_agenda_caminhoes_id" class="r" accesskey="G"><u>F</u>rota</label>
 						</td>
 						<td class="field">
 							<?php
 							echo form_dropdown('controle_de_viagem_agenda_caminhoes_id', $frotas, set_value('controle_de_viagem_agenda_caminhoes_id', (isset($controle_de_viagem_agenda->controle_de_viagem_agenda_caminhao_id) ? $controle_de_viagem_agenda->controle_de_viagem_agenda_caminhao_id : 0)), 'tabindex="'.$t.'"');
 							echo form_error('controle_de_viagem_agenda_caminhoes_id');
+							$t++;
+							?>
+							
+						</td>
+					</tr>
+
+					<tr>
+						<td class="caption">
+							<label for="controle_de_viagem_agenda_motorista_id" class="r" accesskey="G"><u>M</u>otorista</label>
+						</td>
+						<td class="field">
+							<?php
+							echo form_dropdown('controle_de_viagem_agenda_motorista_id', $motoristas, set_value('controle_de_viagem_agenda_motorista_id', (isset($controle_de_viagem_agenda->controle_de_viagem_agenda_motorista_id) ? $controle_de_viagem_agenda->controle_de_viagem_agenda_motorista_id : 0)), 'tabindex="'.$t.'"');
+							echo form_error('controle_de_viagem_agenda_motorista_id');
 							$t++;
 							?>
 							

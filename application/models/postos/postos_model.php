@@ -154,7 +154,7 @@ class postos_model extends Model{
 		$query = $this->db->query($sql);
 		if($query->num_rows() > 0){
 			$result = $query->result();
-			$postos = array();
+			$postos = array('' => 'SELECIONE');
 			foreach($result as $funcionario){
 				$postos[$funcionario->postos_id] = $funcionario->postos_descricao;
 			}

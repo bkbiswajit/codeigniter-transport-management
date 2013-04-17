@@ -11,7 +11,7 @@
 			<?php endforeach ?>
 			<p><?php echo anchor('contabilidade/recebimentos/por_recebido/1', 'TODOS RECEBIDOS'); ?></p>
 			<p><?php echo anchor('contabilidade/recebimentos/por_recebido/0', 'TODOS NÃO RECEBIDOS'); ?></p>
-			<p><?php echo anchor('contabilidade/recebimentos', 'TODAS SÉRIES'); ?></p>
+			<p><?php echo anchor('contabilidade/recebimentos', 'TODOS'); ?></p>
 			<?php endif ?>
 		</div> 
 	</div>

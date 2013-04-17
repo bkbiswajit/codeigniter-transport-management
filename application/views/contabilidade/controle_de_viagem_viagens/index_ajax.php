@@ -40,6 +40,7 @@
 						<td><?php echo brl($controle_de_viagem_viagens_total);?></td>	
 						<td><?php echo brl($controle_de_viagem_viagens_total*$motoristas_comissao/100);?></td>	
 						<td></td>
+						<td></td>
 					</tr>
 				</tfoot>
 			</table>

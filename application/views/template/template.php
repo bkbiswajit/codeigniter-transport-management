@@ -53,14 +53,10 @@
 							<?php if($this->auth->check('painel', TRUE)){ echo '<li>'.anchor('contabilidade/controle_de_viagem_despesas_tipos/adicionar','+ CV Despesas Tipos').'</li>' ;} ?>
 							<?php if($this->auth->check('painel', TRUE)){ echo '<li>'.anchor('contabilidade/controle_de_viagem_origem_destino','CV Origem/Destino').'</li>' ;} ?>
 							<?php if($this->auth->check('painel', TRUE)){ echo '<li>'.anchor('contabilidade/controle_de_viagem_origem_destino/adicionar','+ CV Origem/Destino').'</li>' ;} ?>
-
 							<?php if($this->auth->check('painel', TRUE)){ echo '<li>'.anchor('contabilidade/bonificacao','Bonificação').'</li>' ;} ?>
 							<?php if($this->auth->check('painel', TRUE)){ echo '<li>'.anchor('contabilidade/bonificacao/adicionar','+ Bonificação').'</li>' ;} ?>
-
 							<?php if($this->auth->check('painel', TRUE)){ echo '<li>'.anchor('contabilidade/metas','Metas').'</li>' ;} ?>
-							<?php if($this->auth->check('painel', TRUE)){ echo '<li>'.anchor('contabilidade/metas/adicionar','+ Metas').'</li>' ;} ?>
-							
-							
+							<?php if($this->auth->check('painel', TRUE)){ echo '<li>'.anchor('contabilidade/metas/adicionar','+ Metas').'</li>' ;} ?>	
 						</ul>
 					</li>
 					<li>
@@ -80,13 +76,13 @@
 					<li>
 						<?php if($this->auth->check('painel', TRUE)){ echo anchor('contabilidade/relatorios','Relatórios') ;} ?>
 						<ul>
-							<?php if($this->auth->check('painel', TRUE)){ echo anchor('contabilidade/metas/relatorio','Metas') ;} ?>
+							<?php if($this->auth->check('painel', TRUE)){ echo '<li>'.anchor('contabilidade/metas/relatorio','Metas').'</li>' ;} ?>
 						</ul>
 					</li>
 					<li>
-						<?php if($this->auth->check('painel', TRUE)){ echo anchor('contabilidade/recebimentos','Recebimentos&nbsp;') ;} ?>
+						<?php if($this->auth->check('painel', TRUE)){ echo anchor('contabilidade/recebimentos','Recebimentos') ;} ?>
 						<ul>
-							<?php if($this->auth->check('painel', TRUE)){ echo anchor('contabilidade/recebimentos/adicionar','+ Recebimento') ;} ?>
+							<?php if($this->auth->check('painel', TRUE)){ echo '<li>' . anchor('contabilidade/recebimentos/adicionar','+ Recebimento') .'</li>' ;} ?>
 						</ul>
 					</li>
 
@@ -110,11 +106,6 @@
 							<?php if($this->auth->check('conta', TRUE)){ echo '<li>'.anchor('sistema/rastreador/usuario/'.$this->session->userdata('usuario_id'),'Rastrear Atividade').'</li>' ;} ?>
 						</ul>
 					</li>
-					<!--
-					<li class="secondary">
-						<?php if($this->auth->logged_in()){ $now = now(); $now = timestamp2datetime($now); echo '<a href="#">'.mysqlhuman($now).'</a>';} ?>
-					</li>
-					-->
 				</ul>
 			</div>
 			<?php } ?>

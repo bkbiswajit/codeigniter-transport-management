@@ -153,18 +153,22 @@ class controle_de_viagem_model extends Model{
 	}	
 
 	function delete_controle_de_viagem($controle_de_viagem_id){
-		/*
-		if($this->check_if_controle_de_viagem_has_matricula($controle_de_viagem_id) == FALSE){
-			$this->lasterr = 'Não foi possível excluir a turma selecionada. Há matriculas pertencentes à esta turma.<br />Primeiro exclua as controle_de_viagem que utilizam este turma.';
-			return FALSE;
-		}		
-		*/
+		
+		$sql = 'DELETE FROM controle_de_viagem_viagens WHERE controle_de_viagem_viagens.controle_de_viagem_viagens_controle_de_viagem_viagens_id = ?';
+		$query = $this->db->query($sql, array($controle_de_viagem_id));
+
+		$sql = 'DELETE FROM controle_de_viagem_postos WHERE controle_de_viagem_postos.controle_de_viagem_postos_controle_de_viagem_viagens_id = ?';
+		$query = $this->db->query($sql, array($controle_de_viagem_id));
+
+		$sql = 'DELETE FROM controle_de_viagem_despesas WHERE controle_de_viagem_despesas.controle_de_viagem_despesas_controle_de_viagem_viagens_id = ?';
+		$query = $this->db->query($sql, array($controle_de_viagem_id));
+
 		$sql = 'DELETE FROM controle_de_viagem WHERE controle_de_viagem_id = ? LIMIT 1';
 		$query = $this->db->query($sql, array($controle_de_viagem_id));
 		
 		if($query == FALSE){
 			
-			$this->lasterr = 'Could not excluir controle_de_viagem. Do they exist?';
+			$this->lasterr = 'ERRO';
 			return FALSE;
 			
 		} else {
@@ -172,16 +176,6 @@ class controle_de_viagem_model extends Model{
 		}
 		
 	}
-	
-	function check_if_controle_de_viagem_has_matricula($controle_de_viagem_id){
-		$sql = 'SELECT controle_de_viagem_id FROM matriculas WHERE controle_de_viagem_id = ?';
-		$query = $this->db->query($sql, array($controle_de_viagem_id));
-		if($query->num_rows() == 0){
-			return TRUE;
-		} else {
-			return FALSE;
-		}
-	}		
 
 	function get_controle_de_viagem_dropdown(){
 		$sql = 'SELECT controle_de_viagem_id, controle_de_viagem_descricao FROM controle_de_viagem ORDER BY controle_de_viagem_descricao ASC';

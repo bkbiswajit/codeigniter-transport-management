@@ -508,7 +508,12 @@
 							</tr>
 							</thead>
 							<tbody>
+							<?php $total_valor_litros = 0; ?>
 							<?php foreach ($controle_de_viagem_postos as $controle_de_viagem_postos) { ?>
+
+							<?php $total_valor_litros += $controle_de_viagem_postos->controle_de_viagem_postos_litros*$controle_de_viagem_postos->controle_de_viagem_postos_valor_litro; ?>
+
+
 							<tr class="tr">
 								<td class="m"><?php echo $controle_de_viagem_postos->controle_de_viagem_postos_id;?></td>										
 								<td class="m"><?php echo mysql2human($controle_de_viagem_postos->controle_de_viagem_postos_data); ?></td>										
@@ -529,7 +534,7 @@
 									<td></td>
 									<td><?php echo $controle_de_viagem_postos_litros_total;?></td>	
 									<td></td>
-									<td></td>	
+									<td><?php echo brl($total_valor_litros); ?></td>	
 									<td></td>
 								</tr>
 							</tfoot>
@@ -628,20 +633,19 @@
 		<div id="resultado_despesas">
 			<?php if($controle_de_viagem_despesas != 0){ ?>
 			<div id="content_despesas" class="grid_16">
-					<div class="block" id="tables">
-
-						<table class="list" width="100%" cellpadding="0" cellspacing="0" border="0">
-							<col /><col /><col />
-							<thead>
-							<tr class="heading">
-								<td class="h">ID</td>
-								<td class="h">DATA</td>
-								<td class="h">DESPESA</td>
-								<td class="h">VALOR</td>
-								<td></td>
-							</tr>
-							</thead>
-							<tbody>
+				<div class="block" id="tables">
+					<table class="list" width="100%" cellpadding="0" cellspacing="0" border="0">
+						<col /><col /><col />
+						<thead>
+						<tr class="heading">
+							<td class="h">ID</td>
+							<td class="h">DATA</td>
+							<td class="h">DESPESA</td>
+							<td class="h">VALOR</td>
+							<td></td>
+						</tr>
+						</thead>
+						<tbody>
 							<?php foreach ($controle_de_viagem_despesas as $controle_de_viagem_despesas) { ?>
 							<tr class="tr">
 								<td class="m"><?php echo $controle_de_viagem_despesas->controle_de_viagem_despesas_id;?></td>										
@@ -652,18 +656,18 @@
 									<?php echo anchor('contabilidade/controle_de_viagem_despesas/ajax_excluir/'.$controle_de_viagem_despesas->controle_de_viagem_despesas_id . '/' .$controle_de_viagem_id , 'Excluir', array('onClick'=>'return deletechecked(\' '.base_url().'contabilidade/controle_de_viagem_despesas/ajax_excluir/'.$controle_de_viagem_despesas->controle_de_viagem_despesas_id . '/' .$controle_de_viagem_id . '\')')); ?>
 								</td>
 							</tr>
-							<?php } ?>
-							</tbody>
-							<tfoot>
-								<tr>
-									<th>TOTAL</th>
-									<td></td>
-									<td></td>
-									<td><?php echo brl($controle_de_viagem_despesas_total); ?></td>	
-									<td></td>
-								</tr>
-							</tfoot>
-						</table>
+						<?php } ?>
+						</tbody>
+						<tfoot>
+							<tr>
+								<th>TOTAL</th>
+								<td></td>
+								<td></td>
+								<td><?php echo brl($controle_de_viagem_despesas_total); ?></td>	
+								<td></td>
+							</tr>
+						</tfoot>
+					</table>
 				</div>
 			</div>
 		</div>

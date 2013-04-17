@@ -143,7 +143,7 @@ class controle_de_viagem_despesas_tipos_model extends Model{
 		$query = $this->db->query($sql);
 		if($query->num_rows() > 0){
 			$result = $query->result();
-			$controle_de_viagem_despesas_tipos = array();
+			$controle_de_viagem_despesas_tipos = array('' => 'SELECIONE');
 			foreach($result as $despesas_tipo){
 				$controle_de_viagem_despesas_tipos[$despesas_tipo->controle_de_viagem_despesas_tipos_id] = $despesas_tipo->controle_de_viagem_despesas_tipos_descricao;
 			}
