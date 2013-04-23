@@ -63,24 +63,24 @@
 					
 					<tr>
 						<td class="caption">
-							<label for="controle_de_viagem_motorista_id" class="r" accesskey="G"><u>M</u>otorista</label>
-						</td>
-						<td class="field">
-							<?php
-							echo form_dropdown('controle_de_viagem_motorista_id', $motoristas, set_value('controle_de_viagem_motorista_id', (isset($controle_de_viagem->controle_de_viagem_motorista_id) ? $controle_de_viagem->controle_de_viagem_motorista_id : 0)), 'tabindex="'.$t.'"');
-							$t++;
-							?>
-							
-						</td>
-					</tr>
-					
-					<tr>
-						<td class="caption">
 							<label for="controle_de_viagem_caminhoes_id" class="r" accesskey="G"><u>C</u>aminhão</label>
 						</td>
 						<td class="field">
 							<?php
 							echo form_dropdown('controle_de_viagem_caminhoes_id', $frotas, set_value('controle_de_viagem_caminhoes_id', (isset($controle_de_viagem->controle_de_viagem_caminhao_id) ? $controle_de_viagem->controle_de_viagem_caminhao_id : 0)), 'tabindex="'.$t.'"');
+							$t++;
+							?>
+							
+						</td>
+					</tr>
+
+					<tr>
+						<td class="caption">
+							<label for="controle_de_viagem_motorista_id" class="r" accesskey="G"><u>M</u>otorista</label>
+						</td>
+						<td class="field">
+							<?php
+							echo form_dropdown('controle_de_viagem_motorista_id', $motoristas, set_value('controle_de_viagem_motorista_id', (isset($controle_de_viagem->controle_de_viagem_motorista_id) ? $controle_de_viagem->controle_de_viagem_motorista_id : 0)), 'tabindex="'.$t.'"');
 							$t++;
 							?>
 							

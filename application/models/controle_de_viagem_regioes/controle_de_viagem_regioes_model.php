@@ -139,7 +139,7 @@ class controle_de_viagem_regioes_model extends Model{
 	}		
 
 	function get_controle_de_viagem_regioes_dropdown(){
-		$sql = 'SELECT controle_de_viagem_regioes_id, controle_de_viagem_regioes_descricao FROM controle_de_viagem_regioes ORDER BY controle_de_viagem_regioes_descricao ASC';
+		$sql = 'SELECT controle_de_viagem_regioes_id, controle_de_viagem_regioes_descricao FROM controle_de_viagem_regioes WHERE controle_de_viagem_regioes_ativo = 1  ORDER BY controle_de_viagem_regioes_descricao ASC';
 		$query = $this->db->query($sql);
 		if($query->num_rows() > 0){
 			$result = $query->result();

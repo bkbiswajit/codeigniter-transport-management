@@ -245,7 +245,7 @@
 	});
 </script>
 
-<div id="relatorio_completo" style="display:none;width:100%;">
+<div id="relatorio_completo" style="width:auto;display:none;">
 <div class="grid_16">
 <?php if($cvs != NULL){ ?>
 	<div class="box">

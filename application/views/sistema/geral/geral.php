@@ -167,6 +167,27 @@
 							?>
 						</td>
 					</tr>
+
+					<tr>
+						<td class="caption">
+							<label>Painel: </label>
+						</td>
+						<td class="field">
+						  <?php
+							$painel['accesskey'] = 'N';
+							$painel['name'] = 'painel';
+							$painel['id'] = 'painel';
+							$painel['cols'] = '80';
+							// $painel['maxlength'] = '100';
+							$painel['tabindex'] = $t;
+							$painel['value'] = set_value('painel', $main->painel);
+							echo form_textarea($painel);
+							$t++;
+							?>
+						</td>
+					</tr>
+
+
 					<?php
 						unset($buttons);
 						$buttons[] = array('submit', 'uibutton', 'Salvar', 'disk1.gif', $t);

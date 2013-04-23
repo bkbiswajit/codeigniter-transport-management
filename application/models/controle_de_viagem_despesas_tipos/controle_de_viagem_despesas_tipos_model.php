@@ -109,10 +109,10 @@ class controle_de_viagem_despesas_tipos_model extends Model{
 
 	function delete_controle_de_viagem_despesas_tipos($controle_de_viagem_despesas_tipos_id){
 		
-		if($this->check_if_controle_de_viagem_despesas_tipos_has_despesas($controle_de_viagem_despesas_tipos_id) == FALSE){
-			$this->lasterr = 'Não foi possível excluir a o tipo de despesa selecionado. Há despesas pertencentes à este tipo de despesa.<br />Primeiro exclua as despesas que utilizam este o tipo de despesa.';
-			return FALSE;
-		}
+		// if($this->check_if_controle_de_viagem_despesas_tipos_has_despesas($controle_de_viagem_despesas_tipos_id) == FALSE){
+		// 	$this->lasterr = 'Não foi possível excluir a o tipo de despesa selecionado. Há despesas pertencentes à este tipo de despesa.<br />Primeiro exclua as despesas que utilizam este o tipo de despesa.';
+		// 	return FALSE;
+		// }
 		
 		$sql = 'DELETE FROM controle_de_viagem_despesas_tipos WHERE controle_de_viagem_despesas_tipos_id = ? LIMIT 1';
 		$query = $this->db->query($sql, array($controle_de_viagem_despesas_tipos_id));

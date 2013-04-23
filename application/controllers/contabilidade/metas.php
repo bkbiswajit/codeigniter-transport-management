@@ -174,7 +174,6 @@ class metas extends Controller {
 		
 	}
 
-
 	function my_metas(){
 
 		$mes = date('m');
@@ -187,7 +186,7 @@ class metas extends Controller {
 		if ($bonificacao == NULL) {
 			return FALSE;
 		}
-		
+
 		$m_sql = "SELECT * FROM metas WHERE metas.metas_mes_id = $mes AND metas.metas_regiao_id = 1";
 		$m = $this->db->query($m_sql)->row();
 		$body['meta_norte'] = $m;
@@ -207,6 +206,10 @@ class metas extends Controller {
 		$m_sql = "SELECT * FROM metas WHERE metas.metas_mes_id = $mes AND metas.metas_regiao_id = 5";
 		$m = $this->db->query($m_sql)->row();
 		$body['meta_sul'] = $m;
+
+		$m_sql = "SELECT * FROM metas WHERE metas.metas_mes_id = $mes AND metas.metas_regiao_id = 6";
+		$m = $this->db->query($m_sql)->row();
+		$body['meta_norte_nordeste'] = $m;
 
 		$body['mes'] = $mes;
 
@@ -282,6 +285,22 @@ AND frotas.caminhoes_id=controle_de_viagem_agenda.controle_de_viagem_agenda_cami
 AND controle_de_viagem_destino.controle_de_viagem_destino_regiao_id=controle_de_viagem_regioes.controle_de_viagem_regioes_id
 AND controle_de_viagem_regioes.controle_de_viagem_regioes_id = '5'
 AND controle_de_viagem_agenda.controle_de_viagem_agenda_data BETWEEN '$bonificacao->bonificacao_mes_inicio' AND '$bonificacao->bonificacao_mes_final'";
+
+		$sql_norte_nordeste = "SELECT COUNT(*) AS total
+FROM controle_de_viagem_agenda, transportadoras, motoristas, frotas, controle_de_viagem_origem, controle_de_viagem_destino, controle_de_viagem_regioes
+WHERE controle_de_viagem_agenda.controle_de_viagem_agenda_transportadoras_id=transportadoras.transportadoras_id 
+AND controle_de_viagem_agenda.controle_de_viagem_agenda_motorista_id=motoristas.motoristas_id 
+AND controle_de_viagem_agenda.controle_de_viagem_agenda_caminhao_id=frotas.caminhoes_id 
+AND controle_de_viagem_agenda.controle_de_viagem_agenda_origem_id=controle_de_viagem_origem.controle_de_viagem_origem_id 
+AND controle_de_viagem_agenda.controle_de_viagem_agenda_destino_id=controle_de_viagem_destino.controle_de_viagem_destino_id 
+AND frotas.caminhoes_id=controle_de_viagem_agenda.controle_de_viagem_agenda_caminhao_id
+AND controle_de_viagem_destino.controle_de_viagem_destino_regiao_id=controle_de_viagem_regioes.controle_de_viagem_regioes_id
+AND controle_de_viagem_regioes.controle_de_viagem_regioes_id = '6'
+AND controle_de_viagem_agenda.controle_de_viagem_agenda_data BETWEEN '$bonificacao->bonificacao_mes_inicio' AND '$bonificacao->bonificacao_mes_final'";
+
+
+		$norte_nordeste = $this->db->query($sql_norte_nordeste)->row();
+		$body['norte_nordeste'] = $norte_nordeste;
 
 		$norte = $this->db->query($sql_norte)->row();
 		$body['norte'] = $norte;

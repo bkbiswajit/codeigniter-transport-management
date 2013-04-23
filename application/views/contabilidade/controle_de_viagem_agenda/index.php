@@ -33,9 +33,12 @@
 					</tr>
 				</thead>
 				<tbody>
-					<?php foreach ($controle_de_viagem_agenda as $controle_de_viagem_agenda) { ?>
+					<?php
+						$i = 1;
+						foreach ($controle_de_viagem_agenda as $controle_de_viagem_agenda) { 
+					?>
 					<tr class="tr">
-						<td class="m"><?php echo $controle_de_viagem_agenda->controle_de_viagem_agenda_id ?></td>
+						<td class="m"><?php echo $i++; ?></td>
 						<td class="m"><?php echo character_limiter($controle_de_viagem_agenda->transportadoras_descricao, 20); ?></td>
 						<td class="m"><?php echo character_limiter($controle_de_viagem_agenda->motoristas_descricao, 10); ?></td>
 						<td class="m"><?php echo character_limiter($controle_de_viagem_agenda->caminhoes_descricao, 10); ?></td>
@@ -82,10 +85,11 @@
 				</thead>
 				<tbody>
 				<?php
-				foreach ($frotas as $frotas) {
+					$i = 1;
+					foreach ($frotas as $frotas) {
 				?>
 				<tr class="tr">
-					<td class="m"><?php echo $frotas->caminhoes_id ?></td>
+					<td class="m"><?php echo $i++; ?></td>
 					<td class="m"><?php echo character_limiter($frotas->caminhoes_descricao, 50); ?></td>					
 					<td class="m"><?php echo character_limiter($frotas->caminhoes_cavalo, 50); ?></td>					
 					<td class="m"><?php echo character_limiter($frotas->caminhoes_carreta, 50); ?></td>					

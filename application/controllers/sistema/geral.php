@@ -37,6 +37,9 @@ class Geral extends Controller {
 			$data['email']							= $this->input->post('email');
 			$data['telefone']						= $this->input->post('telefone');
 			$data['endereco']						= $this->input->post('endereco');
+
+			$data['painel']							= $this->input->post('painel');
+
 			$this->settings->salvar($data);
 			$this->session->set_flashdata('flash', $this->msg->info($this->lang->line('CONF_MAIN_SAVE_OK')));
 			redirect('sistema/geral');

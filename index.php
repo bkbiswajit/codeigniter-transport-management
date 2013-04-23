@@ -10,6 +10,7 @@
 |
 */
 	error_reporting(E_ALL);
+	ini_set('session.gc_probability', 0);
 
 /*
 |---------------------------------------------------------------
