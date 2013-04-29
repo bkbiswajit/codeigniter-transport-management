@@ -22,7 +22,11 @@ class recebimentos_model extends Model{
 				$this->db->where('recebimentos_recebido', $recebimentos_recebido);
 			}
 
+			$this->db->join('transportadoras', 'recebimentos.recebimentos_transportadoras_id = transportadoras.transportadoras_id', 'inner');
+			
 			$this->db->join('clientes', 'recebimentos.recebimentos_clientes_id = clientes.clientes_id', 'inner');
+			
+			$this->db->join('frotas', 'recebimentos.recebimentos_caminhoes_id = frotas.caminhoes_id', 'inner');
 			
 			$this->db->orderby('recebimentos.recebimentos_data DESC');
 
@@ -61,6 +65,57 @@ class recebimentos_model extends Model{
 			}
 			
 		}
+		
+	}
+
+	function get_recebimentos_advanced($transportadoras = NULL, $clientes = NULL, $numero = NULL, $serie = NULL, $frota = NULL, $carregamento = NULL, $recebimento = NULL, $valor = NULL, $recebido = FALSE, $page = NULL){
+			$this->db->select('*');
+
+			$this->db->from('recebimentos');
+
+			if ($transportadoras != NULL) {
+				$this->db->where('recebimentos_transportadoras_id', $transportadoras);
+			}
+
+			if ($clientes != NULL) {
+				$this->db->where('recebimentos_clientes_id', $clientes);
+			}
+
+			if ($numero != NULL) {
+				$this->db->where('recebimentos_descricao', $numero);
+			}
+
+			if ($serie != NULL) {
+				$this->db->where('recebimentos_serie', $serie);
+			}
+
+			if ($frota != NULL) {
+				$this->db->where('recebimentos_caminhoes_id', $frota);
+			}
+
+			if ($recebido !== FALSE) {
+				$this->db->where('recebimentos_recebido', $recebido);
+			}
+
+			$this->db->join('transportadoras', 'recebimentos.recebimentos_transportadoras_id = transportadoras.transportadoras_id', 'inner');
+			
+			$this->db->join('clientes', 'recebimentos.recebimentos_clientes_id = clientes.clientes_id', 'inner');
+			
+			$this->db->join('frotas', 'recebimentos.recebimentos_caminhoes_id = frotas.caminhoes_id', 'inner');
+			
+			$this->db->orderby('recebimentos.recebimentos_data DESC');
+
+			if (isset($page) && is_array($page)) {
+				$this->db->limit($page[0], $page[1]);
+			}
+			
+			$query = $this->db->get();
+			if ($query->num_rows() > 0){
+				return $query->result();
+			} else {
+				$this->lasterr = 'No recebimentos available.';
+				return 0;
+			}
 		
 	}
 	

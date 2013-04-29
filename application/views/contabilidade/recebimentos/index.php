@@ -1,23 +1,222 @@
-<div class="grid_4">
-	<div class="box"> 
-		<h2> 
-			<a id="toggle-infocadastro">Informações</a> 
-		</h2> 
-		<div class="block" id="infocadastro">
-			<?php if ($series != 0): ?>
-				
-			<?php foreach ($series as $serie): ?>
-				<p><?php echo anchor('contabilidade/recebimentos/por_serie/'. $serie->recebimentos_serie, 'SÉRIE => ' . $serie->recebimentos_serie); ?></p>
-			<?php endforeach ?>
-			<p><?php echo anchor('contabilidade/recebimentos/por_recebido/1', 'TODOS RECEBIDOS'); ?></p>
-			<p><?php echo anchor('contabilidade/recebimentos/por_recebido/0', 'TODOS NÃO RECEBIDOS'); ?></p>
-			<p><?php echo anchor('contabilidade/recebimentos', 'TODOS'); ?></p>
-			<?php endif ?>
-		</div> 
+<div class="grid_16">
+	<p>
+		<?php echo anchor('contabilidade/recebimentos/adicionar', 'RECEBIMENTO', 'class="uibutton icon add"'); ?>
+		<a class="fancybox uibutton" href="#pesquisa_avancada" title="RELATÓRIO COMPLETO">PESQUISA AVANÇADA</a>
+	</p>
+</div>
+
+<!-- Add jQuery library -->
+<script type="text/javascript" src="<?php echo base_url()?>js/jquery-1.9.1.min.js"></script>
+<!-- Add fancyBox -->
+<link rel="stylesheet" href="<?php echo base_url()?>assets/fancyapps-fancyBox-0ffc358/source/jquery.fancybox.css?v=2.1.4" type="text/css" media="screen" />
+<script type="text/javascript" src="<?php echo base_url()?>assets/fancyapps-fancyBox-0ffc358/source/jquery.fancybox.pack.js?v=2.1.4"></script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".fancybox").fancybox();
+	});
+</script>
+
+<div id="pesquisa_avancada" style="width:auto;display:none;">
+
+	<div class="grid_12">
+		<div class="box">
+			<h2>
+				<a href="#" id="toggle-forms">Editar recebimento</a>
+			</h2>
+			<div class="block" id="forms">
+				<?php echo form_open('contabilidade/recebimentos/avancada', NULL); $t = 1; ?>
+
+					<table class="form" cellpadding="6" cellspacing="0" border="0" width="100%">
+
+						<tr>
+							<td class="caption">
+								<label for="recebimentos_transportadoras_id" class="r" accesskey="G"><u>T</u>ransportadora</label>
+							</td>
+							<td class="field">
+								<?php
+								echo form_dropdown('recebimentos_transportadoras_id', $transportadoras, set_value('recebimentos_transportadoras_id', (isset($recebimentos->recebimentos_transportadoras_id) ? $recebimentos->recebimentos_transportadoras_id : 0)), 'tabindex="'.$t.'"');
+								echo form_error('recebimentos_transportadoras_id');
+								$t++;
+								?>
+								
+							</td>
+						</tr>
+
+						<tr>
+							<td class="caption">
+								<label for="recebimentos_clientes_id" class="r" accesskey="G"><u>C</u>liente</label>
+							</td>
+							<td class="field">
+								<?php
+								echo form_dropdown('recebimentos_clientes_id', $clientes, set_value('recebimentos_clientes_id', (isset($recebimentos->recebimentos_clientes_id) ? $recebimentos->recebimentos_clientes_id : 0)), 'tabindex="'.$t.'"');
+								$t++;
+								?>
+							</td>
+						</tr>
+						
+						<tr>
+							<td class="caption">
+								<label for="recebimentos_recebimentos_descricao" class="r" accesskey="U">Número</label>
+								
+							</td>
+							<td class="field">
+								<?php
+								unset($input);
+								$input['accesskey'] = 'U';
+								$input['name'] = 'recebimentos_descricao';
+								$input['id'] = 'recebimentos_descricao';
+								$input['size'] = '50';
+								$input['maxlength'] = '255';
+								$input['tabindex'] = $t;
+								$input['autocomplete'] = 'off';
+								$input['value'] = @set_value('recebimentos_descricao', $recebimentos->recebimentos_descricao);
+								echo form_input($input);
+								echo form_error('recebimentos_descricao');
+								$t++;
+								?>
+							</td>
+						</tr>
+
+						<tr>
+							<td class="caption">
+								<label for="recebimentos_recebimentos_descricao" class="r" accesskey="U">Série</label>
+								
+							</td>
+							<td class="field">
+								<?php
+								unset($input);
+								$input['accesskey'] = 'U';
+								$input['name'] = 'recebimentos_serie';
+								$input['id'] = 'recebimentos_serie';
+								$input['size'] = '50';
+								$input['maxlength'] = '255';
+								$input['tabindex'] = $t;
+								$input['autocomplete'] = 'off';
+								$input['value'] = @set_value('recebimentos_serie', $recebimentos->recebimentos_serie);
+								echo form_input($input);
+								echo form_error('recebimentos_serie');
+								$t++;
+								?>
+							</td>
+						</tr>
+
+						<tr>
+							<td class="caption">
+								<label for="recebimentos_caminhoes_id" class="r" accesskey="G"><u>F</u>rota</label>
+							</td>
+							<td class="field">
+								<?php
+								echo form_dropdown('recebimentos_caminhoes_id', $frotas, set_value('recebimentos_caminhoes_id', (isset($recebimentos->recebimentos_caminhoes_id) ? $recebimentos->recebimentos_caminhoes_id : 0)), 'tabindex="'.$t.'"');
+								echo form_error('recebimentos_caminhoes_id');
+								$t++;
+								?>
+								
+							</td>
+						</tr>
+						
+						<tr>
+							<td class="caption">
+								<label for="recebimentos_recebimentos_data" class="r" accesskey="U">Carregamento</label>
+								
+							</td>
+							<td class="field">
+								<?php
+								unset($input);
+								$input['accesskey'] = 'U';
+								$input['name'] = 'recebimentos_data';
+								$input['id'] = 'recebimentos_data';
+								$input['size'] = '50';
+								$input['maxlength'] = '255';
+								$input['tabindex'] = $t;
+								$input['autocomplete'] = 'off';
+								$input['value'] = @set_value('recebimentos_data', mysql2human($recebimentos->recebimentos_data));
+								echo form_input($input);
+								echo form_error('recebimentos_data');
+								$t++;
+								?>
+							</td>
+						</tr>
+						
+						<tr>
+							<td class="caption">
+								<label for="recebimentos_recebimentos_data_recebido" class="r" accesskey="U">Recebimento</label>
+							</td>
+							<td class="field">
+								<?php
+								unset($input);
+								$input['accesskey'] = 'U';
+								$input['name'] = 'recebimentos_data_recebido';
+								$input['id'] = 'recebimentos_data_recebido';
+								$input['size'] = '50';
+								$input['maxlength'] = '255';
+								$input['tabindex'] = $t;
+								$input['autocomplete'] = 'off';
+								$input['value'] = @set_value('recebimentos_data_recebido', mysql2human($recebimentos->recebimentos_data_recebido));
+								echo form_input($input);
+								echo form_error('recebimentos_data_recebido');
+								$t++;
+								?>
+							</td>
+						</tr>
+						
+						<tr>
+							<td class="caption">
+								<label for="recebimentos_recebimentos_descricao" class="r" accesskey="U">Valor R$</label>
+								<span class="required">*</span>
+							</td>
+							<td class="field">
+								<?php
+								unset($input);
+								$input['accesskey'] = 'U';
+								$input['name'] = 'recebimentos_valor';
+								$input['id'] = 'recebimentos_valor';
+								$input['size'] = '50';
+								$input['maxlength'] = '255';
+								$input['tabindex'] = $t;
+								$input['autocomplete'] = 'off';
+								$input['value'] = @set_value('recebimentos_valor', $recebimentos->recebimentos_valor);
+								echo form_input($input);
+								echo form_error('recebimentos_valor');
+								$t++;
+								?>
+							</td>
+						</tr>
+						
+						<tr>
+							<td class="caption">
+									<label for="recebimentos_recebido" accesskey="E"><u>R</u>ecebido</label>
+							</td>
+							<td class="field">
+								<label for="recebimentos_recebido" class="check">
+								<?php
+								unset($check);
+								$check['name'] = 'recebimentos_recebido';
+								$check['id'] = 'recebimentos_recebido';
+								$check['value'] = '1';
+								$check['checked'] = @set_checkbox($check['name'], $check['value'], ($recebimentos->recebimentos_recebido == 1));
+								$check['tabindex'] = $t;
+								echo form_checkbox($check);
+								$t++;
+								?>
+								</label>
+							</td>
+						</tr>
+						
+						<?php
+							$buttons[] = array('submit', 'uibutton', 'Pesquisar', 'disk1.gif', $t);
+							$buttons[] = array('cancel', 'uibutton icon prev', 'Cancelar', 'arr-left.gif', $t+2, site_url('contabilidade/recebimentos'));
+							$this->load->view('parts/buttons', array('buttons' => $buttons));
+						?>
+
+					</table>
+				</form>
+			</div>
+		</div>
 	</div>
 </div>
 
-<div class="grid_12">
+<div class="grid_16">
 <?php if($recebimentos != 0){ ?>
 	<div class="box">
 		<h2>
@@ -29,15 +228,17 @@
 				<col /><col /><col />
 				<thead>
 				<tr class="heading">
-					<td class="h" title="Name">ID</td>
-					<td class="h" title="Name">NÚMERO</td>
-					<td class="h" title="Name">SÉRIE</td>
-					<td class="h" title="Name">CLIENTE</td>
-					<td class="h" title="Name">VALOR</td>
-					<td class="h" title="Name">DATA</td>
-					<td class="h" title="Name">DATA RECEBIMENTO</td>
-					<td class="h" title="Name">RECEBIDO</td>
-					<td class="h" title=""></td>
+					<td>ID</td>
+					<td>NÚM</td>
+					<td>SÉRIE</td>
+					<td>TRANSPORTADORAS</td>
+					<td>CLIENTE</td>
+					<td>FROTA</td>
+					<td>CARREGAMENTO</td>
+					<td>RECEBIMENTO</td>
+					<td>VALOR</td>
+					<td>RECEBIDO</td>
+					<td></td>
 					
 				</tr>
 				</thead>
@@ -52,29 +253,37 @@
 						if ($recebimentos->recebimentos_recebido == 0) {
 							$bgColor = 'white';
 							$recebido = 'NÃO';
+							$rec = 0;
 						} else {
 							$bgColor = 'green';
 							$recebido = 'SIM';
+							$rec = 1;
 						}
 				?>
 				<tr class="<?php echo $bgColor; ?>">
 					<td class="m"><?php echo $recebimentos->recebimentos_id ?></td>
 					<td class="m"><?php echo character_limiter($recebimentos->recebimentos_descricao, 50); ?></td>
 					<td class="m"><?php echo character_limiter($recebimentos->recebimentos_serie, 50); ?></td>
-					<td class="m"><?php echo character_limiter($recebimentos->clientes_descricao, 15); ?></td>
-					<td class="m" if ><?php echo brl($recebimentos->recebimentos_valor); ?></td>
+					<td class="m"><?php echo character_limiter($recebimentos->transportadoras_descricao, 10); ?></td>
+					<td class="m"><?php echo character_limiter($recebimentos->clientes_descricao, 10); ?></td>
+					<td class="m"><?php echo character_limiter($recebimentos->caminhoes_descricao, 4); ?></td>
 					<td class="m"><?php echo mysql2human($recebimentos->recebimentos_data); ?></td>
 					<td class="m" if ><?php echo mysql2human($recebimentos->recebimentos_data_recebido); ?></td>
+					<td class="m" if ><?php echo brl($recebimentos->recebimentos_valor); ?></td>
 					<td class="m" if ><?php echo $recebido; ?></td>
-					
-					
 					<td class="currency">
-						<?php
-						$actiondata[0] = array('contabilidade/recebimentos/editar/'.$recebimentos->recebimentos_id, 'Editar', 'arr-right-sm.gif' );
-						$actiondata[1] = array('contabilidade/recebimentos/excluir/'.$recebimentos->recebimentos_id, 'Excluir', 'cross_sm.gif' );
-						$actiondata[1] = array('contabilidade/recebimentos/excluir/'.$recebimentos->recebimentos_id, 'Excluir', 'cross_sm.gif' );
+					<?php
+
+						if ($recebimentos->recebimentos_recebido == 0) {
+							$actiondata[0] = array('contabilidade/recebimentos/recebido/'.$recebimentos->recebimentos_id, 'RECEBER', 'cross_sm.gif', '','onclick="return confirm(\'Você tem certeza que deseja marcar como RECEBIDO?\')"' );
+						} else {
+							$actiondata[0] = array('contabilidade/recebimentos/devolvido/'.$recebimentos->recebimentos_id, 'DEVOLVER', 'cross_sm.gif', '','onclick="return confirm(\'Você tem certeza que deseja marcar como NÃO RECEBIDO?\')"' );
+						}
+					
+						$actiondata[1] = array('contabilidade/recebimentos/editar/'.$recebimentos->recebimentos_id, 'Editar', 'arr-right-sm.gif' );
+						$actiondata[2] = array('contabilidade/recebimentos/excluir/'.$recebimentos->recebimentos_id, 'Excluir', 'cross_sm.gif' );
 						$this->load->view('parts/listactions', $actiondata);
-						?>
+					?>
 					</td>
 				</tr>
 				<?php } ?>
@@ -85,9 +294,11 @@
 					<td></td>
 					<td></td>
 					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
 					<td><strong><?php echo brl($sum); ?></strong></td>
-					<td></td>
-					<td></td>
 					<td></td>
 					<td></td>
 				</tfoot>

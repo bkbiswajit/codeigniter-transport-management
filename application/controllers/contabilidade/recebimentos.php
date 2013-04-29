@@ -15,12 +15,17 @@ class recebimentos extends Controller {
 	function index(){
 		//$this->auth->check('recebimentos');
 		
-		$links[] = array('contabilidade/recebimentos/adicionar', 'Adicionar novo recebimentos');
-		$tpl['links'] = $this->load->view('parts/linkbar', $links, TRUE);
 		
 		$body['series'] = $this->recebimentos_model->get_recebimentos_serie();
+
+		$this->load->model('transportadoras/transportadoras_model');
+		$this->load->model('frotas/frotas_model');
+		$this->load->model('clientes/clientes_model');
+		$body['transportadoras']	= $this->transportadoras_model->get_transportadoras_dropdown();
+		$body['frotas'] 			= $this->frotas_model->get_caminhoes_controle_de_viagem_agenda_liberado_dropdown();
+		$body['clientes'] = $this->clientes_model->get_clientes_dropdown();
 		
-		// Get list of usuarios
+		
 		$body['recebimentos'] = $this->recebimentos_model->get_recebimentos();
 		
 			$tpl['body'] = $this->load->view('contabilidade/recebimentos/index.php', $body, TRUE);
@@ -31,15 +36,103 @@ class recebimentos extends Controller {
 		$this->load->view($this->tpl, $tpl);
 	}
 
+	function avancada(){
+		//$this->auth->check('recebimentos');
+		
+		$this->load->model('transportadoras/transportadoras_model');
+		$this->load->model('frotas/frotas_model');
+		$this->load->model('clientes/clientes_model');
+		$body['transportadoras']	= $this->transportadoras_model->get_transportadoras_dropdown();
+		$body['frotas'] 			= $this->frotas_model->get_caminhoes_controle_de_viagem_agenda_liberado_dropdown();
+		$body['clientes'] = $this->clientes_model->get_clientes_dropdown();
+		$body['series'] = $this->recebimentos_model->get_recebimentos_serie();
+
+		if ($this->input->post('recebimentos_transportadoras_id')) {
+			$transportadoras = $this->input->post('recebimentos_transportadoras_id');
+		} else {
+			$transportadoras = NULL;
+		}
+
+		if ($this->input->post('recebimentos_clientes_id')) {
+			$clientes = $this->input->post('recebimentos_clientes_id');
+		} else {
+			$clientes = NULL;
+		}
+
+		if ($this->input->post('recebimentos_descricao')) {
+			$numero = $this->input->post('recebimentos_descricao');
+		} else {
+			$numero = NULL;
+		}
+		
+		if ($this->input->post('recebimentos_serie')) {
+			$serie = $this->input->post('recebimentos_serie');
+		} else {
+			$serie = NULL;
+		}
+
+		if ($this->input->post('recebimentos_caminhoes_id')) {
+			$frota = $this->input->post('recebimentos_caminhoes_id');
+		} else {
+			$frota = NULL;
+		}
+		
+		if ($this->input->post('recebimentos_data')) {
+			$carregamento = $this->input->post('recebimentos_data');
+		} else {
+			$carregamento = NULL;
+		}
+
+		if ($this->input->post('recebimentos_data_recebido')) {
+			$recebimento = $this->input->post('recebimentos_data_recebido');
+		} else {
+			$recebimento = NULL;
+		}
+		
+		if ($this->input->post('recebimentos_valor')) {
+			$valor = $this->input->post('recebimentos_valor');
+		} else {
+			$valor = NULL;
+		}
+
+		if ($this->input->post('recebimentos_recebido')) {
+			$recebido = $this->input->post('recebimentos_recebido');
+		} else {
+			$recebido = FALSE;
+		}
+
+
+
+		// echo '<p>' . $transportadoras . '</p>';
+		// echo '<p>' . $clientes . '</p>';
+		// echo '<p>' . $numero . '</p>';
+		// echo '<p>' . $serie . '</p>';
+		// echo '<p>' . $frota . '</p>';
+		// echo '<p>' . $carregamento . '</p>';
+		// echo '<p>' . $recebimento . '</p>';
+		// echo '<p>' . $valor . '</p>';
+		// echo '<p>' . $recebido . '</p>';
+
+		$body['recebimentos'] = $this->recebimentos_model->get_recebimentos_advanced($transportadoras, $clientes, $numero, $serie, $frota, $carregamento, $recebimento, $valor, $recebido);
+
+		// $body['recebimentos'] = $this->recebimentos_model->get_recebimentos();
+
+		$tpl['body'] = $this->load->view('contabilidade/recebimentos/index.php', $body, TRUE);	
+		$tpl['title'] = 'recebimentos';
+		$tpl['pagetitle'] = 'Gerenciar recebimentos';
+		
+		$this->load->view($this->tpl, $tpl);
+	}
+
 	function por_serie($recebimentos_serie = NULL){
 		//$this->auth->check('recebimentos');
 		
-		$links[] = array('contabilidade/recebimentos/adicionar', 'Adicionar novo recebimentos');
-		$tpl['links'] = $this->load->view('parts/linkbar', $links, TRUE);
 		
-		// Get list of usuarios
+		
 		$body['series'] = $this->recebimentos_model->get_recebimentos_serie();
 		$body['recebimentos'] = $this->recebimentos_model->get_recebimentos(NULL, $recebimentos_serie);
+		
+		// $body['recebimentos'] = $this->recebimentos_model->get_recebimentos_advanced(NULL, 2, 2, 3, 1, 21, 0);
 		
 			$tpl['body'] = $this->load->view('contabilidade/recebimentos/index.php', $body, TRUE);
 			
@@ -52,7 +145,7 @@ class recebimentos extends Controller {
 	function por_recebido($recebido){
 		//$this->auth->check('recebimentos');
 
-		// Get list of usuarios
+		
 		$body['series'] = $this->recebimentos_model->get_recebimentos_serie();
 		$body['recebimentos'] = $this->recebimentos_model->get_recebimentos(NULL, NULL, $recebido);
 		
@@ -69,8 +162,11 @@ class recebimentos extends Controller {
 		$body['recebimentos'] = NULL;
 		$body['recebimentos_id'] = NULL;
 
+		$this->load->model('transportadoras/transportadoras_model');
+		$this->load->model('frotas/frotas_model');
 		$this->load->model('clientes/clientes_model');
-
+		$body['transportadoras']	= $this->transportadoras_model->get_transportadoras_dropdown();
+		$body['frotas'] 			= $this->frotas_model->get_caminhoes_controle_de_viagem_agenda_liberado_dropdown();
 		$body['clientes'] = $this->clientes_model->get_clientes_dropdown();
 		
 		$tpl['title'] = 'Adicionar recebimentos';
@@ -83,6 +179,12 @@ class recebimentos extends Controller {
 		//$this->auth->check('recebimentos.editar');
 		$body['recebimentos'] = $this->recebimentos_model->get_recebimentos($recebimentos_id);
 		$body['recebimentos_id'] = $recebimentos_id;
+
+		$this->load->model('transportadoras/transportadoras_model');
+		$this->load->model('frotas/frotas_model');
+
+		$body['transportadoras']	= $this->transportadoras_model->get_transportadoras_dropdown();
+		$body['frotas'] 			= $this->frotas_model->get_caminhoes_controle_de_viagem_agenda_liberado_dropdown();
 
 		$this->load->model('clientes/clientes_model');
 		$body['clientes'] = $this->clientes_model->get_clientes_dropdown();
@@ -101,24 +203,30 @@ class recebimentos extends Controller {
 	}
 
 	function salvar(){
-		
+		/*ALTER TABLE `recebimentos` ADD COLUMN `recebimentos_caminhoes_id` INT(11) NULL DEFAULT NULL AFTER `recebimentos_serie`;*/
+		/*ALTER TABLE `recebimentos` CHANGE COLUMN `recebimentos_descricao` `recebimentos_descricao` VARCHAR(11) NULL DEFAULT NULL AFTER `recebimentos_clientes_id`;*/
 		$recebimentos_id = $this->input->post('recebimentos_id');
 		
 		$this->form_validation->set_rules('recebimentos_id', 'recebimentos_id');
-		$this->form_validation->set_rules('recebimentos_descricao', 'Número ', 'required|trim|xss_clean');
-		$this->form_validation->set_rules('recebimentos_serie', 'Série ', 'required|trim|xss_clean');
+
+		$this->form_validation->set_rules('recebimentos_transportadoras_id', 'recebimentos_transportadoras_id ', 'required|trim|xss_clean');
+		// $this->form_validation->set_rules('recebimentos_descricao', 'Número ', 'required|trim|xss_clean');
+		// $this->form_validation->set_rules('recebimentos_serie', 'Série ', 'required|trim|xss_clean');
+		$this->form_validation->set_rules('recebimentos_caminhoes_id', 'Frota ', 'required|trim|xss_clean');
 		$this->form_validation->set_rules('recebimentos_data', 'Data ', 'required|trim|xss_clean');
 		$this->form_validation->set_rules('recebimentos_valor', 'Valor ', 'required|trim|xss_clean');
 		$this->form_validation->set_error_delimiters('<li>', '</li>');
 		if ($this->form_validation->run() == FALSE) {
 			($recebimentos_id == NULL) ? $this->adicionar() : $this->editar($recebimentos_id);
 		} else {
-			$data['recebimentos_clientes_id']		= str2uppercase($this->input->post('recebimentos_clientes_id'));
-			$data['recebimentos_descricao']			= str2uppercase($this->input->post('recebimentos_descricao'));
-			$data['recebimentos_serie']				= str2uppercase($this->input->post('recebimentos_serie'));
-			$data['recebimentos_data']				= human2mysql($this->input->post('recebimentos_data'));
-			$data['recebimentos_valor']				= comma2dot($this->input->post('recebimentos_valor'));
-			$data['recebimentos_comentario']		= $this->input->post('recebimentos_comentario');
+			$data['recebimentos_transportadoras_id']		= str2uppercase($this->input->post('recebimentos_transportadoras_id'));
+			$data['recebimentos_clientes_id']				= str2uppercase($this->input->post('recebimentos_clientes_id'));
+			$data['recebimentos_descricao']					= str2uppercase($this->input->post('recebimentos_descricao'));
+			$data['recebimentos_serie']						= str2uppercase($this->input->post('recebimentos_serie'));
+			$data['recebimentos_caminhoes_id']				= str2uppercase($this->input->post('recebimentos_caminhoes_id'));
+			$data['recebimentos_data']						= human2mysql($this->input->post('recebimentos_data'));
+			$data['recebimentos_valor']						= comma2dot($this->input->post('recebimentos_valor'));
+			$data['recebimentos_comentario']				= $this->input->post('recebimentos_comentario');
 			
 			if ($this->input->post('recebimentos_data_recebido')) {
 				$data['recebimentos_data_recebido']		= human2mysql($this->input->post('recebimentos_data_recebido'));
@@ -156,6 +264,38 @@ class recebimentos extends Controller {
 			}
 		}
 		
+	}
+
+	function recebido($recebimentos_id){
+
+		if($recebimentos_id == NULL){
+			$this->msg->adicionar('err', '', 'ERRO!');
+		} else {
+			$data['recebimentos_recebido']      	= 1;
+			$editar = $this->recebimentos_model->edit_recebimentos($recebimentos_id, $data);
+			if($editar == TRUE){
+				$this->msg->adicionar('info', sprintf($this->lang->line('SECURITY_TURMA_EDIT_OK'), $recebimentos_id));
+			} else {
+				$this->msg->adicionar('err', sprintf($this->lang->line('SECURITY_TURMA_EDIT_FAIL', $this->recebimentos_model->lasterr)));
+			}
+		}
+		redirect('contabilidade/recebimentos');
+	}
+
+	function devolvido($recebimentos_id){
+
+		if($recebimentos_id == NULL){
+			$this->msg->adicionar('err', '', 'ERRO!');
+		} else {
+			$data['recebimentos_recebido'] = 0;
+			$editar = $this->recebimentos_model->edit_recebimentos($recebimentos_id, $data);
+			if($editar == TRUE){
+				$this->msg->adicionar('info', sprintf($this->lang->line('SECURITY_TURMA_EDIT_OK'), $recebimentos_id));
+			} else {
+				$this->msg->adicionar('err', sprintf($this->lang->line('SECURITY_TURMA_EDIT_FAIL', $this->recebimentos_model->lasterr)));
+			}
+		}
+		redirect('contabilidade/recebimentos');
 	}
 
 	function excluir($recebimentos_id = NULL){

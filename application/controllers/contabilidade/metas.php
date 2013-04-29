@@ -21,9 +21,14 @@ class metas extends Controller {
 		$this->load->view($this->tpl, $tpl);
 	}
 
-	function relatorio(){
+	function relatorio($mes = FALSE){
 		//$this->auth->check('metas');
-		$body['metas'] = $this->my_metas();
+
+		if ($mes == FALSE) {
+			$mes = date('m');
+		}
+
+		$body['metas'] = $this->my_metas($mes);
 
 		if ($body['metas'] == FALSE) {
 			$body['metas'] = 0;
@@ -174,13 +179,13 @@ class metas extends Controller {
 		
 	}
 
-	function my_metas(){
+	function my_metas($mes){
 
-		$mes = date('m');
+		// $mes = date('m');
 
 		$this->load->model('bonificacao/bonificacao_model');
 
-		$bonificacao = $this->bonificacao_model->get_bonificacao(4);
+		$bonificacao = $this->bonificacao_model->get_bonificacao($mes);
 		$body['bonificacao'] = $bonificacao;
 
 		if ($bonificacao == NULL) {

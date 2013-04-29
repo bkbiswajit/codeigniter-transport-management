@@ -48,6 +48,20 @@
 
 					<tr>
 						<td class="caption">
+							<label for="recebimentos_transportadoras_id" class="r" accesskey="G"><u>T</u>ransportadora</label>
+						</td>
+						<td class="field">
+							<?php
+							echo form_dropdown('recebimentos_transportadoras_id', $transportadoras, set_value('recebimentos_transportadoras_id', (isset($recebimentos->recebimentos_transportadoras_id) ? $recebimentos->recebimentos_transportadoras_id : 0)), 'tabindex="'.$t.'"');
+							echo form_error('recebimentos_transportadoras_id');
+							$t++;
+							?>
+							
+						</td>
+					</tr>
+
+					<tr>
+						<td class="caption">
 							<label for="recebimentos_clientes_id" class="r" accesskey="G"><u>C</u>liente</label>
 						</td>
 						<td class="field">
@@ -61,7 +75,7 @@
 					<tr>
 						<td class="caption">
 							<label for="recebimentos_recebimentos_descricao" class="r" accesskey="U">Número</label>
-							<span class="required">*</span>
+							
 						</td>
 						<td class="field">
 							<?php
@@ -84,7 +98,7 @@
 					<tr>
 						<td class="caption">
 							<label for="recebimentos_recebimentos_descricao" class="r" accesskey="U">Série</label>
-							<span class="required">*</span>
+							
 						</td>
 						<td class="field">
 							<?php
@@ -103,11 +117,25 @@
 							?>
 						</td>
 					</tr>
+
+					<tr>
+						<td class="caption">
+							<label for="recebimentos_caminhoes_id" class="r" accesskey="G"><u>F</u>rota</label>
+						</td>
+						<td class="field">
+							<?php
+							echo form_dropdown('recebimentos_caminhoes_id', $frotas, set_value('recebimentos_caminhoes_id', (isset($recebimentos->recebimentos_caminhoes_id) ? $recebimentos->recebimentos_caminhoes_id : 0)), 'tabindex="'.$t.'"');
+							echo form_error('recebimentos_caminhoes_id');
+							$t++;
+							?>
+							
+						</td>
+					</tr>
 					
 					<tr>
 						<td class="caption">
-							<label for="recebimentos_recebimentos_data" class="r" accesskey="U">Data</label>
-							<span class="required">*</span>
+							<label for="recebimentos_recebimentos_data" class="r" accesskey="U">Data Carregamento</label>
+							
 						</td>
 						<td class="field">
 							<?php

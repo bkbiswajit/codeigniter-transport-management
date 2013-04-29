@@ -3,8 +3,19 @@
 		<h2> 
 			<a id="toggle-infocadastro">Informações</a> 
 		</h2> 
-		<div class="block" id="infocadastro"> 
-			<p></p> 
+		<div class="block" id="infocadastro">
+			<p><?php echo anchor('contabilidade/metas/relatorio/1', 'JANEIRO'); ?></p>
+			<p><?php echo anchor('contabilidade/metas/relatorio/2', 'FEVEREIRO'); ?></p>
+			<p><?php echo anchor('contabilidade/metas/relatorio/3', 'MARÇO'); ?></p>
+			<p><?php echo anchor('contabilidade/metas/relatorio/4', 'ABRIL'); ?></p>
+			<p><?php echo anchor('contabilidade/metas/relatorio/5', 'MAIO'); ?></p>
+			<p><?php echo anchor('contabilidade/metas/relatorio/6', 'JUNHO'); ?></p>
+			<p><?php echo anchor('contabilidade/metas/relatorio/7', 'JULHO'); ?></p>
+			<p><?php echo anchor('contabilidade/metas/relatorio/8', 'AGOSTO'); ?></p>
+			<p><?php echo anchor('contabilidade/metas/relatorio/9', 'SETEMBRO'); ?></p>
+			<p><?php echo anchor('contabilidade/metas/relatorio/10', 'OUTUBRO'); ?></p>
+			<p><?php echo anchor('contabilidade/metas/relatorio/11', 'NOVEMBRO'); ?></p>
+			<p><?php echo anchor('contabilidade/metas/relatorio/12', 'DEZEMBRO'); ?></p>
 		</div> 
 	</div>
 </div>
@@ -12,7 +23,7 @@
 <div class="grid_12">
 	<div class="box">
 		<h2>
-			<a href="#" id="toggle-tables">POSTOS</a>
+			<a href="#" id="toggle-tables">METAS</a>
 		</h2>
 		<div class="block" id="tables">
 

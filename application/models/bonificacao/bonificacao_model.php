@@ -13,7 +13,7 @@ class bonificacao_model extends Model{
 			// Getting all bonificacao and number of usuarios in it
 			$this->db->select('bonificacao.*');
 			$this->db->from('bonificacao');
-			$this->db->orderby('bonificacao.bonificacao_descricao ASC');
+			$this->db->orderby('bonificacao.bonificacao_id ASC');
 			
 			if (isset($page) && is_array($page)) {
 				$this->db->limit($page[0], $page[1]);

@@ -15,7 +15,7 @@ class metas_model extends Model{
 			$this->db->from('metas');
 			$this->db->join('bonificacao', 'bonificacao.bonificacao_id = metas.metas_mes_id', 'inner');
 			$this->db->join('controle_de_viagem_regioes', 'controle_de_viagem_regioes.controle_de_viagem_regioes_id = metas.metas_regiao_id', 'inner');
-			$this->db->orderby('bonificacao_descricao ASC');
+			$this->db->orderby('metas_mes_id ASC');
 			
 			if (isset($page) && is_array($page)) {
 				$this->db->limit($page[0], $page[1]);
