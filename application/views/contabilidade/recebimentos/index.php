@@ -238,7 +238,7 @@
 				<col /><col /><col />
 				<thead>
 				<tr class="heading">
-					<td>ID</td>
+					<!-- <td>ID</td> -->
 					<td>NÚM</td>
 					<td>SÉRIE</td>
 					<td>TRANSPORTADORAS</td>
@@ -284,7 +284,7 @@
 						}
 				?>
 				<tr class="<?php echo $bgColor; ?>">
-					<td class="m"><?php echo $recebimentos->recebimentos_id ?></td>
+					<!-- <td class="m"><?php echo $recebimentos->recebimentos_id ?></td> -->
 					<td class="m"><?php echo character_limiter($recebimentos->recebimentos_descricao, 50); ?></td>
 					<td class="m"><?php echo character_limiter($recebimentos->recebimentos_serie, 50); ?></td>
 					<td class="m"><?php echo character_limiter($recebimentos->transportadoras_descricao, 10); ?></td>
