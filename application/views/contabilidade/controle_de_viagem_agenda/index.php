@@ -48,9 +48,9 @@
 						
 						<td class="currency">
 							<?php
-								$actiondata[0] = array('contabilidade/controle_de_viagem_agenda/controle_de_viagem_agenda_liberar_caminhao/'.$controle_de_viagem_agenda->controle_de_viagem_agenda_id.'/'.$controle_de_viagem_agenda->controle_de_viagem_agenda_caminhao_id, 'Descarregar', 'arr-right-sm.gif' );
-								$actiondata[1] = array('contabilidade/controle_de_viagem_agenda/editar/'.$controle_de_viagem_agenda->controle_de_viagem_agenda_id, 'Editar', 'arr-right-sm.gif' );
-								$actiondata[2] = array('contabilidade/controle_de_viagem_agenda/excluir/'.$controle_de_viagem_agenda->controle_de_viagem_agenda_id, 'Excluir', 'cross_sm.gif' );
+								$actiondata[0] = array('contabilidade/controle_de_viagem_agenda/controle_de_viagem_agenda_liberar_caminhao/'.$controle_de_viagem_agenda->controle_de_viagem_agenda_id.'/'.$controle_de_viagem_agenda->controle_de_viagem_agenda_caminhao_id, 'Descarregar', 'pencil.png' );
+								$actiondata[1] = array('contabilidade/controle_de_viagem_agenda/editar/'.$controle_de_viagem_agenda->controle_de_viagem_agenda_id, 'Editar', 'pencil.png' );
+								$actiondata[2] = array('contabilidade/controle_de_viagem_agenda/excluir/'.$controle_de_viagem_agenda->controle_de_viagem_agenda_id, 'Excluir', 'cross.png' );
 								$this->load->view('parts/listactions', $actiondata);
 							?>
 						</td>

@@ -15,138 +15,148 @@
 			});
 </script>
 
-<div class="grid_6">
-	<div class="box"> 
-		<h2> 
-			<a id="toggle-infocadastro">Informações</a> 
-		</h2> 
-		<div class="block" id="forms">
-				<?php echo form_open('contabilidade/relatorios/', NULL); $t = 1; ?>
+<div class="grid_16">
+	<p>
+		<a class="fancybox uibutton" href="#pesquisa_avancada" title="PESQUISA AVANÇADA">PESQUISA AVANÇADA</a>
+		<?php if($cvs != NULL){ ?>
+			<a class="fancybox uibutton" href="#relatorio_completo" title="RELATÓRIO COMPLETO">RELATÓRIO COMPLETO</a>
+		<?php } ?>
+	</p>
+</div>
 
-					<table class="form" cellpadding="6" cellspacing="0" border="0" width="100%">
-					<tr>
-						<td class="caption">
-							<label for="transportadoras_id" class="r" accesskey="G"><u>T</u>RANSPORTADORA</label>
-						</td>
-						<td class="field">
-							<?php
-							echo form_dropdown('transportadoras_id', $transportadoras, set_value('transportadoras_id', (isset($post_index['transportadoras_id']) ? $post_index['transportadoras_id'] : 0)), 'tabindex="'.$t.'"');
-							$t++;
-							?>
-							
-						</td>
-					</tr>
-					
-					<tr>
-						<td class="caption">
-							<label for="caminhoes_id" class="r" accesskey="G"><u>F</u>ROTA</label>
-						</td>
-						<td class="field">
-							<?php
-							echo form_dropdown('caminhoes_id', $frotas, set_value('caminhoes_id', (isset($post_index['caminhoes_id']) ? $post_index['caminhoes_id'] : 0)), 'tabindex="'.$t.'"');
-							$t++;
-							?>
-							
-						</td>
-					</tr>
-					
-					<tr>
-						<td class="caption">
-							<label for="motoristas_id" class="r" accesskey="G"><u>M</u>OTORISTA</label>
-						</td>
-						<td class="field">
-							<?php
-							echo form_dropdown('motoristas_id', $motoristas, set_value('motoristas_id', (isset($post_index['motoristas_id']) ? $post_index['motoristas_id'] : 0)), 'tabindex="'.$t.'"');
-							$t++;
-							?>
-							
-						</td>
-					</tr>
-					
-					<tr>
-						<td class="caption">
-							<label for="controle_de_viagem_viagens_clientes_id" class="r" accesskey="G"><u>C</u>LIENTE</label>
-						</td>
-						<td class="field">
-							<?php
-							echo form_dropdown('controle_de_viagem_viagens_clientes_id', $clientes, set_value('controle_de_viagem_viagens_clientes_id', (isset($post_index['controle_de_viagem_viagens_clientes_id']) ? $post_index['controle_de_viagem_viagens_clientes_id'] : 0)), 'tabindex="'.$t.'"');
-							$t++;
-							?>
-							
-						</td>
-					</tr>
-					
-					<tr>
-						<td class="caption">
-							<label for="controle_de_viagem_regioes_id" class="r" accesskey="G"><u>R</u>EGIÃO</label>
-						</td>
-						<td class="field">
-							<?php
-							echo form_dropdown('controle_de_viagem_regioes_id', $regioes, set_value('controle_de_viagem_regioes_id', (isset($post_index['controle_de_viagem_regioes_id']) ? $post_index['controle_de_viagem_regioes_id'] : 0)), 'tabindex="'.$t.'"');
-							$t++;
-							?>
-							
-						</td>
-					</tr>
-					
-					<tr>
-						<td class="caption">
-							<label for="data_inicio" class="r" accesskey="N"><u>D</u>ATA INÍCIO</label>
-							
-						</td>
-						<td class="field">
-							<?php
-							unset($input);
-							$input['accesskey'] = 'N';
-							$input['name'] = 'data_inicio';
-							$input['id'] = 'data_inicio';
-							$input['size'] = '30';
-							//$input['maxlength'] = '255';
-							$input['tabindex'] = $t;
-							$input['autocomplete'] = 'off';
-							$input['value'] = @set_value('data_inicio', mysql2human($post_index['data_inicio']));
-							echo form_input($input);
-							$t++;
-							?>
-						</td>
-					</tr>
-					
-					<tr>
-						<td class="caption">
-							<label for="data_fim" class="r" accesskey="N"><u>D</u>ATA FIM</label>
-							
-						</td>
-						<td class="field">
-							<?php
-							unset($input);
-							$input['accesskey'] = 'N';
-							$input['name'] = 'data_fim';
-							$input['id'] = 'data_fim';
-							$input['size'] = '30';
-							//$input['maxlength'] = '255';
-							$input['tabindex'] = $t;
-							$input['autocomplete'] = 'off';
-							$input['value'] = @set_value('data_fim', mysql2human($post_index['data_fim']));
-							echo form_input($input);
-							$t++;
-							?>
-						</td>
-					</tr>
-					
-					<?php
-						$buttons[] = array('submit', 'uibutton', 'Pesquisar', 'disk1.gif', $t);
-						$buttons[] = array('submit', 'uibutton icon prev', 'Limpar', 'arr-left.gif', $t+1, site_url('contabilidade/relatorios'));
-						$this->load->view('parts/buttons', array('buttons' => $buttons));
-					?>
-			</form>
-			</table>
+<div id="pesquisa_avancada" style="width:auto;display:none;">
+	<div class="grid_16">
+		<div class="box"> 
+			<h2> 
+				<a id="toggle-infocadastro">Informações</a> 
+			</h2> 
+			<div class="block" id="forms">
+					<?php echo form_open('contabilidade/relatorios/', NULL); $t = 1; ?>
+
+						<table class="form" cellpadding="6" cellspacing="0" border="0" width="100%">
+						<tr>
+							<td class="caption">
+								<label for="transportadoras_id" class="r" accesskey="G"><u>T</u>RANSPORTADORA</label>
+							</td>
+							<td class="field">
+								<?php
+								echo form_dropdown('transportadoras_id', $transportadoras, set_value('transportadoras_id', (isset($post_index['transportadoras_id']) ? $post_index['transportadoras_id'] : 0)), 'tabindex="'.$t.'"');
+								$t++;
+								?>
+								
+							</td>
+						</tr>
+						
+						<tr>
+							<td class="caption">
+								<label for="caminhoes_id" class="r" accesskey="G"><u>F</u>ROTA</label>
+							</td>
+							<td class="field">
+								<?php
+								echo form_dropdown('caminhoes_id', $frotas, set_value('caminhoes_id', (isset($post_index['caminhoes_id']) ? $post_index['caminhoes_id'] : 0)), 'tabindex="'.$t.'"');
+								$t++;
+								?>
+								
+							</td>
+						</tr>
+						
+						<tr>
+							<td class="caption">
+								<label for="motoristas_id" class="r" accesskey="G"><u>M</u>OTORISTA</label>
+							</td>
+							<td class="field">
+								<?php
+								echo form_dropdown('motoristas_id', $motoristas, set_value('motoristas_id', (isset($post_index['motoristas_id']) ? $post_index['motoristas_id'] : 0)), 'tabindex="'.$t.'"');
+								$t++;
+								?>
+								
+							</td>
+						</tr>
+						
+						<tr>
+							<td class="caption">
+								<label for="controle_de_viagem_viagens_clientes_id" class="r" accesskey="G"><u>C</u>LIENTE</label>
+							</td>
+							<td class="field">
+								<?php
+								echo form_dropdown('controle_de_viagem_viagens_clientes_id', $clientes, set_value('controle_de_viagem_viagens_clientes_id', (isset($post_index['controle_de_viagem_viagens_clientes_id']) ? $post_index['controle_de_viagem_viagens_clientes_id'] : 0)), 'tabindex="'.$t.'"');
+								$t++;
+								?>
+								
+							</td>
+						</tr>
+						
+						<tr>
+							<td class="caption">
+								<label for="controle_de_viagem_regioes_id" class="r" accesskey="G"><u>R</u>EGIÃO</label>
+							</td>
+							<td class="field">
+								<?php
+								echo form_dropdown('controle_de_viagem_regioes_id', $regioes, set_value('controle_de_viagem_regioes_id', (isset($post_index['controle_de_viagem_regioes_id']) ? $post_index['controle_de_viagem_regioes_id'] : 0)), 'tabindex="'.$t.'"');
+								$t++;
+								?>
+								
+							</td>
+						</tr>
+						
+						<tr>
+							<td class="caption">
+								<label for="data_inicio" class="r" accesskey="N"><u>D</u>ATA INÍCIO</label>
+								
+							</td>
+							<td class="field">
+								<?php
+								unset($input);
+								$input['accesskey'] = 'N';
+								$input['name'] = 'data_inicio';
+								$input['id'] = 'data_inicio';
+								$input['size'] = '30';
+								//$input['maxlength'] = '255';
+								$input['tabindex'] = $t;
+								$input['autocomplete'] = 'off';
+								$input['value'] = @set_value('data_inicio', mysql2human($post_index['data_inicio']));
+								echo form_input($input);
+								$t++;
+								?>
+							</td>
+						</tr>
+						
+						<tr>
+							<td class="caption">
+								<label for="data_fim" class="r" accesskey="N"><u>D</u>ATA FIM</label>
+								
+							</td>
+							<td class="field">
+								<?php
+								unset($input);
+								$input['accesskey'] = 'N';
+								$input['name'] = 'data_fim';
+								$input['id'] = 'data_fim';
+								$input['size'] = '30';
+								//$input['maxlength'] = '255';
+								$input['tabindex'] = $t;
+								$input['autocomplete'] = 'off';
+								$input['value'] = @set_value('data_fim', mysql2human($post_index['data_fim']));
+								echo form_input($input);
+								$t++;
+								?>
+							</td>
+						</tr>
+						
+						<?php
+							$buttons[] = array('submit', 'uibutton', 'Pesquisar', 'disk1.gif', $t);
+							$buttons[] = array('submit', 'uibutton icon prev', 'Limpar', 'arr-left.gif', $t+1, site_url('contabilidade/relatorios'));
+							$this->load->view('parts/buttons', array('buttons' => $buttons));
+						?>
+				</form>
+				</table>
+			</div>
 		</div>
 	</div>
 </div>
 
-<div class="grid_10">
+<div class="grid_16">
 <?php if($cvs != NULL){ ?>
-	<p><a class="fancybox uibutton" href="#relatorio_completo" title="RELATÓRIO COMPLETO">RELATÓRIO COMPLETO</a></p>
 	<div class="box">
 		<h2>
 			<a href="#" id="toggle-tables">Relatório de Controle de Viagens</a>
@@ -187,7 +197,7 @@
 	</div>
 </div>
 
-<div class="grid_10">
+<div class="grid_16">
 	<div class="box">
 			<h2>
 				<a href="#" id="toggle-tables">Relatório de Controle de Viagens</a>
@@ -223,7 +233,7 @@
 			</table>
 			</div>
 	</div>
-<a class="fancybox uibutton" href="#relatorio_completo" title="RELATÓRIO COMPLETO">RELATÓRIO COMPLETO</a>
+<!-- <a class="fancybox uibutton" href="#relatorio_completo" title="RELATÓRIO COMPLETO">RELATÓRIO COMPLETO</a> -->
 </div>
 
 

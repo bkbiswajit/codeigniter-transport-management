@@ -214,3 +214,8 @@
 	function comma2dot($number){
 		return str_replace(',', '.', $number);
 	}
+
+	function number2decimal($number){
+		$number = str_replace(',', '.', $number);
+		return number_format($number, 2, ".", "");
+	}

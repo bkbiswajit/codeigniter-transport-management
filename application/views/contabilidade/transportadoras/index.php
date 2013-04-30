@@ -39,8 +39,8 @@
 					
 					<td class="currency">
 						<?php
-						$actiondata[0] = array('contabilidade/transportadoras/editar/'.$transportadoras->transportadoras_id, 'Editar', 'arr-right-sm.gif' );
-						$actiondata[1] = array('contabilidade/transportadoras/excluir/'.$transportadoras->transportadoras_id, 'Excluir', 'cross_sm.gif' );
+						$actiondata[0] = array('contabilidade/transportadoras/editar/'.$transportadoras->transportadoras_id, 'Editar', 'pencil.png' );
+						$actiondata[1] = array('contabilidade/transportadoras/excluir/'.$transportadoras->transportadoras_id, 'Excluir', 'cross.png' );
 						$this->load->view('parts/listactions', $actiondata);
 						?>
 					</td>

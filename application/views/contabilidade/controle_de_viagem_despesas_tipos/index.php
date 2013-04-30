@@ -39,8 +39,8 @@
 					
 					<td class="currency">
 						<?php
-						$actiondata[0] = array('contabilidade/controle_de_viagem_despesas_tipos/editar/'.$controle_de_viagem_despesas_tipos->controle_de_viagem_despesas_tipos_id, 'Editar', 'arr-right-sm.gif' );
-						$actiondata[1] = array('contabilidade/controle_de_viagem_despesas_tipos/excluir/'.$controle_de_viagem_despesas_tipos->controle_de_viagem_despesas_tipos_id, 'Excluir', 'cross_sm.gif' );
+						$actiondata[0] = array('contabilidade/controle_de_viagem_despesas_tipos/editar/'.$controle_de_viagem_despesas_tipos->controle_de_viagem_despesas_tipos_id, 'Editar', 'pencil.png' );
+						$actiondata[1] = array('contabilidade/controle_de_viagem_despesas_tipos/excluir/'.$controle_de_viagem_despesas_tipos->controle_de_viagem_despesas_tipos_id, 'Excluir', 'cross.png' );
 						$this->load->view('parts/listactions', $actiondata);
 						?>
 					</td>

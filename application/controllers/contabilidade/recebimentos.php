@@ -78,19 +78,19 @@ class recebimentos extends Controller {
 		}
 		
 		if ($this->input->post('recebimentos_data')) {
-			$carregamento = $this->input->post('recebimentos_data');
+			$carregamento = human2mysql($this->input->post('recebimentos_data'));
 		} else {
 			$carregamento = NULL;
 		}
 
 		if ($this->input->post('recebimentos_data_recebido')) {
-			$recebimento = $this->input->post('recebimentos_data_recebido');
+			$recebimento = human2mysql($this->input->post('recebimentos_data_recebido'));
 		} else {
 			$recebimento = NULL;
 		}
 		
 		if ($this->input->post('recebimentos_valor')) {
-			$valor = $this->input->post('recebimentos_valor');
+			$valor = number2decimal($this->input->post('recebimentos_valor'));
 		} else {
 			$valor = NULL;
 		}
@@ -100,8 +100,6 @@ class recebimentos extends Controller {
 		} else {
 			$recebido = FALSE;
 		}
-
-
 
 		// echo '<p>' . $transportadoras . '</p>';
 		// echo '<p>' . $clientes . '</p>';
@@ -113,44 +111,22 @@ class recebimentos extends Controller {
 		// echo '<p>' . $valor . '</p>';
 		// echo '<p>' . $recebido . '</p>';
 
+		$body['p'] = array(	'recebimentos_transportadoras_id' => $transportadoras,
+							'recebimentos_clientes_id' => $clientes,
+							'recebimentos_descricao' => $numero,
+							'recebimentos_serie' => $serie,
+							'recebimentos_caminhoes_id' => $frota,
+							'recebimentos_data' => $carregamento,
+							'recebimentos_data_recebido' => $recebimento,
+							'recebimentos_valor' => $valor,
+							'recebimentos_recebido' => $recebido
+							);
+
 		$body['recebimentos'] = $this->recebimentos_model->get_recebimentos_advanced($transportadoras, $clientes, $numero, $serie, $frota, $carregamento, $recebimento, $valor, $recebido);
 
 		// $body['recebimentos'] = $this->recebimentos_model->get_recebimentos();
 
 		$tpl['body'] = $this->load->view('contabilidade/recebimentos/index.php', $body, TRUE);	
-		$tpl['title'] = 'recebimentos';
-		$tpl['pagetitle'] = 'Gerenciar recebimentos';
-		
-		$this->load->view($this->tpl, $tpl);
-	}
-
-	function por_serie($recebimentos_serie = NULL){
-		//$this->auth->check('recebimentos');
-		
-		
-		
-		$body['series'] = $this->recebimentos_model->get_recebimentos_serie();
-		$body['recebimentos'] = $this->recebimentos_model->get_recebimentos(NULL, $recebimentos_serie);
-		
-		// $body['recebimentos'] = $this->recebimentos_model->get_recebimentos_advanced(NULL, 2, 2, 3, 1, 21, 0);
-		
-			$tpl['body'] = $this->load->view('contabilidade/recebimentos/index.php', $body, TRUE);
-			
-		$tpl['title'] = 'recebimentos';
-		$tpl['pagetitle'] = 'Gerenciar recebimentos';
-		
-		$this->load->view($this->tpl, $tpl);
-	}
-
-	function por_recebido($recebido){
-		//$this->auth->check('recebimentos');
-
-		
-		$body['series'] = $this->recebimentos_model->get_recebimentos_serie();
-		$body['recebimentos'] = $this->recebimentos_model->get_recebimentos(NULL, NULL, $recebido);
-		
-			$tpl['body'] = $this->load->view('contabilidade/recebimentos/index.php', $body, TRUE);
-			
 		$tpl['title'] = 'recebimentos';
 		$tpl['pagetitle'] = 'Gerenciar recebimentos';
 		
@@ -210,11 +186,12 @@ class recebimentos extends Controller {
 		$this->form_validation->set_rules('recebimentos_id', 'recebimentos_id');
 
 		$this->form_validation->set_rules('recebimentos_transportadoras_id', 'recebimentos_transportadoras_id ', 'required|trim|xss_clean');
+		$this->form_validation->set_rules('recebimentos_clientes_id', 'recebimentos_clientes_id ', 'required|trim|xss_clean');
 		// $this->form_validation->set_rules('recebimentos_descricao', 'Número ', 'required|trim|xss_clean');
 		// $this->form_validation->set_rules('recebimentos_serie', 'Série ', 'required|trim|xss_clean');
 		$this->form_validation->set_rules('recebimentos_caminhoes_id', 'Frota ', 'required|trim|xss_clean');
 		$this->form_validation->set_rules('recebimentos_data', 'Data ', 'required|trim|xss_clean');
-		$this->form_validation->set_rules('recebimentos_valor', 'Valor ', 'required|trim|xss_clean');
+		// $this->form_validation->set_rules('recebimentos_valor', 'Valor ', 'required|trim|xss_clean');
 		$this->form_validation->set_error_delimiters('<li>', '</li>');
 		if ($this->form_validation->run() == FALSE) {
 			($recebimentos_id == NULL) ? $this->adicionar() : $this->editar($recebimentos_id);
@@ -233,6 +210,7 @@ class recebimentos extends Controller {
 			}
 			
 			$data['recebimentos_recebido']      	= ($this->input->post('recebimentos_recebido') == '1') ? 1 : 0;
+			$data['recebimentos_confirmado']      	= ($this->input->post('recebimentos_confirmado') == '1') ? 1 : 0;
 			
 			if($recebimentos_id == NULL){
 			
@@ -241,7 +219,6 @@ class recebimentos extends Controller {
 				if($adicionar == TRUE){
 					$this->msg->adicionar('info', sprintf($this->lang->line('SECURITY_TURMA_ADD_OK'), $data['recebimentos_descricao']));
 				} else {
-					//$this->msg->adicionar('err', sprintf($this->lang->line('SECURITY_TURMA_ADD_FAIL', $this->recebimentos_model->lasterr)));
 					$this->msg->adicionar('err', $this->recebimentos_model->lasterr, 'ERRO!');
 				}
 			
@@ -264,6 +241,38 @@ class recebimentos extends Controller {
 			}
 		}
 		
+	}
+
+	function confirmar($recebimentos_id){
+
+		if($recebimentos_id == NULL){
+			$this->msg->adicionar('err', '', 'ERRO!');
+		} else {
+			$data['recebimentos_confirmado']      	= 1;
+			$editar = $this->recebimentos_model->edit_recebimentos($recebimentos_id, $data);
+			if($editar == TRUE){
+				$this->msg->adicionar('info', sprintf($this->lang->line('SECURITY_TURMA_EDIT_OK'), $recebimentos_id));
+			} else {
+				$this->msg->adicionar('err', sprintf($this->lang->line('SECURITY_TURMA_EDIT_FAIL', $this->recebimentos_model->lasterr)));
+			}
+		}
+		redirect('contabilidade/recebimentos');
+	}
+
+	function desconfirmar($recebimentos_id){
+
+		if($recebimentos_id == NULL){
+			$this->msg->adicionar('err', '', 'ERRO!');
+		} else {
+			$data['recebimentos_confirmado']      	= 0;
+			$editar = $this->recebimentos_model->edit_recebimentos($recebimentos_id, $data);
+			if($editar == TRUE){
+				$this->msg->adicionar('info', sprintf($this->lang->line('SECURITY_TURMA_EDIT_OK'), $recebimentos_id));
+			} else {
+				$this->msg->adicionar('err', sprintf($this->lang->line('SECURITY_TURMA_EDIT_FAIL', $this->recebimentos_model->lasterr)));
+			}
+		}
+		redirect('contabilidade/recebimentos');
 	}
 
 	function recebido($recebimentos_id){

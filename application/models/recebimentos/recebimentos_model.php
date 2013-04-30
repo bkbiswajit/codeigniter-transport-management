@@ -7,20 +7,13 @@ class recebimentos_model extends Model{
 		parent::Model();
 	}
 	
-	function get_recebimentos($recebimentos_id = NULL, $recebimentos_serie = NULL, $recebimentos_recebido = NULL, $page = NULL){
+	function get_recebimentos($recebimentos_id = NULL, $page = NULL){
 		if ($recebimentos_id == NULL) {
 		
 			// Getting all recebimentos and number of usuarios in it
 			$this->db->select('*');
+			
 			$this->db->from('recebimentos');
-
-			if ($recebimentos_serie != NULL) {
-				$this->db->where('recebimentos_serie', $recebimentos_serie);
-			}
-
-			if ($recebimentos_recebido != NULL) {
-				$this->db->where('recebimentos_recebido', $recebimentos_recebido);
-			}
 
 			$this->db->join('transportadoras', 'recebimentos.recebimentos_transportadoras_id = transportadoras.transportadoras_id', 'inner');
 			
@@ -93,8 +86,25 @@ class recebimentos_model extends Model{
 				$this->db->where('recebimentos_caminhoes_id', $frota);
 			}
 
+			if ($carregamento && $recebimento != NULL) {
+				$this->db->where('recebimentos_data >=', $carregamento);
+				$this->db->where('recebimentos_data_recebido <=', $recebimento);
+			} elseif ($carregamento != NULL) {
+				$this->db->where('recebimentos_data', $carregamento);
+			} elseif ($recebimento != NULL) {
+				$this->db->where('recebimentos_data_recebido', $recebimento);
+			}
+
+			if ($valor != NULL) {
+				$this->db->where('recebimentos_valor', $valor);
+			}
+
 			if ($recebido !== FALSE) {
-				$this->db->where('recebimentos_recebido', $recebido);
+				if ($recebido == 2) {
+					$this->db->where('recebimentos_recebido', 0);
+				} else {
+					$this->db->where('recebimentos_recebido', $recebido);
+				}
 			}
 
 			$this->db->join('transportadoras', 'recebimentos.recebimentos_transportadoras_id = transportadoras.transportadoras_id', 'inner');

@@ -40,9 +40,9 @@
 					
 					<td class="currency">
 						<?php
-						$actiondata[0] = array('contabilidade/bonificacao/editar/'.$bonificacao->bonificacao_id, 'Editar', 'arr-right-sm.gif' );
-						$actiondata[1] = array('contabilidade/bonificacao/excluir/'.$bonificacao->bonificacao_id, 'Excluir', 'cross_sm.gif' );
-						$actiondata[1] = array('contabilidade/bonificacao/excluir/'.$bonificacao->bonificacao_id, 'Excluir', 'cross_sm.gif' );
+						$actiondata[0] = array('contabilidade/bonificacao/editar/'.$bonificacao->bonificacao_id, 'Editar', 'pencil.png' );
+						$actiondata[1] = array('contabilidade/bonificacao/excluir/'.$bonificacao->bonificacao_id, 'Excluir', 'cross.png' );
+						$actiondata[1] = array('contabilidade/bonificacao/excluir/'.$bonificacao->bonificacao_id, 'Excluir', 'cross.png' );
 						$this->load->view('parts/listactions', $actiondata);
 						?>
 					</td>

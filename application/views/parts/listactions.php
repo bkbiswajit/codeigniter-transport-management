@@ -14,7 +14,7 @@ foreach($items as $item){
 	}*/
 	$class = (isset($item[3]) && $item[3] != NULL) ? ' class="'.$item[3].'"' : ''; 
 	$link = sprintf(
-		'<a href="%1$s" %4$s %5$s> %3$s </a>',
+		'<a href="%1$s" %4$s %5$s><img src="'.base_url().'images/icons/%2$s" alt="%3$s" title="%3$s"> </a>',
 		site_url($item[0]),
 		$item[2],
 		$item[1],

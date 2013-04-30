@@ -52,7 +52,7 @@
 					<?php
 					$actiondata[0] = array('sistema/rastreador/usuario/'.$usuario->usuario_id, 'Relatório', 'magnifier_sm.gif');
 					$actiondata[1] = array('sistema/permissoes/effective/'.$usuario->usuario_id, 'Permissões', 'key-sm.gif', 'facebox');
-					$actiondata[2] = array('sistema/usuarios/excluir/'.$usuario->usuario_id, 'Excluir', 'cross_sm.gif');
+					$actiondata[2] = array('sistema/usuarios/excluir/'.$usuario->usuario_id, 'Excluir', 'cross.png');
 					$this->load->view('parts/listactions', $actiondata);
 					?></td>
 				</tr>

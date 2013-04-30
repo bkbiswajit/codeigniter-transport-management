@@ -67,6 +67,7 @@
 						<td class="field">
 							<?php
 							echo form_dropdown('recebimentos_clientes_id', $clientes, set_value('recebimentos_clientes_id', (isset($recebimentos->recebimentos_clientes_id) ? $recebimentos->recebimentos_clientes_id : 0)), 'tabindex="'.$t.'"');
+							echo form_error('recebimentos_clientes_id');
 							$t++;
 							?>
 						</td>
@@ -219,6 +220,26 @@
 							echo form_error('recebimentos_comentario');
 							$t++;
 							?>
+						</td>
+					</tr>
+
+					<tr>
+						<td class="caption">
+								<label for="recebimentos_confirmado" accesskey="E"><u>C</u>onfirmado</label>
+						</td>
+						<td class="field">
+							<label for="recebimentos_confirmado" class="check">
+							<?php
+							unset($check);
+							$check['name'] = 'recebimentos_confirmado';
+							$check['id'] = 'recebimentos_confirmado';
+							$check['value'] = '1';
+							$check['checked'] = @set_checkbox($check['name'], $check['value'], ($recebimentos->recebimentos_confirmado == 1));
+							$check['tabindex'] = $t;
+							echo form_checkbox($check);
+							$t++;
+							?>
+							</label>
 						</td>
 					</tr>
 					
