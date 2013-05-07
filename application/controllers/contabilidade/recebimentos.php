@@ -95,6 +95,12 @@ class recebimentos extends Controller {
 			$valor = NULL;
 		}
 
+		if ($this->input->post('recebimentos_confirmado')) {
+			$confirmado = $this->input->post('recebimentos_confirmado');
+		} else {
+			$confirmado = FALSE;
+		}
+
 		if ($this->input->post('recebimentos_recebido')) {
 			$recebido = $this->input->post('recebimentos_recebido');
 		} else {
@@ -119,10 +125,11 @@ class recebimentos extends Controller {
 							'recebimentos_data' => $carregamento,
 							'recebimentos_data_recebido' => $recebimento,
 							'recebimentos_valor' => $valor,
+							'recebimentos_confirmado' => $confirmado,
 							'recebimentos_recebido' => $recebido
 							);
 
-		$body['recebimentos'] = $this->recebimentos_model->get_recebimentos_advanced($transportadoras, $clientes, $numero, $serie, $frota, $carregamento, $recebimento, $valor, $recebido);
+		$body['recebimentos'] = $this->recebimentos_model->get_recebimentos_advanced($transportadoras, $clientes, $numero, $serie, $frota, $carregamento, $recebimento, $valor, $confirmado, $recebido);
 
 		// $body['recebimentos'] = $this->recebimentos_model->get_recebimentos();
 

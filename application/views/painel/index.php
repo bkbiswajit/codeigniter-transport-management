@@ -29,6 +29,7 @@
 			<a id="toggle-info-login">#</a>
 		</h2> 
 		<div class="block" id="info-login">
+			<p><?php echo strtoupper($proximo_backup); ?></p>
 			<?php $settings = $this->settings->get_all('main'); echo nl2br($settings->painel); ?>
 		</div>
 	</div>

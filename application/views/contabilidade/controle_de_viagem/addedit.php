@@ -46,11 +46,11 @@
 
 			<?php if($controle_de_viagem_id == NULL){ ?><?php } ?>
 
-				<table class="form" cellpadding="6" cellspacing="0" border="0" width="100%">
+				<table cellpadding="6" cellspacing="0" border="0" width="100%">
 					
 					<tr>
 						<td class="caption">
-							<label for="controle_de_viagem_transportadoras_id" class="r" accesskey="G"><u>T</u>ransportadora</label>
+							<label for="controle_de_viagem_transportadoras_id">Transportadora</label>
 						</td>
 						<td class="field">
 							<?php
@@ -63,7 +63,7 @@
 					
 					<tr>
 						<td class="caption">
-							<label for="controle_de_viagem_caminhoes_id" class="r" accesskey="G"><u>C</u>aminhão</label>
+							<label for="controle_de_viagem_caminhoes_id">Caminhão</label>
 						</td>
 						<td class="field">
 							<?php
@@ -76,7 +76,7 @@
 
 					<tr>
 						<td class="caption">
-							<label for="controle_de_viagem_motorista_id" class="r" accesskey="G"><u>M</u>otorista</label>
+							<label for="controle_de_viagem_motorista_id">Motorista</label>
 						</td>
 						<td class="field">
 							<?php
@@ -89,7 +89,7 @@
 					
 					<tr>
 						<td class="caption">
-							<label for="controle_de_viagem_km_inicial" class="r" accesskey="N"><u>K</u>M Inicial</label>
+							<label for="controle_de_viagem_km_inicial">KM Inicial</label>
 							
 						</td>
 						<td class="field">
@@ -112,7 +112,7 @@
 					
 					<tr>
 						<td class="caption">
-							<label for="controle_de_viagem_km_final" class="r" accesskey="N"><u>K</u>M Final</label>
+							<label for="controle_de_viagem_km_final">KM Final</label>
 							
 						</td>
 						<td class="field">
@@ -135,7 +135,7 @@
 					<!--
 					<tr>
 						<td class="caption">
-							<label for="controle_de_viagem_horimetro" class="r" accesskey="N"><u>H</u>orímetro</label>
+							<label for="controle_de_viagem_horimetro">Horímetro</label>
 							
 						</td>
 						<td class="field">
@@ -158,7 +158,7 @@
 					
 					<tr>
 						<td class="caption">
-							<label for="controle_de_viagem_horimetro_litros" class="r" accesskey="N"><u>H</u>orímetro Litros</label>
+							<label for="controle_de_viagem_horimetro_litros">Horímetro Litros</label>
 							
 						</td>
 						<td class="field">
@@ -209,11 +209,11 @@
 
 			<?php if($controle_de_viagem_id == NULL){ ?><?php } ?>
 
-				<table class="form" cellpadding="6" cellspacing="0" border="0" width="100%">
+				<table cellpadding="6" cellspacing="0" border="0" width="100%">
 					
 					<tr>
 						<td class="caption">
-							<label for="controle_de_viagem_viagens_data" class="r" accesskey="N"><u>D</u>ata</label>
+							<label for="controle_de_viagem_viagens_data">Data</label>
 							
 						</td>
 						<td class="field">
@@ -235,7 +235,7 @@
 					
 					<tr>
 						<td class="caption">
-							<label for="controle_de_viagem_viagens_clientes_id" class="r" accesskey="G"><u>C</u>liente</label>
+							<label for="controle_de_viagem_viagens_clientes_id">Cliente</label>
 						</td>
 						<td class="field">
 							<?php
@@ -247,7 +247,7 @@
 					
 					<tr>
 						<td class="caption">
-							<label for="controle_de_viagem_viagens_origem_id" class="r" accesskey="G"><u>O</u>rigem</label>
+							<label for="controle_de_viagem_viagens_origem_id">Origem</label>
 						</td>
 						<td class="field">
 							<?php
@@ -259,7 +259,7 @@
 					
 					<tr>
 						<td class="caption">
-							<label for="controle_de_viagem_viagens_destino_id" class="r" accesskey="G"><u>D</u>estino</label>
+							<label for="controle_de_viagem_viagens_destino_id">Destino</label>
 						</td>
 						<td class="field">
 							<?php
@@ -271,7 +271,7 @@
 					
 					<tr>
 						<td class="caption">
-							<label for="controle_de_viagem_viagens_valor_frete" class="r" accesskey="N"><u>V</u>alor Frete</label>
+							<label for="controle_de_viagem_viagens_valor_frete">Valor Frete</label>
 							
 						</td>
 						<td class="field">
@@ -293,7 +293,7 @@
 					
 					<tr>
 						<td class="caption">
-							<label for="controle_de_viagem_viagens_valor_frete" class="r" accesskey="N"><u>B</u>onus %</label>
+							<label for="controle_de_viagem_viagens_valor_frete">Bonus %</label>
 							
 						</td>
 						<td class="field">
@@ -334,7 +334,7 @@
 			<div id="content_viagens" class="grid_16">
 					<div class="block" id="tables">
 						<table class="list" width="100%" cellpadding="0" cellspacing="0" border="0">
-							<col /><col /><col />
+							
 							<thead>
 							<tr class="heading">
 								<td class="h">ID</td>
@@ -395,11 +395,11 @@
 
 			<?php if($controle_de_viagem_id == NULL){ ?><?php } ?>
 
-				<table class="form" cellpadding="6" cellspacing="0" border="0" width="100%">
+				<table cellpadding="6" cellspacing="0" border="0" width="100%">
 					
 					<tr>
 						<td class="caption">
-							<label for="controle_de_viagem_postos_data" class="r" accesskey="N"><u>D</u>ata</label>
+							<label for="controle_de_viagem_postos_data">Data</label>
 							
 						</td>
 						<td class="field">
@@ -422,7 +422,7 @@
 					
 					<tr>
 						<td class="caption">
-							<label for="controle_de_viagem_postos_postos_id" class="r" accesskey="G"><u>P</u>osto</label>
+							<label for="controle_de_viagem_postos_postos_id">Posto</label>
 						</td>
 						<td class="field">
 							<?php
@@ -435,7 +435,7 @@
 					
 					<tr>
 						<td class="caption">
-							<label for="controle_de_viagem_postos_litros" class="r" accesskey="N"><u>L</u>itros</label>
+							<label for="controle_de_viagem_postos_litros">Litros</label>
 							
 						</td>
 						<td class="field">
@@ -457,7 +457,7 @@
 					
 					<tr>
 						<td class="caption">
-							<label for="controle_de_viagem_postos_valor_litro" class="r" accesskey="N"><u>P</u>reço/Litro</label>
+							<label for="controle_de_viagem_postos_valor_litro">Preço/Litro</label>
 							
 						</td>
 						<td class="field">
@@ -495,7 +495,7 @@
 					<div class="block" id="tables">
 
 						<table class="list" width="100%" cellpadding="0" cellspacing="0" border="0">
-							<col /><col /><col />
+							
 							<thead>
 							<tr class="heading">
 								<td class="h">ID</td>
@@ -558,11 +558,11 @@
 
 			<?php if($controle_de_viagem_id == NULL){ ?><?php } ?>
 
-				<table class="form" cellpadding="6" cellspacing="0" border="0" width="100%">
+				<table cellpadding="6" cellspacing="0" border="0" width="100%">
 					
 					<tr>
 						<td class="caption">
-							<label for="controle_de_viagem_despesas_data" class="r" accesskey="N"><u>D</u>ata</label>
+							<label for="controle_de_viagem_despesas_data">Data</label>
 							
 						</td>
 						<td class="field">
@@ -585,7 +585,7 @@
 					
 					<tr>
 						<td class="caption">
-							<label for="controle_de_viagem_despesas_controle_de_viagem_despesas_tipos_id" class="r" accesskey="G"><u>D</u>espesa</label>
+							<label for="controle_de_viagem_despesas_controle_de_viagem_despesas_tipos_id">Despesa</label>
 						</td>
 						<td class="field">
 							<?php
@@ -598,7 +598,7 @@
 					
 					<tr>
 						<td class="caption">
-							<label for="controle_de_viagem_despesas_valor" class="r" accesskey="N"><u>V</u>alor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+							<label for="controle_de_viagem_despesas_valor">Valor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
 							
 						</td>
 						<td class="field">
@@ -635,7 +635,7 @@
 			<div id="content_despesas" class="grid_16">
 				<div class="block" id="tables">
 					<table class="list" width="100%" cellpadding="0" cellspacing="0" border="0">
-						<col /><col /><col />
+						
 						<thead>
 						<tr class="heading">
 							<td class="h">ID</td>

@@ -12,18 +12,20 @@
 <?php if($frotas != 0){ ?>
 	<div class="box">
 		<h2>
-			<a href="#" id="toggle-tables">FROTAS</a>
+			<a><?php echo count($frotas); ?> FROTAS</a>
 		</h2>
 		<div class="block" id="tables">
 
 			<table class="list" width="100%" cellpadding="0" cellspacing="0" border="0">
-				<col /><col /><col />
+				
 				<thead>
 				<tr class="heading">
 					<td class="h" title="Name">ID</td>
 					<td class="h" title="Name">FROTA</td>
 					<td class="h" title="Name">CAVALO</td>
+					<td class="h" title="Name">CAVALO ANO</td>
 					<td class="h" title="Name">CARRETA</td>
+					<td class="h" title="Name">CARRETA ANO</td>
 					<td class="h" title=""></td>
 					
 				</tr>
@@ -36,7 +38,9 @@
 					<td class="m"><?php echo $frotas->caminhoes_id ?></td>
 					<td class="m"><?php echo character_limiter($frotas->caminhoes_descricao, 50); ?></td>
 					<td class="m"><?php echo character_limiter($frotas->caminhoes_cavalo, 50); ?></td>
+					<td class="m"><?php echo character_limiter($frotas->caminhoes_cavalo_ano, 4); ?></td>
 					<td class="m"><?php echo character_limiter($frotas->caminhoes_carreta, 50); ?></td>
+					<td class="m"><?php echo character_limiter($frotas->caminhoes_carreta_ano, 4); ?></td>
 					
 					<td class="currency">
 						<?php

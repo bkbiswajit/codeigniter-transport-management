@@ -29,10 +29,10 @@
 <fieldset class="login">
 					<legend>Editar Usuário</legend>
 
-<table class="form" cellpadding="6" cellspacing="0" border="0" width="100%">
+<table cellpadding="6" cellspacing="0" border="0" width="100%">
 	<tr>
 		<td class="caption">
-			<label for="cpf" class="r" accesskey="U"><u>C</u>PF</label>
+			<label for="cpf" class="r" accesskey="U">CPF</label>
 		</td>
 		<td class="field">
 			<?php
@@ -54,7 +54,7 @@
 
 	<tr>
 		<td class="caption">
-			<label for="password1" class="r" accesskey="P"><u>S</u>enha</label>
+			<label for="password1" class="r" accesskey="P">Senha</label>
 		</td>
 		<td class="field">
 			<?php
@@ -74,7 +74,7 @@
 
 	<tr>
 		<td class="caption">
-			<label for="password2" class="r" accesskey="W">R<u>e</u>petir Senha </label>
+			<label for="password2" class="r" accesskey="W">Repetir Senha </label>
 		</td>
 		<td class="field">
 			<?php
@@ -94,7 +94,7 @@
 
 	<tr>
 		<td class="caption">
-			<label for="grupo_id" class="r" accesskey="G"><u>G</u>rupo</label>
+			<label for="grupo_id">Grupo</label>
 			
 		</td>
 		<td class="field">
@@ -108,7 +108,7 @@
 
 	<tr>
 		<td class="caption">
-			<label for="ativo" accesskey="E"><u>A</u>tivo</label>
+			<label for="ativo" accesskey="E">Ativo</label>
 			
 		</td>
 		<td class="field">
@@ -130,7 +130,7 @@
 
 	<tr>
 		<td class="caption">
-			<label for="email" accesskey="E"><u>E</u>-mail </label>
+			<label for="email" accesskey="E">E</u>-mail </label>
 		</td>
 		<td class="field">
 			<?php
@@ -150,7 +150,7 @@
 
 	<tr>
 		<td class="caption">
-			<label for="nomecompleto" accesskey="D"><u>N</u>ome</label>
+			<label for="nomecompleto" accesskey="D">Nome</label>
 		</td>
 		<td class="field">
 			<?php

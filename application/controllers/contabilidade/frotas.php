@@ -65,26 +65,10 @@ class frotas extends Controller {
 		
 		$this->form_validation->set_rules('caminhoes_id', 'caminhoes_id');
 		$this->form_validation->set_rules('caminhoes_descricao', 'Frota ', 'required|trim|xss_clean');
-		/*
-		$this->form_validation->set_rules('caminhoes_nome', 'Nome Completo ', 'required|trim|xss_clean');
-		$this->form_validation->set_rules('caminhoes_data_nascimento', 'Data Nascimento ', 'required|trim|xss_clean');
-		$this->form_validation->set_rules('caminhoes_endereco', 'Endereço ', 'required|trim|xss_clean');
-		$this->form_validation->set_rules('caminhoes_telefone', 'Telefone ', 'required|trim|xss_clean');
-		$this->form_validation->set_rules('caminhoes_celular', 'Celular ', 'trim|xss_clean');
-		$this->form_validation->set_rules('caminhoes_celular_operadora', 'Celular Operadora ', 'trim|xss_clean');
-		$this->form_validation->set_rules('caminhoes_email', 'E-mail ', 'trim|valid_email|xss_clean');
-		$this->form_validation->set_rules('caminhoes_setor', 'Setor ', 'required|trim|xss_clean');
-		$this->form_validation->set_rules('caminhoes_cargo', 'Cargo ', 'required|trim|xss_clean');
-		$this->form_validation->set_rules('caminhoes_matricula', 'Matrícula ', 'required|trim|xss_clean');
-		$this->form_validation->set_rules('caminhoes_cpf', 'CPF ', 'required|trim|xss_clean');
-		$this->form_validation->set_rules('caminhoes_pis', 'PIS ', 'required|trim|xss_clean');
-		$this->form_validation->set_rules('caminhoes_ctps_numero', 'CTPS Número ', 'required|trim|xss_clean');
-		$this->form_validation->set_rules('caminhoes_ctps_serie', 'CTPS Série ', 'required|trim|xss_clean');
-		$this->form_validation->set_rules('caminhoes_ctps_uf', 'CTPS UF ', 'required|trim|xss_clean');
-		$this->form_validation->set_rules('caminhoes_data_admissao', 'Data Admissão ', 'required|trim|xss_clean');
-		$this->form_validation->set_rules('caminhoes_data_demissao', 'Data Demissão ', 'trim|xss_clean');
-		$this->form_validation->set_rules('caminhoes_percentagem', 'Salário Percentual ', 'required|trim|xss_clean');
-		*/
+		$this->form_validation->set_rules('caminhoes_cavalo', 'cavalo ', 'required|trim|alpha_numeric|xss_clean');
+		$this->form_validation->set_rules('caminhoes_cavalo_ano', 'cavalo_ano ', 'required|trim|numeric|exact_length[4]|xss_clean');
+		$this->form_validation->set_rules('caminhoes_carreta', 'carreta ', 'required|trim|alpha_numeric|xss_clean');
+		$this->form_validation->set_rules('caminhoes_carreta_ano', 'carreta_ano ', 'required|trim|numeric|exact_length[4]|xss_clean');
 		$this->form_validation->set_rules('caminhoes_ativo', 'Ativo ', 'trim|xss_clean');
 		$this->form_validation->set_error_delimiters('<li>', '</li>');
 		if ($this->form_validation->run() == FALSE) {
@@ -92,25 +76,9 @@ class frotas extends Controller {
 		} else {
 			$data['caminhoes_descricao']			= str2uppercase($this->input->post('caminhoes_descricao'));
 			$data['caminhoes_cavalo']				= str2uppercase($this->input->post('caminhoes_cavalo'));
+			$data['caminhoes_cavalo_ano']			= str2uppercase($this->input->post('caminhoes_cavalo_ano'));
 			$data['caminhoes_carreta']				= str2uppercase($this->input->post('caminhoes_carreta'));
-			// $data['caminhoes_nome']					= str2uppercase($this->input->post('caminhoes_nome'));
-			// $data['caminhoes_data_nascimento']		= human2mysql($this->input->post('caminhoes_data_nascimento'));
-			// $data['caminhoes_endereco']				= $this->input->post('caminhoes_endereco');
-			// $data['caminhoes_telefone']				= $this->input->post('caminhoes_telefone');
-			// $data['caminhoes_celular']				= $this->input->post('caminhoes_celular');
-			// $data['caminhoes_celular_operadora']	= $this->input->post('caminhoes_celular_operadora');
-			// $data['caminhoes_email']				= $this->input->post('caminhoes_email');
-			// $data['caminhoes_setor']				= $this->input->post('caminhoes_setor');
-			// $data['caminhoes_cargo']				= $this->input->post('caminhoes_cargo');
-			// $data['caminhoes_matricula']			= $this->input->post('caminhoes_matricula');
-			// $data['caminhoes_cpf']					= $this->input->post('caminhoes_cpf');
-			// $data['caminhoes_pis']					= $this->input->post('caminhoes_pis');
-			// $data['caminhoes_ctps_numero']			= $this->input->post('caminhoes_ctps_numero');
-			// $data['caminhoes_ctps_serie']			= $this->input->post('caminhoes_ctps_serie');
-			// $data['caminhoes_ctps_uf']				= $this->input->post('caminhoes_ctps_uf');
-			// $data['caminhoes_data_admissao']		= human2mysql($this->input->post('caminhoes_data_admissao'));
-			// $data['caminhoes_data_demissao']		= human2mysql($this->input->post('caminhoes_data_demissao'));
-			// $data['caminhoes_percentagem']			= $this->input->post('caminhoes_percentagem');
+			$data['caminhoes_carreta_ano']			= str2uppercase($this->input->post('caminhoes_carreta_ano'));
 			$data['caminhoes_ativo']      			= ($this->input->post('caminhoes_ativo') == '1') ? 1 : 0;
 			
 			if($caminhoes_id == NULL){

@@ -222,19 +222,26 @@ class controle_de_viagem_agenda extends Controller {
 		
 		// Check if a form has been submitted; if not - show it to ask controle_de_viagem_agenda confirmation
 		if($this->input->post('id')){
+
+			$caminhao_id = $this->controle_de_viagem_agenda_model->get_controle_de_viagem_agenda($this->input->post('id'))->controle_de_viagem_agenda_caminhao_id;
+			// echo $caminhao_id;
+			// die();
+
+			$this->controle_de_viagem_agenda_liberar_caminhao($this->input->post('id'), $caminhao_id, FALSE);
 		
-			// Form has been submitted (so the POST value exists)
-			// Call model function to excluir controle_de_viagem_agenda
 			$excluir = $this->controle_de_viagem_agenda_model->delete_controle_de_viagem_agenda($this->input->post('id'));
+
 			if($excluir == FALSE){
 				$this->msg->adicionar('err', $this->controle_de_viagem_agenda_model->lasterr, 'Ocorreu um erro!');
 			} else {
+
 				$this->msg->adicionar('info', 'The controle_de_viagem_agenda has been deleted.');
 			}
 			// Redirect
 			redirect('contabilidade/controle_de_viagem_agenda');
 			
 		} else {
+
 			if($controle_de_viagem_agenda_id == NULL){
 				
 				$tpl['title'] = 'Excluir controle_de_viagem_agenda';
@@ -272,9 +279,7 @@ class controle_de_viagem_agenda extends Controller {
 		
 	}
 	
-	function controle_de_viagem_agenda_liberar_caminhao($controle_de_viagem_agenda_id, $caminhao_id){
-	
-		//echo $controle_de_viagem_agenda_id.$caminhao_id;
+	function controle_de_viagem_agenda_liberar_caminhao($controle_de_viagem_agenda_id, $caminhao_id, $redirect = TRUE){
 		
 		if ($caminhao_id == NULL)
 		{
@@ -299,7 +304,12 @@ class controle_de_viagem_agenda extends Controller {
 				$this->msg->adicionar('err', sprintf($this->lang->line('SECURITY_TURMA_EDIT_FAIL', $this->controle_de_viagem_agenda_model->lasterr)));
 			}
 		}
-		redirect('contabilidade/controle_de_viagem_agenda');
+
+		if ($redirect == TRUE) {
+			redirect('contabilidade/controle_de_viagem_agenda');
+		} else {
+			return TRUE;
+		}
 	}
 
 }

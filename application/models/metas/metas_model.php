@@ -110,11 +110,6 @@ class metas_model extends Model{
 	}	
 
 	function delete_metas($metas_id){
-	
-		if($this->check_if_metas_has_controle_de_viagem_metas($metas_id) == FALSE){
-			$this->lasterr = 'MODEL ERRO: 3';
-			return FALSE;
-		}
 		
 		$sql = 'DELETE FROM metas WHERE metas_id = ? LIMIT 1';
 		$query = $this->db->query($sql, array($metas_id));

@@ -27,7 +27,7 @@
 		</h2>
 		<div class="block" id="tables">
 			<table class="list" width="100%" cellpadding="0" cellspacing="0" border="0">
-				<col /><col /><col />
+				
 				<thead>
 				<tr class="heading">
 					<td class="h" title="Name">Grupo</td>
@@ -47,9 +47,9 @@
 					<td class="x"><?php echo $group->usercount ?>&nbsp;</td>
 					<td class="currency">
 					<?php
-					$actiondata[0] = array('sistema/usuarios/nogrupo/'.$group->grupo_id, 'Exibir usuarios', '');
-					$actiondata[1] = array('sistema/permissoes/paraogrupo/'.$group->grupo_id, ' | Editar permissoes | ', '');
-					$actiondata[2] = array('sistema/grupos/excluir/'.$group->grupo_id, 'Excluir', '');
+					$actiondata[0] = array('sistema/usuarios/nogrupo/'.$group->grupo_id, 'Exibir usuarios', 'magnifier.png');
+					$actiondata[1] = array('sistema/permissoes/paraogrupo/'.$group->grupo_id, ' | Editar permissoes | ', 'key.png');
+					$actiondata[2] = array('sistema/grupos/excluir/'.$group->grupo_id, 'Excluir', 'cross.png');
 					$this->load->view('parts/listactions', $actiondata);
 					?></td>
 				</tr>

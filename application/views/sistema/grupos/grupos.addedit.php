@@ -34,10 +34,10 @@
 		<div class="block" id="forms">
 			<?php echo form_open('sistema/grupos/salvar', NULL, array('grupo_id' => $grupo_id)); $t = 1; ?>
 			<?php if($grupo_id == NULL){ ?><?php } ?>
-				<table class="form" cellpadding="6" cellspacing="0" border="0" width="100%">
+				<table cellpadding="6" cellspacing="0" border="0" width="100%">
 					<tr>
 						<td class="caption">
-							<label for="nome" class="r" accesskey="N"><u>N</u>ome: </label>
+							<label for="nome">Nome: </label>
 						</td>
 						<td class="field">
 							<?php
@@ -58,7 +58,7 @@
 					
 					<tr>
 						<td class="caption">
-							<label for="description" class="r" accesskey="D"><u>D</u>escrição: </label>
+							<label for="description" class="r" accesskey="D">Descrição: </label>
 						</td>
 						<td class="field">
 							<?php

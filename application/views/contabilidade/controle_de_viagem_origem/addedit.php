@@ -32,11 +32,11 @@
 
 			<?php if($controle_de_viagem_origem_id == NULL){ ?><?php } ?>
 
-				<table class="form" cellpadding="6" cellspacing="0" border="0" width="100%">
+				<table cellpadding="6" cellspacing="0" border="0" width="100%">
 					
 					<tr>
 						<td class="caption">
-							<label for="controle_de_viagem_origem_regiao_id" class="r" accesskey="G"><u>R</u>egião</label>
+							<label for="controle_de_viagem_origem_regiao_id">Região</label>
 						</td>
 						<td class="field">
 							<?php
@@ -49,7 +49,7 @@
 					
 					<tr>
 						<td class="caption">
-							<label for="controle_de_viagem_origem_descricao" class="r" accesskey="N"><u>N</u>ome</label>
+							<label for="controle_de_viagem_origem_descricao">Nome</label>
 							
 						</td>
 						<td class="field">
@@ -71,7 +71,7 @@
 					
 					<tr>
 						<td class="caption">
-							<label for="controle_de_viagem_origem_ativo" accesskey="E"><u>A</u>tivo</label>
+							<label for="controle_de_viagem_origem_ativo" accesskey="E">Ativo</label>
 						</td>
 						<td class="field">
 							<label for="controle_de_viagem_origem_ativo" class="check">

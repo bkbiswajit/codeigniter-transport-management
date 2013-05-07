@@ -14,7 +14,7 @@
 		<div class="block" id="tables">
 
 			<table class="list" width="100%" cellpadding="0" cellspacing="0" border="0">
-				<col /><col /><col />
+				
 				<thead>
 				<tr class="heading">
 					<td class="h" title="">ID</td>

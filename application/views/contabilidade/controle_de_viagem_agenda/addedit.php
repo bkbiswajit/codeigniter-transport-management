@@ -39,11 +39,11 @@
 
 			<?php if($controle_de_viagem_agenda_id == NULL){ ?><?php } ?>
 
-				<table class="form" cellpadding="6" cellspacing="0" border="0" width="100%">
+				<table cellpadding="6" cellspacing="0" border="0" width="100%">
 					
 					<tr>
 						<td class="caption">
-							<label for="controle_de_viagem_agenda_transportadoras_id" class="r" accesskey="G"><u>T</u>ransportadora</label>
+							<label for="controle_de_viagem_agenda_transportadoras_id">Transportadora</label>
 						</td>
 						<td class="field">
 							<?php
@@ -57,7 +57,7 @@
 					
 					<tr>
 						<td class="caption">
-							<label for="controle_de_viagem_agenda_caminhoes_id" class="r" accesskey="G"><u>F</u>rota</label>
+							<label for="controle_de_viagem_agenda_caminhoes_id">Frota</label>
 						</td>
 						<td class="field">
 							<?php
@@ -71,7 +71,7 @@
 
 					<tr>
 						<td class="caption">
-							<label for="controle_de_viagem_agenda_motorista_id" class="r" accesskey="G"><u>M</u>otorista</label>
+							<label for="controle_de_viagem_agenda_motorista_id">Motorista</label>
 						</td>
 						<td class="field">
 							<?php
@@ -85,7 +85,7 @@
 					
 					<tr>
 						<td class="caption">
-							<label for="controle_de_viagem_agenda_clientes_id" class="r" accesskey="G"><u>C</u>liente</label>
+							<label for="controle_de_viagem_agenda_clientes_id">Cliente</label>
 						</td>
 						<td class="field">
 							<?php
@@ -98,7 +98,7 @@
 					
 					<tr>
 						<td class="caption">
-							<label for="controle_de_viagem_agenda_origem_id" class="r" accesskey="G"><u>O</u>rigem</label>
+							<label for="controle_de_viagem_agenda_origem_id">Origem</label>
 						</td>
 						<td class="field">
 							<?php
@@ -111,7 +111,7 @@
 					
 					<tr>
 						<td class="caption">
-							<label for="controle_de_viagem_agenda_destino_id" class="r" accesskey="G"><u>D</u>estino</label>
+							<label for="controle_de_viagem_agenda_destino_id">Destino</label>
 						</td>
 						<td class="field">
 							<?php
@@ -124,7 +124,7 @@
 					
 					<tr>
 						<td class="caption">
-							<label for="controle_de_viagem_agenda_data" class="r" accesskey="N"><u>D</u>ata</label>
+							<label for="controle_de_viagem_agenda_data">Data</label>
 							
 						</td>
 						<td class="field">

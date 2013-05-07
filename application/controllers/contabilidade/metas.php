@@ -166,7 +166,7 @@ class metas extends Controller {
 					$body['cancel'] = 'contabilidade/metas';
 					$body['text'] = 'Se houverem matriculas cadastradas para esta metas, não será possível excluí-la.';
 					$tpl['title'] = 'Excluir metas';
-					$tpl['pagetitle'] = 'Excluir ' . $metas->metas_descricao;
+					$tpl['pagetitle'] = 'Excluir ' . $metas->metas_id;
 					$tpl['body'] = $this->load->view('parts/deleteconfirm', $body, TRUE);
 					
 				}

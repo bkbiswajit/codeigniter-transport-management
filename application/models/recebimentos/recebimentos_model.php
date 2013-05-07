@@ -61,7 +61,7 @@ class recebimentos_model extends Model{
 		
 	}
 
-	function get_recebimentos_advanced($transportadoras = NULL, $clientes = NULL, $numero = NULL, $serie = NULL, $frota = NULL, $carregamento = NULL, $recebimento = NULL, $valor = NULL, $recebido = FALSE, $page = NULL){
+	function get_recebimentos_advanced($transportadoras = NULL, $clientes = NULL, $numero = NULL, $serie = NULL, $frota = NULL, $carregamento = NULL, $recebimento = NULL, $valor = NULL, $confirmado = FALSE, $recebido = FALSE, $page = NULL){
 			$this->db->select('*');
 
 			$this->db->from('recebimentos');
@@ -97,6 +97,14 @@ class recebimentos_model extends Model{
 
 			if ($valor != NULL) {
 				$this->db->where('recebimentos_valor', $valor);
+			}
+
+			if ($confirmado !== FALSE) {
+				if ($confirmado == 2) {
+					$this->db->where('recebimentos_confirmado', 0);
+				} else {
+					$this->db->where('recebimentos_confirmado', $confirmado);
+				}
 			}
 
 			if ($recebido !== FALSE) {

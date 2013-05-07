@@ -158,7 +158,7 @@
 						</tr>
 						<tr>
 							<td colspan="3">
-								<table class="form" cellpadding="0" cellspacing="0" border="0" width="100%">
+								<table cellpadding="0" cellspacing="0" border="0" width="100%">
 									<?php
 									unset($buttons);
 									$buttons[] = array('submit', 'uibutton', 'Salvar permissões', 'disk1.gif', 0);

@@ -57,11 +57,11 @@
 
 			<?php if($controle_de_viagem_despesas_id == NULL){ ?><?php } ?>
 
-				<table class="form" cellpadding="6" cellspacing="0" border="0" width="100%">
+				<table cellpadding="6" cellspacing="0" border="0" width="100%">
 				
 				<tr>
 						<td class="caption">
-							<label for="controle_de_viagem_despesas_data" class="r" accesskey="N"><u>D</u>ata</label>
+							<label for="controle_de_viagem_despesas_data">Data</label>
 							
 						</td>
 						<td class="field">
@@ -83,7 +83,7 @@
 					
 					<tr>
 						<td class="caption">
-							<label for="controle_de_viagem_despesas_controle_de_viagem_despesas_tipos_id" class="r" accesskey="G"><u>T</u>ipo</label>
+							<label for="controle_de_viagem_despesas_controle_de_viagem_despesas_tipos_id">Tipo</label>
 						</td>
 						<td class="field">
 							<?php
@@ -96,7 +96,7 @@
 					
 					<tr>
 						<td class="caption">
-							<label for="controle_de_viagem_despesas_valor" class="r" accesskey="N"><u>V</u>alor</label>
+							<label for="controle_de_viagem_despesas_valor">Valor</label>
 							
 						</td>
 						<td class="field">

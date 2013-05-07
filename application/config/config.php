@@ -333,7 +333,15 @@ $config['rewrite_short_tags'] = FALSE;
 $config['template']	=	'template/template';
 
 //Tracker
-$config['tracker']	=	FALSE;
+switch ( $_SERVER['SERVER_NAME'] ) {  
+	case 'localhost':
+		$config['tracker']	=	FALSE;
+	break;
+	
+	default:
+		$config['tracker']	=	TRUE;
+	break;
+}
 
 //Profiler
 switch ( $_SERVER['SERVER_NAME'] ) {  

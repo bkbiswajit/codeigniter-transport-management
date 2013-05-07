@@ -33,10 +33,10 @@
 			<?php echo form_open('conta/salvar_editar', NULL); $t = 1; ?>
 				<fieldset class="login">
 					<legend>Editar Usuário</legend>
-						<table class="form" cellpadding="6" cellspacing="0" border="0" width="100%">
+						<table cellpadding="6" cellspacing="0" border="0" width="100%">
 							<tr>
 								<td class="caption">
-									<label for="password1" class="r" accesskey="P"><u>S</u>enha</label>
+									<label for="password1" class="r" accesskey="P">Senha</label>
 								</td>
 								<td class="field">
 									<?php
@@ -55,7 +55,7 @@
 							</tr>
 							<tr>
 								<td class="caption">
-									<label for="password2" class="r" accesskey="W">Repetir <u>S</u>enha</label>
+									<label for="password2" class="r" accesskey="W">Repetir Senha</label>
 								</td>
 								<td class="field">
 									<?php
@@ -74,7 +74,7 @@
 							</tr>
 							<tr>
 								<td class="caption">
-									<label for="email" accesskey="E"><u>E</u>-mail </label>
+									<label for="email" accesskey="E">E</u>-mail </label>
 								</td>
 								<td class="field">
 									<?php
@@ -93,7 +93,7 @@
 							</tr>
 							<tr>
 								<td class="caption">
-									<label for="nomecompleto" accesskey="D"><u>N</u>ome Completo</label>
+									<label for="nomecompleto" accesskey="D">Nome Completo</label>
 								</td>
 								<td class="field">
 									<?php

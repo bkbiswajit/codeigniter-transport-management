@@ -44,11 +44,11 @@
 
 			<?php if($recebimentos_id == NULL){ ?><?php } ?>
 
-				<table class="form" cellpadding="6" cellspacing="0" border="0" width="100%">
+				<table cellpadding="6" cellspacing="0" border="0" width="100%">
 
 					<tr>
 						<td class="caption">
-							<label for="recebimentos_transportadoras_id" class="r" accesskey="G"><u>T</u>ransportadora</label>
+							<label for="recebimentos_transportadoras_id">Transportadora</label>
 						</td>
 						<td class="field">
 							<?php
@@ -62,7 +62,7 @@
 
 					<tr>
 						<td class="caption">
-							<label for="recebimentos_clientes_id" class="r" accesskey="G"><u>C</u>liente</label>
+							<label for="recebimentos_clientes_id">Cliente</label>
 						</td>
 						<td class="field">
 							<?php
@@ -121,7 +121,7 @@
 
 					<tr>
 						<td class="caption">
-							<label for="recebimentos_caminhoes_id" class="r" accesskey="G"><u>F</u>rota</label>
+							<label for="recebimentos_caminhoes_id">Frota</label>
 						</td>
 						<td class="field">
 							<?php
@@ -225,7 +225,7 @@
 
 					<tr>
 						<td class="caption">
-								<label for="recebimentos_confirmado" accesskey="E"><u>C</u>onfirmado</label>
+								<label for="recebimentos_confirmado" accesskey="E">Confirmado</label>
 						</td>
 						<td class="field">
 							<label for="recebimentos_confirmado" class="check">
@@ -245,7 +245,7 @@
 					
 					<tr>
 						<td class="caption">
-								<label for="recebimentos_recebido" accesskey="E"><u>R</u>ecebido</label>
+								<label for="recebimentos_recebido" accesskey="E">Recebido</label>
 						</td>
 						<td class="field">
 							<label for="recebimentos_recebido" class="check">

@@ -60,6 +60,13 @@
 						</ul>
 					</li>
 					<li>
+						<?php if($this->auth->check('painel', TRUE)){ echo anchor('contabilidade/frotas','Frotas') ;} ?>
+						<ul>
+							<?php if($this->auth->check('painel', TRUE)){ echo '<li>'.anchor('contabilidade/frotas_despesas','Frotas Despesas').'</li>' ;} ?>
+							<?php if($this->auth->check('painel', TRUE)){ echo '<li>'.anchor('contabilidade/frotas_despesas_tipos','Frotas Despesas Tipos').'</li>' ;} ?>
+						</ul>
+					</li>
+					<li>
 						<?php if($this->auth->check('painel', TRUE)){ echo anchor('contabilidade/controle_de_viagem_agenda','Agenda de Viagem') ;} ?>
 						<ul>
 							<?php if($this->auth->check('painel', TRUE)){ echo '<li>'.anchor('contabilidade/controle_de_viagem_agenda','Agenda de Viagem').'</li>' ;} ?>

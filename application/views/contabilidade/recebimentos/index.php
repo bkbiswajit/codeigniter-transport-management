@@ -44,11 +44,11 @@
 			<div class="block" id="forms">
 				<?php echo form_open('contabilidade/recebimentos/avancada', NULL); $t = 1; ?>
 
-					<table class="form" cellpadding="6" cellspacing="0" border="0" width="100%">
+					<table cellpadding="6" cellspacing="0" border="0" width="100%">
 
 						<tr>
 							<td class="caption">
-								<label for="recebimentos_transportadoras_id" class="r" accesskey="G"><u>T</u>ransportadora</label>
+								<label for="recebimentos_transportadoras_id">Transportadora</label>
 							</td>
 							<td class="field">
 								<?php
@@ -62,7 +62,7 @@
 
 						<tr>
 							<td class="caption">
-								<label for="recebimentos_clientes_id" class="r" accesskey="G"><u>C</u>liente</label>
+								<label for="recebimentos_clientes_id">Cliente</label>
 							</td>
 							<td class="field">
 								<?php
@@ -74,7 +74,7 @@
 						
 						<tr>
 							<td class="caption">
-								<label for="recebimentos_recebimentos_descricao" class="r" accesskey="U">Número</label>
+								<label for="recebimentos_recebimentos_descricao">Número</label>
 								
 							</td>
 							<td class="field">
@@ -97,7 +97,7 @@
 
 						<tr>
 							<td class="caption">
-								<label for="recebimentos_recebimentos_descricao" class="r" accesskey="U">Série</label>
+								<label for="recebimentos_recebimentos_descricao">Série</label>
 								
 							</td>
 							<td class="field">
@@ -120,7 +120,7 @@
 
 						<tr>
 							<td class="caption">
-								<label for="recebimentos_caminhoes_id" class="r" accesskey="G"><u>F</u>rota</label>
+								<label for="recebimentos_caminhoes_id">Frota</label>
 							</td>
 							<td class="field">
 								<?php
@@ -134,7 +134,7 @@
 						
 						<tr>
 							<td class="caption">
-								<label for="recebimentos_data" class="r" accesskey="U">Carregamento</label>
+								<label for="recebimentos_data">Carregamento</label>
 								
 							</td>
 							<td class="field">
@@ -157,7 +157,7 @@
 						
 						<tr>
 							<td class="caption">
-								<label for="recebimentos_data_recebido" class="r" accesskey="U">Recebimento</label>
+								<label for="recebimentos_data_recebido">Recebimento</label>
 							</td>
 							<td class="field">
 								<?php
@@ -179,7 +179,7 @@
 						
 						<tr>
 							<td class="caption">
-								<label for="recebimentos_recebimentos_descricao" class="r" accesskey="U">Valor R$</label>
+								<label for="recebimentos_recebimentos_descricao">Valor</label>
 							</td>
 							<td class="field">
 								<?php
@@ -201,7 +201,21 @@
 						
 						<tr>
 							<td class="caption">
-								<label for="recebimentos_recebido" class="r" accesskey="G"><u>R</u>ecebido</label>
+								<label for="recebimentos_confirmado">Confirmado</label>
+							</td>
+							<td class="field">
+								<?php
+								echo form_dropdown('recebimentos_confirmado', array('' => 'SELECIONE', '2' => 'NÃO', '1' => 'SIM'), set_value('recebimentos_confirmado', (isset($p['recebimentos_confirmado']) ? $p['recebimentos_confirmado'] : '')), 'tabindex="'.$t.'"');
+								echo form_error('recebimentos_confirmado');
+								$t++;
+								?>
+								
+							</td>
+						</tr>
+
+						<tr>
+							<td class="caption">
+								<label for="recebimentos_recebido">Recebido</label>
 							</td>
 							<td class="field">
 								<?php
@@ -235,7 +249,7 @@
 		<div class="block" id="tables">
 
 			<table class="list" width="100%" cellpadding="0" cellspacing="0" border="0">
-				<col /><col /><col />
+				
 				<thead>
 				<tr class="heading">
 					<!-- <td>ID</td> -->
@@ -322,7 +336,7 @@
 
 				</tbody>
 				<tfoot>
-					<td></td>
+					<!-- <td></td> -->
 					<td></td>
 					<td></td>
 					<td></td>

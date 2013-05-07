@@ -48,7 +48,7 @@
 
 			<?php if($motoristas_id == NULL){ ?><?php } ?>
 
-				<table class="form" cellpadding="6" cellspacing="0" border="0" width="100%">
+				<table cellpadding="6" cellspacing="0" border="0" width="100%">
 					
 					<tr>
 						<td class="caption">
@@ -489,7 +489,7 @@
 
 					<tr>
 					<td class="caption">
-					<label for="motoristas_ativo" accesskey="E"><u>A</u>tivo</label>
+					<label for="motoristas_ativo" accesskey="E">Ativo</label>
 					</td>
 					<td class="field">
 					<label for="motoristas_ativo" class="check">

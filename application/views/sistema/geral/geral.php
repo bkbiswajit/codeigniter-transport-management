@@ -19,7 +19,7 @@
 				<fieldset class="login"> 
 					<legend>Configurações do Sistema</legend>
 
-				<table class="form" cellpadding="6" cellspacing="0" border="0" width="100%">
+				<table cellpadding="6" cellspacing="0" border="0" width="100%">
 					
 					<tr>
 						<td class="caption">

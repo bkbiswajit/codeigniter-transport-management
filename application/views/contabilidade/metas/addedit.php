@@ -44,11 +44,11 @@
 
 			<?php if($metas_id == NULL){ ?><?php } ?>
 
-				<table class="form" cellpadding="6" cellspacing="0" border="0" width="100%">
+				<table cellpadding="6" cellspacing="0" border="0" width="100%">
 				
 					<tr>
 						<td class="caption">
-							<label for="metas_mes_id" class="r" accesskey="G"><u>M</u>ês</label>
+							<label for="metas_mes_id">Mês</label>
 						</td>
 						<td class="field">
 							<?php
@@ -61,7 +61,7 @@
 
 					<tr>
 						<td class="caption">
-							<label for="metas_regiao_id" class="r" accesskey="G"><u>R</u>egião</label>
+							<label for="metas_regiao_id">Região</label>
 						</td>
 						<td class="field">
 							<?php
