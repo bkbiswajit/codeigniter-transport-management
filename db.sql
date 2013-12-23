@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS `config` (
 --
 
 INSERT INTO `config` (`id`, `nome`, `subnome`, `cnpj`, `incricao_estadual`, `url`, `email`, `senha_email`, `telefone`, `endereco`, `ultimo_backup`, `ativo`) VALUES
-(0, 'Gerenciamento de Frotas v1', '', '', '', '', 'lautenai@yahoo.com.br', 'DrLau007', '', '', 1365701173, '1');
+(0, 'Gerenciamento de Frotas v1', '', '', '', '', 'lautenai@gmail.com', '', '', '', 1365701173, '1');
 
 -- --------------------------------------------------------
 
